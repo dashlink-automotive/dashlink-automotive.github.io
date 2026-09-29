@@ -1,0 +1,25 @@
+# This repo is PUBLIC — anything committed here is visible to anyone.
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# editors
+.idea/
+.vscode/
+*.swp
+*~
+
+# The APK does not belong in the repo. Publish it as a GitHub *Release* asset
+# instead: free CDN bandwidth, proper version history, and the repo stays small.
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# never commit secrets
+.env*
+secrets.*
+*credentials*

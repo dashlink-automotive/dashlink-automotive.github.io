@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>document.documentElement.className+=" js";</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="Get DashLink — turn your Android head unit into a full Android Auto receiver. Introductory launch offer." />
+<meta name="theme-color" content="#050506" />
+<style>
+/* ===== shared design tokens (matched to the main site) ===== */
+:root{
+  --bg:#050506;--bg-2:#0b0c0f;--panel:#111318;--ink:#f4f6fb;--ink-dim:#a3a9b8;--ink-faint:#6b7180;
+  --line:rgba(255,255,255,.09);--line-2:rgba(255,255,255,.05);
+  --blue:#2f9dff;--blue-hi:#5db6ff;--blue-deep:#0a72e0;--glow:rgba(47,157,255,.55);
+  --ok:#3ad29f;--err:#ff6b6b;
+  --radius:22px;--ease:cubic-bezier(.22,.61,.36,1);--ease-out:cubic-bezier(.16,1,.3,1);
+  --maxw:1180px;--pad:clamp(20px,5vw,40px);
+  --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+  --font-head:ui-rounded,"SF Pro Rounded","Google Sans","Product Sans",-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:93.75%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
+::selection{background:var(--blue);color:#04101f}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+body.admin-bar .pp-nav{top:32px}
+@media screen and (max-width:782px){body.admin-bar .pp-nav{top:46px}}
+
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(70% 55% at 78% 6%,rgba(47,157,255,.16),transparent 60%),radial-gradient(60% 50% at 10% 26%,rgba(47,157,255,.10),transparent 55%),radial-gradient(80% 60% at 50% 120%,rgba(20,80,160,.16),transparent 60%);opacity:.9}
+.grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.03;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+
+main{position:relative;z-index:1}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-hi)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 12px var(--glow)}
+h1,h2,h3,h4{font-family:var(--font-head);letter-spacing:-.022em;line-height:1.06;font-weight:600}
+.display{font-family:var(--font-head);font-size:clamp(2.2rem,5.6vw,3.8rem);font-weight:640;letter-spacing:-.025em;line-height:1.02}
+.lead{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--ink-dim);line-height:1.5}
+.grad-text{background:linear-gradient(100deg,#fff 10%,var(--blue-hi) 55%,var(--blue) 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:100px;border:1px solid transparent;font-size:1.02rem;font-weight:600;cursor:pointer;position:relative;transition:transform .3s var(--ease),box-shadow .4s var(--ease),background .3s,opacity .3s;will-change:transform}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn-primary{background:linear-gradient(180deg,#3a9bf5,#0a56cc);color:#fff;font-weight:650;text-shadow:0 1px 1px rgba(2,18,45,.35);box-shadow:0 12px 42px -12px var(--glow),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 18px 55px -12px var(--glow),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--ink);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn-block{width:100%}
+/* ===== unlock-premium flow ===== */
+.flow{display:grid;gap:14px;margin-top:40px}
+.flow-step{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding:24px clamp(18px,2.4vw,28px);border-radius:20px;
+  border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transition:border-color .4s,transform .5s var(--ease)}
+.flow-step:hover{border-color:rgba(47,157,255,.32);transform:translateY(-3px)}
+.flow-step .n{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-family:var(--font-head);font-size:1.15rem;font-weight:700;
+  background:linear-gradient(180deg,rgba(47,157,255,.3),rgba(47,157,255,.08));border:1px solid rgba(47,157,255,.4);color:#fff}
+.flow-step h4{font-size:1.1rem;margin-bottom:6px}
+.flow-step p{color:var(--ink-dim);font-size:.95rem;line-height:1.55}
+.flow-step .where{display:inline-block;margin-top:9px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:100px}
+.flow-step .where.phone{background:rgba(58,210,159,.14);border:1px solid rgba(58,210,159,.35);color:#6fe0b6}
+.flow-step .where.panel{background:rgba(47,157,255,.14);border:1px solid rgba(47,157,255,.35);color:var(--blue-hi)}
+.flow-step .where.us{background:rgba(255,150,70,.13);border:1px solid rgba(255,150,70,.32);color:#ffb27a}
+.flow-cta{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.flow-cta .btn{padding:12px 22px;font-size:.95rem;line-height:1.2}
+.flow-cta .btn svg{width:17px;height:17px}
+.flow-cta .play-badge{padding:9px 18px 9px 14px}
+.play-badge{display:inline-flex;align-items:center;gap:11px;padding:11px 20px 11px 16px;border-radius:13px;background:#fff;color:#000;font-weight:600;transition:transform .3s var(--ease)}
+.play-badge:hover{transform:translateY(-2px)}
+.play-badge svg{width:22px;height:22px;flex:none}
+.play-badge small{display:block;font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;opacity:.6;font-weight:600;line-height:1.3}
+.play-badge strong{display:block;font-size:.98rem;line-height:1.15;font-family:var(--font-head);letter-spacing:-.01em}
+.trust{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+@media(max-width:760px){.trust{grid-template-columns:1fr}}
+.trust div{display:flex;gap:11px;align-items:flex-start;padding:17px 19px;border-radius:15px;border:1px solid var(--line);background:rgba(255,255,255,.025);font-size:.9rem;color:var(--ink-dim)}
+.trust svg{width:18px;height:18px;stroke:var(--ok);fill:none;flex:none;margin-top:2px}
+.trust b{color:var(--ink);font-weight:600}
+.fallback{margin-top:54px;padding:clamp(22px,3vw,32px);border-radius:22px;border:1px dashed var(--line);background:rgba(255,255,255,.02)}
+.fallback h3{font-size:1.2rem;margin-bottom:8px}
+.fallback > p{color:var(--ink-dim);font-size:.95rem;max-width:64ch}
+.btn-wa{background:linear-gradient(180deg,#3ad07f,#12a355);color:#04140b;font-weight:700;text-shadow:none}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 16px 44px -14px rgba(58,208,127,.6)}
+.btn-wa svg{width:18px;height:18px;fill:#04140b}
+#flowManual[hidden],#flowPlay[hidden]{display:none}
+.btn svg{width:18px;height:18px}
+
+/* nav */
+.pp-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);background:rgba(6,7,9,.72);backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid var(--line-2)}
+.brand{display:inline-flex;align-items:baseline;font-family:var(--font-head);font-weight:800;letter-spacing:-.02em;font-size:1.34rem;color:#fff}
+.brand .dot{color:var(--blue);margin-left:1px}
+.pp-nav .back{font-size:.92rem;color:var(--ink-dim);display:inline-flex;align-items:center;gap:8px;transition:color .25s}
+.pp-nav .back:hover{color:var(--ink)}
+.pp-nav .back svg{width:16px;height:16px;stroke:currentColor;fill:none}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.js .reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.07s}.reveal.d2{transition-delay:.14s}.reveal.d3{transition-delay:.21s}.reveal.d4{transition-delay:.28s}
+
+/* steps / page transitions */
+.pp-step{display:none}
+.pp-step.active{display:block;animation:stepin .55s var(--ease-out)}
+@keyframes stepin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ===== hero ===== */
+.pp-hero{padding:150px var(--pad) 20px;text-align:center}
+.pp-hero .display{max-width:18ch;margin:16px auto 0}
+.pp-hero .lead{max-width:60ch;margin:20px auto 0}
+.launch-badge{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:9px 18px;border-radius:100px;border:1px solid rgba(47,157,255,.35);background:linear-gradient(180deg,rgba(47,157,255,.16),rgba(47,157,255,.04));color:#fff;font-weight:600;font-size:.95rem;box-shadow:0 0 40px -12px var(--glow)}
+
+/* ===== pricing card ===== */
+.pricing{padding:44px 0 20px}
+.price-card{max-width:520px;margin-inline:auto;border-radius:28px;padding:clamp(26px,4vw,40px);position:relative;overflow:hidden;
+  background:linear-gradient(180deg,rgba(47,157,255,.10),rgba(255,255,255,.02));border:1px solid rgba(47,157,255,.28);
+  box-shadow:0 50px 120px -50px #000,0 0 90px -40px var(--glow)}
+.price-card::before{content:"";position:absolute;inset:0;border-radius:28px;padding:1px;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 45%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.price-top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.price-was{font-size:1.2rem;color:var(--ink-faint);text-decoration:line-through}
+.price-now{font-family:var(--font-head);font-size:clamp(2.6rem,7vw,3.6rem);font-weight:680;letter-spacing:-.02em;line-height:1}
+.price-now small{font-size:1.1rem;font-weight:600;color:var(--ink-dim);margin-left:6px}
+.price-save{display:inline-block;font-size:.8rem;font-weight:600;color:#04101f;background:var(--blue-hi);padding:4px 11px;border-radius:100px}
+/* free-trial led pricing */
+.trial-flag{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:100px;background:linear-gradient(180deg,#3ad07f,#12a355);color:#04140b;font-weight:700;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:20px;box-shadow:0 10px 34px -12px rgba(58,208,127,.55)}
+.price-now small{display:inline}
+.then-line{margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:1rem;color:var(--ink-dim)}
+.then-line b{font-family:var(--font-head);font-size:1.4rem;font-weight:680;color:var(--ink);letter-spacing:-.01em}
+.then-line .was{color:var(--ink-faint);text-decoration:line-through;font-size:.95rem}
+.badges{list-style:none;margin:26px 0 0;display:grid;gap:12px}
+.badges li{display:flex;align-items:flex-start;gap:12px;font-size:.98rem;color:var(--ink-dim)}
+.badges li b{color:var(--ink);font-weight:600}
+.badges .tick{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(58,210,159,.15);border:1px solid rgba(58,210,159,.4);display:grid;place-items:center;margin-top:1px}
+.badges .tick svg{width:12px;height:12px;stroke:var(--ok);fill:none}
+.price-note{margin-top:22px;font-size:.85rem;color:var(--ink-faint);text-align:center}
+/* whole card is a jump-to-form control */
+.price-card{cursor:pointer;transition:transform .5s var(--ease),border-color .4s,box-shadow .5s var(--ease)}
+.price-card:hover{transform:translateY(-4px);border-color:rgba(47,157,255,.5);box-shadow:0 60px 130px -50px #000,0 0 110px -36px var(--glow)}
+.price-card:focus-visible{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(47,157,255,.22),0 50px 120px -50px #000}
+.price-cta{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:.95rem;font-weight:650;color:var(--blue-hi)}
+.price-cta svg{width:16px;height:16px;stroke:currentColor;fill:none;transition:transform .4s var(--ease)}
+.price-card:hover .price-cta svg{transform:translateY(3px)}
+
+/* ===== why buy ===== */
+.section{padding:90px 0}
+.section-title{max-width:22ch}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+@media(max-width:860px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.why-grid{grid-template-columns:1fr}}
+.why-card{position:relative;border-radius:20px;padding:28px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012));border:1px solid var(--line);transition:transform .5s var(--ease),border-color .4s,box-shadow .5s var(--ease)}
+/* lit top edge, like the pricing + delivery cards */
+.why-card::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0) 42%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+/* soft glow that fades in on hover */
+.why-card::after{content:"";position:absolute;inset:0;border-radius:20px;pointer-events:none;opacity:0;transition:opacity .5s var(--ease);background:radial-gradient(120% 90% at 50% -10%,rgba(47,157,255,.14),transparent 60%)}
+.why-card:hover{transform:translateY(-6px);border-color:rgba(47,157,255,.4);box-shadow:0 30px 60px -30px #000,0 0 60px -30px var(--glow)}
+.why-card:hover::after{opacity:1}
+.why-card .ic{position:relative;width:48px;height:48px;border-radius:14px;background:rgba(47,157,255,.12);border:1px solid rgba(47,157,255,.28);display:grid;place-items:center;margin-bottom:18px;transition:background .4s,box-shadow .4s,transform .5s var(--ease)}
+.why-card:hover .ic{background:rgba(47,157,255,.2);box-shadow:0 0 24px -6px var(--glow);transform:translateY(-1px)}
+.why-card .ic svg{width:24px;height:24px;stroke:var(--blue-hi);fill:none}
+.why-card h4{position:relative;font-size:1.14rem;font-weight:600;margin-bottom:6px}
+.why-card p{position:relative;font-size:.93rem;color:var(--ink-dim);line-height:1.5}
+
+/* ===== checkout layout (form + sticky summary) ===== */
+.checkout{display:grid;grid-template-columns:1.6fr .9fr;gap:clamp(24px,3.5vw,48px);align-items:start;margin-top:44px}
+@media(max-width:920px){.checkout{grid-template-columns:1fr}}
+.form-card{border-radius:24px;padding:clamp(22px,3vw,34px);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));border:1px solid var(--line)}
+.fset{border:none;margin:0 0 34px}
+.fset:last-child{margin-bottom:0}
+.fset legend{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-size:1.15rem;font-weight:640;margin-bottom:6px}
+.fset .hint{font-size:.86rem;color:var(--ink-faint);margin-bottom:20px;line-height:1.5;max-width:60ch}
+.fset .num{width:26px;height:26px;border-radius:8px;background:rgba(47,157,255,.14);border:1px solid rgba(47,157,255,.3);color:var(--blue-hi);display:grid;place-items:center;font-size:.8rem;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+
+/* fields with floating labels + animated focus */
+.field{position:relative;margin-top:6px}
+.field input,.field select,.field textarea{width:100%;padding:20px 16px 8px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;outline:none;transition:border-color .3s,box-shadow .3s,background .3s}
+.field textarea{padding-top:26px;min-height:130px;resize:vertical;line-height:1.5}
+.field select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23a3a9b8' stroke-width='2'><path d='M4 6l4 4 4-4'/></svg>");background-repeat:no-repeat;background-position:right 16px center}
+.field label{position:absolute;left:16px;top:14px;color:var(--ink-faint);font-size:1rem;pointer-events:none;transition:transform .22s var(--ease),color .22s,font-size .22s;transform-origin:left top}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);background:rgba(47,157,255,.05);box-shadow:0 0 0 4px rgba(47,157,255,.12)}
+.field input:focus+label,.field textarea:focus+label,.field input:not(:placeholder-shown)+label,.field textarea:not(:placeholder-shown)+label,
+.field select:focus+label,.field.filled label{transform:translateY(-9px) scale(.74);color:var(--blue-hi)}
+.field.err input,.field.err select,.field.err textarea{border-color:var(--err);box-shadow:0 0 0 4px rgba(255,107,107,.12)}
+.field .msg{display:none;font-size:.78rem;color:var(--err);margin:6px 4px 0}
+.field.err .msg{display:block;animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.req-star{color:var(--blue-hi)}
+
+/* radio pills */
+.radio-group{margin-top:6px}
+.radio-group>span.q{display:block;font-size:.95rem;color:var(--ink-dim);margin-bottom:10px}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+.pill-opt{position:relative}
+.pill-opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.pill-opt span{display:inline-flex;padding:11px 18px;border-radius:100px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:.92rem;color:var(--ink-dim);transition:.25s;cursor:pointer}
+.pill-opt input:checked+span{background:linear-gradient(180deg,#3a9bf5,#0a56cc);border-color:transparent;color:#fff;font-weight:600}
+.pill-opt input:focus-visible+span{box-shadow:0 0 0 4px rgba(47,157,255,.18)}
+.radio-group.err span.q{color:var(--err)}
+
+/* checkbox */
+.check{display:inline-flex;align-items:center;gap:11px;margin-top:14px;cursor:pointer;font-size:.92rem;color:var(--ink-dim);user-select:none}
+.check input{position:absolute;opacity:0}
+.check .box{width:22px;height:22px;border-radius:7px;border:1px solid var(--line);background:rgba(255,255,255,.03);display:grid;place-items:center;transition:.25s}
+.check .box svg{width:13px;height:13px;stroke:#fff;fill:none;opacity:0;transform:scale(.5);transition:.25s}
+.check input:checked+.box{background:linear-gradient(180deg,#3a9bf5,#0a56cc);border-color:transparent}
+.check input:checked+.box svg{opacity:1;transform:none}
+
+/* ===== order summary ===== */
+.summary{position:sticky;top:96px;border-radius:24px;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid var(--line);backdrop-filter:blur(10px)}
+.summary h3{font-size:1.15rem;margin-bottom:18px}
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;font-size:.96rem;color:var(--ink-dim);border-top:1px solid var(--line-2)}
+.sum-row:first-of-type{border-top:none}
+.sum-row .v{color:var(--ink)}
+.sum-row.discount .v{color:var(--ok)}
+.sum-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:16px;border-top:1px solid var(--line);font-weight:700}
+.sum-total .label{font-size:1rem}
+.sum-total .v{font-family:var(--font-head);font-size:1.7rem;letter-spacing:-.02em}
+.summary .btn{margin-top:22px}
+.summary .safe{margin-top:14px;font-size:.78rem;color:var(--ink-faint);display:flex;align-items:center;gap:7px;justify-content:center}
+.summary .safe svg{width:14px;height:14px;stroke:var(--ok);fill:none}
+.summary .consent{margin-top:12px;font-size:.74rem;line-height:1.5;color:var(--ink-faint);text-align:center}
+.summary .consent a{color:var(--ink-dim);text-decoration:underline;text-underline-offset:2px}
+.summary .consent a:hover{color:var(--blue-hi)}
+
+/* ===== faq (shared accordion) ===== */
+.faq-list{max-width:820px;margin:44px auto 0}
+.qa{border-top:1px solid var(--line)}
+.qa:last-child{border-bottom:1px solid var(--line)}
+.qa button{width:100%;background:none;border:none;color:var(--ink);text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 4px;cursor:pointer;font-size:clamp(1.02rem,2vw,1.22rem);font-weight:550}
+.qa .plus{flex:0 0 auto;width:24px;height:24px;position:relative;transition:transform .4s var(--ease)}
+.qa .plus::before,.qa .plus::after{content:"";position:absolute;background:var(--blue-hi);border-radius:2px}
+.qa .plus::before{top:50%;left:0;right:0;height:2px;transform:translateY(-50%)}
+.qa .plus::after{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);transition:transform .4s var(--ease)}
+.qa.open .plus{transform:rotate(180deg)}
+.qa.open .plus::after{transform:translateX(-50%) scaleY(0)}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.qa .ans p{padding:0 4px 24px;color:var(--ink-dim);font-size:.98rem;line-height:1.6;max-width:66ch}
+
+/* ===== success ===== */
+.success{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:150px var(--pad) 80px}
+.success-mark{width:96px;height:96px;margin-bottom:28px}
+.success-mark circle{fill:none;stroke:var(--ok);stroke-width:4;stroke-dasharray:283;stroke-dashoffset:283;animation:draw 1s var(--ease-out) forwards}
+.success-mark path{fill:none;stroke:var(--ok);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s var(--ease-out) .7s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.success h1{margin-bottom:16px}
+.success .lead{max-width:52ch;margin-inline:auto}
+.deliver{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px auto 0;max-width:600px;text-align:left}
+@media(max-width:540px){.deliver{grid-template-columns:1fr;max-width:360px}}
+.deliver li{position:relative;display:flex;align-items:center;gap:14px;padding:20px 46px 20px 20px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012));transition:transform .45s var(--ease),border-color .4s;opacity:0;transform:translateY(14px);animation:delin .5s var(--ease-out) forwards}
+.deliver li:nth-child(1){animation-delay:.15s}.deliver li:nth-child(2){animation-delay:.25s}.deliver li:nth-child(3){animation-delay:.35s}.deliver li:nth-child(4){animation-delay:.45s}
+@keyframes delin{to{opacity:1;transform:none}}
+.deliver li:hover{transform:translateY(-4px);border-color:rgba(58,210,159,.4)}
+.deliver .di{flex:0 0 auto;width:44px;height:44px;border-radius:13px;background:rgba(58,210,159,.12);border:1px solid rgba(58,210,159,.3);display:grid;place-items:center}
+.deliver .di svg{width:22px;height:22px;stroke:var(--ok);fill:none}
+.deliver .dl{display:flex;flex-direction:column;min-width:0}
+.deliver .dl b{font-weight:600;font-size:1rem;line-height:1.25}
+.deliver .dl small{font-size:.78rem;color:var(--ink-faint)}
+.deliver .badge{position:absolute;top:14px;right:14px;width:18px;height:18px;border-radius:50%;background:rgba(58,210,159,.15);display:grid;place-items:center}
+.deliver .badge svg{width:11px;height:11px;stroke:var(--ok);fill:none}
+/* success-step WhatsApp button — scoped, so the margin never leaks into
+   other .btn-wa instances (it previously pushed the flow buttons down 34px) */
+.success .btn-wa{margin-top:34px}
+.success .btn-wa svg{width:20px;height:20px}
+.order-ref{margin-top:22px;font-size:.86rem;color:var(--ink-faint)}
+.order-ref b{color:var(--ink);font-family:var(--font-head)}
+
+/* spinner */
+.spinner{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* footer */
+.site-foot{border-top:1px solid var(--line-2);padding:40px var(--pad);position:relative;z-index:1;text-align:center}
+.site-foot .copy{font-size:.85rem;color:var(--ink-faint)}
+.site-foot .foot-links{margin-bottom:12px;font-size:.88rem}
+.site-foot .foot-links a{color:var(--ink-dim);transition:color .25s}
+.site-foot .foot-links a:hover{color:var(--ink)}
+.site-foot .legal{max-width:var(--maxw);margin:14px auto 0;font-size:.74rem;color:var(--ink-faint);line-height:1.6}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .success-mark circle,.success-mark path{stroke-dashoffset:0!important}
+}
+</style>
+</head>
+<body class="dashlink">
+<div class="aurora"></div>
+<div class="grain"></div>
+
+<nav class="pp-nav">
+  <a class="brand" href="../">DashLink<span class="dot">.</span></a>
+  <a class="back" href="../"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Back to site</a>
+</nav>
+
+<main>
+
+<!-- ============================================================
+     STEP 1 — PURCHASE
+     ============================================================ -->
+<section class="pp-step active" id="step-purchase">
+
+  <div class="pp-hero">
+    <div class="wrap">
+      <span class="eyebrow reveal">Lifetime licence</span>
+      <h1 class="display reveal d1">Unlock DashLink <span class="grad-text">for good.</span></h1>
+      <p class="lead reveal d2">Scan the QR code on your car screen with our phone app and pay through Google Play &mdash; no bank transfers, no card details shared with us. Haven't installed DashLink yet? <a href="../download/" style="color:var(--blue-hi)">Start your 7-day free trial first</a>.</p>
+    </div>
+  </div>
+
+
+  <!-- why buy directly -->
+  <div class="section">
+    <div class="wrap">
+      <span class="eyebrow reveal">What you get</span>
+      <h2 class="display section-title reveal d1" style="margin-top:16px">Backed by us.</h2>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
+          <h4>Instant License Activation</h4>
+          <p>Your licence is issued as soon as we verify your payment — within 24 hours.</p>
+        </div>
+        <div class="why-card reveal d1">
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 21l2-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+          <h4>Dedicated WhatsApp Support</h4>
+          <p>Talk to a real person who knows head units — fast help when you need it.</p>
+        </div>
+        <div class="why-card reveal d2">
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></div>
+          <h4>Lifetime Updates</h4>
+          <p>Every future improvement and compatibility fix is included, forever.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h4>Secure Licensing</h4>
+          <p>Each licence is tied to your device ID and activated only for that head unit.</p>
+        </div>
+        <div class="why-card reveal d1">
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="1.7"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h6"/></svg></div>
+          <h4>Built for Android head units</h4>
+          <p>Made specifically for Android-powered car screens — not a generic port.</p>
+        </div>
+        <div class="why-card reveal d2">
+          <div class="ic"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M20 11a8 8 0 1 0-3 6.2M20 4v5h-5"/></svg></div>
+          <h4>Frequent Compatibility Improvements</h4>
+          <p>We keep widening device support with regular, free updates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HOW TO UNLOCK PREMIUM ============ -->
+  <div class="section" id="detailsSection" style="padding-top:20px;scroll-margin-top:92px">
+    <div class="wrap">
+      <span class="eyebrow reveal">How it works</span>
+      <h2 class="display section-title reveal d1" style="margin-top:16px;max-width:22ch">Unlock Premium in about two minutes.</h2>
+
+            <!-- ---------- Google Play route ---------- -->
+      <div id="flowPlay" hidden data-geo-check="1">
+        <p class="lead reveal d2" style="margin-top:16px;max-width:60ch">You pay through <b style="color:var(--ink)">Google Play</b> on your phone &mdash; the same account you already use for apps. We never see your card, and there are no bank transfers.</p>
+
+        <div class="flow">
+          <div class="flow-step reveal">
+            <span class="n">1</span>
+            <div>
+              <h4>Install <em>DashLink Wireless</em> on your phone</h4>
+              <p>This is our companion app. It shows you how to connect, and it's how you buy Premium. It's a different app from the one on your car screen.</p>
+              <span class="where phone">On your phone</span>
+                            <div class="flow-cta">
+                <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.auto.dashlinkwireless" target="_blank" rel="noopener"><svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="#00A0FF" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/><path fill="#FF3A44" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z"/><path fill="#FFBC00" d="M472.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/><path fill="#00C853" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><span><small>Get DashLink Wireless on</small><strong>Google Play</strong></span></a>              </div>
+                          </div>
+          </div>
+
+          <div class="flow-step reveal">
+            <span class="n">2</span>
+            <div>
+              <h4>Open <em>Go Premium</em> on your car screen</h4>
+              <p>In DashLink on the panel, go to <b style="color:var(--ink)">Settings &rarr; About &amp; support &rarr; Go Premium</b> (it reads <em>&ldquo;Unlock DashLink for good&rdquo;</em> underneath). A QR code appears on the screen.</p>
+              <span class="where panel">On your car screen</span>
+            </div>
+          </div>
+
+          <div class="flow-step reveal">
+            <span class="n">3</span>
+            <div>
+              <h4>Scan the QR code with your phone</h4>
+              <p>In DashLink Wireless, tap <b style="color:var(--ink)">Scan</b> and point your phone at the car screen. That's how your panel and your purchase get linked &mdash; nothing to type.</p>
+              <span class="where phone">On your phone</span>
+            </div>
+          </div>
+
+          <div class="flow-step reveal">
+            <span class="n">4</span>
+            <div>
+              <h4>Tap <em>Unlock Premium</em> and pay</h4>
+              <p>Checkout runs inside Google Play using your existing payment method &mdash; card, wallet or carrier billing. Price shown in your local currency, one time, no subscription.</p>
+              <span class="where phone">On your phone</span>
+            </div>
+          </div>
+
+          <div class="flow-step reveal">
+            <span class="n">5</span>
+            <div>
+              <h4>We verify your payment</h4>
+              <p>Your purchase reaches us automatically. We verify and activate <b style="color:var(--ink)">within 24 hours</b> &mdash; usually much sooner. You don't need to message anyone, and you'll keep full access to your trial meanwhile.</p>
+              <span class="where us">We do this</span>
+            </div>
+          </div>
+
+          <div class="flow-step reveal">
+            <span class="n">6</span>
+            <div>
+              <h4>Tap <em>Restore purchase</em> on your car screen</h4>
+              <p><b style="color:var(--ink)">Your panel needs internet for this step</b> &mdash; Wi-Fi or a phone hotspot is fine. Open <b style="color:var(--ink)">Go Premium</b> and tap <b style="color:var(--ink)">Restore purchase</b> at the bottom. Premium unlocks and stays unlocked on that device, and you can go offline again afterwards. If it hasn't come through yet, wait a little and tap it again.</p>
+              <p class="hint" style="margin-top:9px;font-size:.85rem;color:var(--ink-faint)">On the phone app the equivalent button reads <b style="color:var(--ink-dim)">Already bought? Restore</b> &mdash; that one re-checks your Google Play purchase. The panel is where Premium actually unlocks.</p>
+              <span class="where panel">On your car screen</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="trust reveal">
+          <div><svg viewBox="0 0 24 24" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>We never see your card.</b> Payment is handled entirely by Google Play.</span></div>
+          <div><svg viewBox="0 0 24 24" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg><span><b>No bank transfers.</b> Nothing to send over chat, ever.</span></div>
+          <div><svg viewBox="0 0 24 24" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Activated within 24 hours.</b> Usually much sooner &mdash; and your trial keeps running meanwhile.</span></div>
+        </div>
+      </div>
+      
+            <!-- ---------- manual route (Play Billing unavailable here) ---------- -->
+      <div id="flowManual" hidden data-geo-check="1">
+        <p class="lead reveal d2" style="margin-top:16px;max-width:62ch">DashLink isn't listed on Google Play in your country, so in-app purchase isn't available here. Send us your device ID instead and we'll activate Premium for you directly.</p>
+
+        <div class="flow">
+          <div class="flow-step reveal">
+            <span class="n">1</span>
+            <div>
+              <h4>Copy your device ID</h4>
+              <p>In DashLink on the panel, go to <b style="color:var(--ink)">Settings &rarr; About &amp; support &rarr; Go Premium</b> and tap <b style="color:var(--ink)">Copy</b>. It identifies your head unit only &mdash; it contains nothing personal.</p>
+              <span class="where panel">On your car screen</span>
+            </div>
+          </div>
+          <div class="flow-step reveal">
+            <span class="n">2</span>
+            <div>
+              <h4>Send it to us</h4>
+              <p>Share it on WhatsApp or by email &mdash; the app can send it straight to either. We'll reply with the payment options available in your country, then activate within <b style="color:var(--ink)">24 hours</b> of payment.</p>
+              <span class="where phone">WhatsApp or email</span>
+              <div class="flow-cta">
+                <a class="btn btn-wa" href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20would%20like%20to%20buy%20Premium.%20My%20device%20ID%20is%3A%20" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#04140b"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>                  Send on WhatsApp
+                </a>
+                <a class="btn btn-ghost" href="mailto:dashlink.support@gmail.com?subject=DashLink%20Premium%20activation&amp;body=Hi%20DashLink%2C%0A%0AI%20would%20like%20to%20buy%20Premium.%0A%0AMy%20device%20ID%3A%20%0A">Send by email</a>
+              </div>
+            </div>
+          </div>
+          <div class="flow-step reveal">
+            <span class="n">3</span>
+            <div>
+              <h4>Tap <em>Restore purchase</em> on your car screen</h4>
+              <p><b style="color:var(--ink)">Connect the panel to the internet first</b> &mdash; Wi-Fi or a phone hotspot. Then open <b style="color:var(--ink)">Go Premium</b> and tap <b style="color:var(--ink)">Restore purchase</b> at the bottom. Premium unlocks on that device, and stays unlocked offline afterwards.</p>
+              <span class="where panel">On your car screen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+            <script>
+      /* No geo header from the server, so decide here which route to show.
+         Both blocks render hidden; exactly one is revealed. Play Billing needs
+         the app to have come FROM Play, so the blocked-listing countries get
+         the manual route. */
+      (function(){
+        var play = document.getElementById('flowPlay'),
+            man  = document.getElementById('flowManual');
+        if(!play && !man) return;
+        var BLOCKED = ["PK"];
+        var TZ = {'Asia/Karachi':'PK','Europe/Berlin':'DE','Europe/Busingen':'DE','Asia/Jerusalem':'IL','Asia/Tel_Aviv':'IL'};
+        var tz=''; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
+        var cc = TZ[tz] || '';
+        if(!cc){ var l=(navigator.language||'').toUpperCase().split('-')[1]||''; if(/^[A-Z]{2}$/.test(l)) cc=l; }
+        var blocked = BLOCKED.indexOf(cc) !== -1;
+        if(play) play.hidden = blocked;
+        if(man)  man.hidden  = !blocked;
+      })();
+      </script>
+    </div>
+  </div>
+
+
+  <!-- faq -->
+  <div class="section">
+    <div class="wrap">
+      <div style="text-align:center;max-width:34ch;margin-inline:auto">
+        <span class="eyebrow reveal">Questions</span>
+        <h2 class="display reveal d1" style="margin-top:16px">Good to know.</h2>
+      </div>
+      <div class="faq-list reveal d1">
+        <div class="qa"><button aria-expanded="false"><span>How do I actually pay?</span><span class="plus"></span></button><div class="ans"><p>Through <b style="color:var(--ink)">Google Play</b>, on your phone, using the payment method already on your Google account. Install our companion app <b style="color:var(--ink)">DashLink Wireless</b>, scan the QR code shown on your car screen, and check out. We never see your card details, and there is nothing to transfer to anyone.</p></div></div>
+        <div class="qa"><button aria-expanded="false"><span>Why do I need two apps?</span><span class="plus"></span></button><div class="ans"><p>They do different jobs. <b style="color:var(--ink)">DashLink</b> runs on your car's Android panel &mdash; that's the app that actually gives you Android Auto. <b style="color:var(--ink)">DashLink Wireless</b> runs on your phone: it shows you how to connect, and it handles the purchase, because your car screen has no Google account or payment method on it. The QR code is what links the two.</p></div></div>
+        <div class="qa"><button aria-expanded="false"><span>How long until Premium is active?</span><span class="plus"></span></button><div class="ans"><p>We verify every payment and activate <b style="color:var(--ink)">within 24 hours</b> &mdash; usually much sooner. Your free trial keeps working in the meantime, so you're never locked out while you wait. Once we've activated you, connect the panel to the internet and tap <b style="color:var(--ink)">Restore purchase</b> in Go Premium.</p></div></div>
+        <div class="qa"><button aria-expanded="false"><span>I paid but Premium hasn't appeared</span><span class="plus"></span></button><div class="ans"><p>Two things, in order. <b style="color:var(--ink)">Make sure the panel is connected to the internet</b> &mdash; Restore can't check anything offline, and this is the most common cause. Then tap <b style="color:var(--ink)">Restore purchase</b> in <b style="color:var(--ink)">Go Premium</b> on your car screen: activation doesn't push itself to the panel, you pull it. If it's been more than 24 hours since payment, message us on WhatsApp with your device ID and we'll sort it straight away.</p></div></div>
+        <div class="qa"><button aria-expanded="false"><span>What if Google Play isn't available in my country?</span><span class="plus"></span></button><div class="ans"><p>Then in-app purchase won't work for you, and we activate you manually instead. Copy your device ID from <b style="color:var(--ink)">Settings &rarr; About &amp; support &rarr; Go Premium</b>, send it to us on WhatsApp or by email, and we'll confirm the payment options available where you are.</p></div></div>
+        <div class="qa"><button aria-expanded="false"><span>Is my licence tied to one device?</span><span class="plus"></span></button><div class="ans"><p>Yes &mdash; Premium is activated against the device ID of the panel you bought it for. If you change head units, message us on WhatsApp and we'll help move it across where eligible.</p></div></div>
+        <div class="qa"><button aria-expanded="false"><span>Is it a subscription?</span><span class="plus"></span></button><div class="ans"><p>No. One payment, lifetime licence on that device, and every future update included for free.</p></div></div>
+        <div class="qa"><button aria-expanded="false"><span>How does the 7-day free trial work?</span><span class="plus"></span></button><div class="ans"><p>Install DashLink on your panel and the trial starts on its own &mdash; no card, no form, nothing to request. When it ends, buy Premium if you want to keep it. If it's not for you, simply don't upgrade.</p></div></div>
+        <div class="qa"><button aria-expanded="false"><span>Will this work on my Android panel?</span><span class="plus"></span></button><div class="ans"><p>If your car screen runs Android 6.0 or newer, almost certainly &mdash; that covers unbranded panels fitted at a local shop as well as Dasaita, Teyes, Atoto, Joying and Xtrons units. The free trial is the safest way to find out: install it and see, before paying anything.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveal on scroll — without this every .reveal element stays at opacity:0 */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -6% 0px'}) : null;
+  document.querySelectorAll('.reveal').forEach(function(el){
+    // reveal immediately if already on screen — see note in download/index.html
+    if(reduce || !io || el.getBoundingClientRect().top < window.innerHeight){ el.classList.add('in'); }
+    else { io.observe(el); }
+  });
+
+  /* FAQ accordion */
+  document.querySelectorAll('.qa button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var qa = btn.parentElement, ans = qa.querySelector('.ans'), open = qa.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : 0;
+    });
+  });
+
+  /* pricing card is gone, so the old jump-to-form handler went with it */
+})();
+</script>
+
+
+
+<footer class="site-foot">
+    <div class="foot-links"><a href="../privacy/">Privacy Policy</a></div>
+    <div class="copy">&copy; 2026 DashLink. All rights reserved.</div>
+  <p class="legal">DashLink is an independent application and is not affiliated with, endorsed by or sponsored by Google LLC. Android, Android Auto and Google Play are trademarks of Google LLC. Premium pricing is shown in the DashLink Wireless app at checkout, in your local currency.</p>
+</footer>
+
+<style>
+.dl-fab{position:fixed;right:clamp(16px,3vw,26px);bottom:clamp(16px,3vw,26px);z-index:80;display:inline-flex;align-items:center;gap:0;height:56px;padding:0 16px;border-radius:100px;background:linear-gradient(180deg,#43d67f,#12a355);color:#04140b;box-shadow:0 14px 40px -10px rgba(18,163,85,.6),0 2px 8px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,opacity .35s;opacity:0;transform:translateY(14px) scale(.9);pointer-events:none}
+.dl-fab.on{opacity:1;transform:none;pointer-events:auto}
+.dl-fab:hover{transform:translateY(-3px);box-shadow:0 20px 52px -10px rgba(18,163,85,.75)}
+.dl-fab:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(67,214,127,.4),0 14px 40px -10px rgba(18,163,85,.6)}
+.dl-fab svg{width:28px;height:28px;fill:#04140b;flex:none}
+.dl-fab .lbl{max-width:0;overflow:hidden;white-space:nowrap;font-weight:650;font-size:.95rem;transition:max-width .45s cubic-bezier(.16,1,.3,1),margin-left .45s cubic-bezier(.16,1,.3,1);margin-left:0}
+.dl-fab:hover .lbl,.dl-fab:focus-visible .lbl{max-width:170px;margin-left:10px}
+@media(max-width:600px){.dl-fab{height:52px;padding:0 13px}.dl-fab svg{width:26px;height:26px}.dl-fab:hover .lbl{max-width:0;margin-left:0}}
+@media(prefers-reduced-motion:reduce){.dl-fab{transition:none}.dl-fab .lbl{transition:none}}
+</style>
+<a class="dl-fab" id="dlFab" href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20have%20a%20question%20about%20buying%20a%20licence." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#04140b"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>  <span class="lbl">Chat with us</span>
+</a>
+<script>
+(function(){
+  var f = document.getElementById('dlFab');
+  if(!f) return;
+  // hold it back until the hero is behind them, so it doesn't fight the first impression
+  function sync(){ f.classList.toggle('on', window.scrollY > 380); }
+  sync();
+  window.addEventListener('scroll', sync, {passive:true});
+
+})();
+</script>
+	</body>
+</html>

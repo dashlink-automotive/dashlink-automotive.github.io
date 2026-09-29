@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>document.documentElement.className+=" js";</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="Download DashLink and install it on your car's Android panel — step by step, with or without the Play Store." />
+<meta name="theme-color" content="#050506" />
+<style>
+:root{
+  --bg:#050506;--panel:#111318;--ink:#f4f6fb;--ink-dim:#a3a9b8;--ink-faint:#6b7180;
+  --line:rgba(255,255,255,.09);--line-2:rgba(255,255,255,.05);
+  --blue:#2f9dff;--blue-hi:#5db6ff;--glow:rgba(47,157,255,.55);
+  --ok:#3ad29f;--warn:#ffb27a;--err:#ff6b6b;
+  --ease:cubic-bezier(.22,.61,.36,1);--ease-out:cubic-bezier(.16,1,.3,1);
+  --maxw:1100px;--pad:clamp(20px,5vw,40px);
+  --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+  --font-head:ui-rounded,"SF Pro Rounded","Google Sans","Product Sans",-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:93.75%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+::selection{background:var(--blue);color:#04101f}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4{font-family:var(--font-head);letter-spacing:-.022em;line-height:1.08;font-weight:600}
+body.admin-bar .pp-nav{top:32px}
+@media screen and (max-width:782px){body.admin-bar .pp-nav{top:46px}}
+
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(70% 55% at 78% 6%,rgba(47,157,255,.15),transparent 60%),radial-gradient(60% 50% at 10% 30%,rgba(47,157,255,.09),transparent 55%)}
+main{position:relative;z-index:1}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+
+.pp-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);background:rgba(6,7,9,.72);backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid var(--line-2)}
+.brand{display:inline-flex;align-items:baseline;font-family:var(--font-head);font-weight:800;letter-spacing:-.02em;font-size:1.34rem;color:#fff}
+.brand .dot{color:var(--blue)}
+.pp-nav .back{font-size:.92rem;color:var(--ink-dim);display:inline-flex;align-items:center;gap:8px}
+.pp-nav .back:hover{color:var(--ink)}
+.pp-nav .back svg{width:16px;height:16px;stroke:currentColor;fill:none}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:100px;border:1px solid transparent;font-size:1.02rem;font-weight:600;cursor:pointer;transition:transform .3s var(--ease),box-shadow .4s var(--ease),background .3s}
+.btn-primary{background:linear-gradient(180deg,#3a9bf5,#0a56cc);color:#fff;font-weight:650;box-shadow:0 12px 42px -12px var(--glow),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 55px -12px var(--glow)}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn-wa{background:linear-gradient(180deg,#3ad07f,#12a355);color:#04140b;font-weight:700}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 16px 44px -14px rgba(58,208,127,.6)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-disabled{opacity:.5;pointer-events:none}
+
+/* ===== hero ===== */
+.dl-hero{padding:130px var(--pad) 0;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-hi)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 12px var(--glow)}
+.dl-hero h1{font-size:clamp(2.1rem,5.2vw,3.5rem);font-weight:640;letter-spacing:-.025em;margin:16px auto 0;max-width:17ch}
+.grad-text{background:linear-gradient(100deg,#fff 10%,var(--blue-hi) 55%,var(--blue) 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.dl-hero .lead{font-size:clamp(1.02rem,2vw,1.22rem);color:var(--ink-dim);max-width:56ch;margin:20px auto 0}
+.trial-flag{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:9px 18px;border-radius:100px;background:linear-gradient(180deg,#3ad07f,#12a355);color:#04140b;font-weight:700;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 10px 34px -12px rgba(58,208,127,.55)}
+
+/* ===== the phone warning — the whole reason this page exists ===== */
+.phone-alert{display:none;margin:34px auto 0;max-width:660px;padding:22px 26px;border-radius:20px;text-align:left;
+  border:1px solid rgba(255,150,70,.42);background:linear-gradient(180deg,rgba(255,150,70,.14),rgba(255,150,70,.03));
+  box-shadow:0 30px 70px -40px #000}
+.phone-alert.on{display:flex;gap:16px;align-items:flex-start;animation:pa .5s var(--ease-out)}
+@keyframes pa{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.phone-alert .ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,150,70,.16);border:1px solid rgba(255,150,70,.35)}
+.phone-alert .ic svg{width:22px;height:22px;stroke:var(--warn);fill:none;stroke-width:1.8}
+.phone-alert b{display:block;color:#ffc79a;font-size:1.05rem;font-family:var(--font-head);margin-bottom:5px}
+.phone-alert p{color:var(--ink-dim);font-size:.95rem}
+.phone-alert a{color:var(--warn);font-weight:600;border-bottom:1px solid rgba(255,178,122,.4)}
+
+/* ===== the two routes ===== */
+.routes{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;margin-top:54px}
+@media(max-width:860px){.routes{grid-template-columns:1fr}}
+/* when Play isn't offered in this country, the APK card stands alone */
+.routes.single{grid-template-columns:1fr;max-width:620px;margin-inline:auto}
+#playRoute[hidden]{display:none}
+.route{position:relative;border-radius:24px;padding:clamp(24px,3vw,34px);text-align:left;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012));border:1px solid var(--line)}
+.route.primary{border-color:rgba(47,157,255,.32);background:linear-gradient(180deg,rgba(47,157,255,.10),rgba(255,255,255,.02));box-shadow:0 40px 100px -50px #000,0 0 80px -44px var(--glow)}
+.route::before{content:"";position:absolute;inset:0;border-radius:24px;padding:1px;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.16),transparent 44%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.route .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:100px;margin-bottom:14px}
+.route.primary .tag{background:var(--blue-hi);color:#04101f}
+.route.alt .tag{background:rgba(255,255,255,.1);color:var(--ink-dim);border:1px solid var(--line)}
+.route h3{font-size:1.3rem;margin-bottom:8px}
+.route p{color:var(--ink-dim);font-size:.95rem;margin-bottom:18px}
+.route .who{font-size:.86rem;color:var(--ink-faint);margin-top:14px;display:flex;gap:8px;align-items:flex-start}
+.route .who svg{width:15px;height:15px;stroke:var(--ink-faint);fill:none;flex:none;margin-top:2px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.meta span{font-size:.78rem;color:var(--ink-dim);background:rgba(255,255,255,.05);border:1px solid var(--line);padding:5px 11px;border-radius:100px;font-variant-numeric:tabular-nums}
+.play-badge{display:inline-flex;align-items:center;gap:12px;padding:12px 22px 12px 18px;border-radius:14px;background:#fff;color:#000;font-weight:600;transition:transform .3s var(--ease)}
+.play-badge:hover{transform:translateY(-2px)}
+.play-badge svg{width:22px;height:22px;flex:none}
+.play-badge small{display:block;font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;opacity:.6;font-weight:600;line-height:1.3}
+.play-badge strong{display:block;font-size:.98rem;line-height:1.15;font-family:var(--font-head);letter-spacing:-.01em}
+
+/* not-configured notice for the site owner */
+.notready{margin-top:14px;padding:13px 16px;border-radius:12px;border:1px dashed rgba(255,150,70,.5);background:rgba(255,150,70,.07);color:var(--warn);font-size:.85rem}
+.notready code{background:rgba(0,0,0,.35);padding:1px 6px;border-radius:5px}
+
+/* ===== sections ===== */
+.section{padding:clamp(60px,8vw,100px) 0}
+.sec-head{text-align:center;max-width:44ch;margin-inline:auto}
+.sec-head h2{font-size:clamp(1.7rem,3.8vw,2.6rem);font-weight:640;margin-top:14px}
+.sec-head p{color:var(--ink-dim);margin-top:14px}
+
+/* ===== requirements checklist ===== */
+.reqs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+@media(max-width:780px){.reqs{grid-template-columns:1fr}}
+.req{display:flex;gap:14px;padding:22px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.028)}
+.req .ic{flex:none;width:40px;height:40px;border-radius:12px;background:rgba(47,157,255,.12);border:1px solid rgba(47,157,255,.28);display:grid;place-items:center}
+.req .ic svg{width:20px;height:20px;stroke:var(--blue-hi);fill:none;stroke-width:1.7}
+.req h4{font-size:1rem;margin-bottom:4px}
+.req p{font-size:.88rem;color:var(--ink-dim);line-height:1.5}
+
+/* ===== steps ===== */
+.steps{margin-top:54px;display:grid;gap:18px}
+.step{display:grid;grid-template-columns:auto 1fr 230px;gap:clamp(18px,3vw,34px);align-items:center;
+  padding:clamp(20px,2.6vw,30px);border-radius:22px;border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transition:border-color .4s,transform .5s var(--ease)}
+.step:hover{border-color:rgba(47,157,255,.3);transform:translateY(-3px)}
+@media(max-width:880px){.step{grid-template-columns:auto 1fr;gap:18px}.step .art{grid-column:1/-1;width:100%;max-width:300px;margin-top:6px}}
+.step .n{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-family:var(--font-head);font-size:1.2rem;font-weight:700;
+  background:linear-gradient(180deg,rgba(47,157,255,.3),rgba(47,157,255,.08));border:1px solid rgba(47,157,255,.4);color:#fff}
+.step h3{font-size:1.15rem;margin-bottom:7px}
+.step p{color:var(--ink-dim);font-size:.95rem}
+.step .hint{margin-top:10px;font-size:.85rem;color:var(--ink-faint);padding-left:13px;border-left:2px solid rgba(47,157,255,.3)}
+.step .art{border-radius:14px;overflow:hidden;background:radial-gradient(120% 100% at 50% 0,#12151c,#07090d);border:1px solid var(--line-2)}
+.step .art svg{width:100%;height:auto;display:block}
+
+/* ===== alternate route ===== */
+.alt-box{margin-top:44px;padding:clamp(24px,3vw,34px);border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.028)}
+.alt-box h3{font-size:1.2rem;margin-bottom:10px}
+.alt-box p{color:var(--ink-dim);font-size:.95rem;margin-bottom:10px}
+.alt-box ol{margin:14px 0 0 20px;color:var(--ink-dim);font-size:.95rem;display:grid;gap:8px}
+
+/* ===== troubleshooting ===== */
+.qa{border-top:1px solid var(--line)}
+.qa:last-child{border-bottom:1px solid var(--line)}
+.qa button{width:100%;background:none;border:none;color:var(--ink);text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 4px;cursor:pointer;font-size:1.04rem;font-weight:550;font-family:inherit}
+.qa .plus{flex:0 0 auto;width:22px;height:22px;position:relative;transition:transform .4s var(--ease)}
+.qa .plus::before,.qa .plus::after{content:"";position:absolute;background:var(--blue-hi);border-radius:2px}
+.qa .plus::before{top:50%;left:0;right:0;height:2px;transform:translateY(-50%)}
+.qa .plus::after{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);transition:transform .4s var(--ease)}
+.qa.open .plus{transform:rotate(180deg)}
+.qa.open .plus::after{transform:translateX(-50%) scaleY(0)}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.qa .ans p{padding:0 4px 22px;color:var(--ink-dim);font-size:.95rem;line-height:1.6;max-width:70ch}
+.qa .ans b{color:var(--ink)}
+.faq-list{max-width:820px;margin:40px auto 0}
+
+/* ===== verify ===== */
+.verify{margin-top:40px;padding:24px 26px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.028)}
+.verify h4{font-size:1rem;margin-bottom:8px}
+.verify p{font-size:.9rem;color:var(--ink-dim);margin-bottom:12px}
+.verify code{display:block;word-break:break-all;background:rgba(0,0,0,.4);border:1px solid var(--line-2);padding:12px 14px;border-radius:10px;font-size:.8rem;color:var(--blue-hi);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ===== help cta ===== */
+.help{text-align:center;padding:clamp(50px,7vw,80px) 0}
+.help h2{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:14px}
+.help p{color:var(--ink-dim);max-width:48ch;margin:0 auto 26px}
+
+.site-foot{border-top:1px solid var(--line-2);padding:40px var(--pad);position:relative;z-index:1;text-align:center}
+.site-foot .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;font-size:.9rem}
+.site-foot .links a{color:var(--ink-dim)}
+.site-foot .links a:hover{color:var(--ink)}
+.site-foot .copy{font-size:.85rem;color:var(--ink-faint)}
+.site-foot .legal{max-width:var(--maxw);margin:14px auto 0;font-size:.74rem;color:var(--ink-faint);line-height:1.6}
+
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body class="dashlink">
+<div class="aurora"></div>
+
+<nav class="pp-nav">
+  <a class="brand" href="../">DashLink<span class="dot">.</span></a>
+  <a class="back" href="../"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Back to site</a>
+</nav>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="dl-hero">
+  <div class="wrap">
+    <span class="eyebrow">Download &amp; install</span>
+    <h1>Get DashLink onto <span class="grad-text">your car's screen.</span></h1>
+    <p class="lead">DashLink runs on the Android panel in your dashboard &mdash; not on your phone. It takes about five minutes with a USB stick, and you get 7 days free.</p>
+    <div class="trial-flag">✦ 7-Day Free Trial</div>
+
+    <!-- shown by JS only when the visitor is on a phone -->
+    <div class="phone-alert" id="phoneAlert">
+      <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 3.3 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/></svg></span>
+      <div>
+        <b>You're on a phone right now</b>
+        <p>The main DashLink app belongs on the Android screen in your car, not on your phone &mdash; that's the most common mix-up. <a href="#steps">Follow the steps below</a> to get it onto your panel. (There <em>is</em> a phone app &mdash; <b>DashLink Wireless</b> &mdash; but it's a companion for connecting and buying, not the receiver itself.)</p>
+      </div>
+    </div>
+
+    <!-- ============ TWO ROUTES ============ -->
+    <div class="routes single" id="routes">
+
+      <div class="route primary reveal">
+        <span class="tag">Recommended for most panels</span>
+        <h3>Download the APK</h3>
+        <p>Nearly all Android panels have no working Play Store, so this is the normal way to install. Download the file, copy it to a USB stick, and install it on your panel.</p>
+
+                  <span class="btn btn-primary btn-disabled">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+            Download DashLink
+          </span>
+                  
+        <p class="who"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg> Works on any Android panel running 6.0 or newer, with or without Google services.</p>
+      </div>
+
+      
+    </div>
+
+      </div>
+</section>
+
+<!-- ============ BEFORE YOU START ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Before you start</span>
+      <h2>Three things you'll need.</h2>
+    </div>
+    <div class="reqs">
+      <div class="req reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h5"/></svg></span>
+        <div><h4>An Android panel</h4><p>Your car screen must run Android 6.0 or newer. Almost every aftermarket panel does.</p></div>
+      </div>
+      <div class="req reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v5H9zM7 8h10v11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z"/></svg></span>
+        <div><h4>A USB stick</h4><p>Any size. This is how the file gets from your phone or computer to the panel.</p></div>
+      </div>
+      <div class="req reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+        <div><h4>The panel's File Manager</h4><p>Every Android panel has one &mdash; sometimes called Files, Explorer, or ES File Explorer.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEPS ============ -->
+<section class="section" id="steps" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The USB method</span>
+      <h2>Six steps, about five minutes.</h2>
+      <p>This is how most people install DashLink. You don't need Wi-Fi in the car, and you don't need a Google account on the panel.</p>
+    </div>
+
+    <div class="steps">
+
+      <div class="step reveal">
+        <span class="n">1</span>
+        <div>
+          <h3>Download the file on your phone or computer</h3>
+          <p>Tap the <b style="color:var(--ink)">Download DashLink</b> button at the top of this page. You'll get a single file ending in <code style="color:var(--blue-hi)">.apk</code>.</p>
+          <p class="hint">Your browser may warn that this file type can harm your device. That warning appears for every APK. Choose <b>Download anyway</b>.</p>
+        </div>
+        <div class="art"><svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="96" y="22" width="108" height="106" rx="12" fill="#0e1117" stroke="#2a2f3a"/><rect x="104" y="34" width="92" height="76" rx="6" fill="#0a0d13"/><circle cx="150" cy="120" r="4" fill="#2a2f3a"/><path d="M150 52v30m0 0-11-11m11 11 11-11" stroke="#5db6ff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="124" y="90" width="52" height="5" rx="2.5" fill="#2f9dff" opacity=".45"/></svg></div>
+      </div>
+
+      <div class="step reveal">
+        <span class="n">2</span>
+        <div>
+          <h3>Copy the file to a USB stick</h3>
+          <p>Plug the USB stick into your computer and drag the <code style="color:var(--blue-hi)">.apk</code> file onto it. On a phone, use an OTG adapter and your Files app.</p>
+          <p class="hint">Put it in the main folder of the stick, not inside another folder &mdash; it's much easier to find on the panel.</p>
+        </div>
+        <div class="art"><svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="60" y="62" width="118" height="30" rx="5" fill="#0e1117" stroke="#2a2f3a"/><rect x="178" y="69" width="26" height="16" rx="2" fill="#2a2f3a"/><rect x="204" y="72" width="8" height="10" rx="1.5" fill="#3a4150"/><rect x="74" y="72" width="44" height="4" rx="2" fill="#2f9dff" opacity=".5"/><rect x="74" y="80" width="26" height="4" rx="2" fill="#2f9dff" opacity=".25"/><path d="M150 26v22m0 0-8-8m8 8 8-8" stroke="#3ad29f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
+      </div>
+
+      <div class="step reveal">
+        <span class="n">3</span>
+        <div>
+          <h3>Plug the stick into your car's panel</h3>
+          <p>Use the USB port on your head unit. Start the car (or put it in accessory mode) so the screen is on.</p>
+          <p class="hint">If you have two USB ports and one doesn't work, try the other &mdash; some are wired for power or a reverse camera only.</p>
+        </div>
+        <div class="art"><svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="34" y="28" width="232" height="94" rx="12" fill="#14181f" stroke="#2a2f3a"/><rect x="46" y="38" width="208" height="74" rx="6" fill="#080b10"/><rect x="60" y="52" width="70" height="7" rx="3.5" fill="#2f9dff" opacity=".5"/><rect x="60" y="66" width="120" height="5" rx="2.5" fill="#2a2f3a"/><rect x="60" y="78" width="96" height="5" rx="2.5" fill="#2a2f3a"/><rect x="255" y="66" width="30" height="14" rx="2" fill="#2a2f3a"/><rect x="285" y="69" width="9" height="8" rx="1.5" fill="#3a4150"/></svg></div>
+      </div>
+
+      <div class="step reveal">
+        <span class="n">4</span>
+        <div>
+          <h3>Open the File Manager on the panel</h3>
+          <p>Find the app called <b style="color:var(--ink)">Files</b>, <b style="color:var(--ink)">File Manager</b> or <b style="color:var(--ink)">Explorer</b> on your panel, open it, and go to the USB stick.</p>
+          <p class="hint">The stick usually appears as <b>USB</b>, <b>udisk</b> or <b>sda1</b>.</p>
+        </div>
+        <div class="art"><svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="42" y="24" width="216" height="102" rx="10" fill="#0e1117" stroke="#2a2f3a"/><rect x="42" y="24" width="216" height="24" rx="10" fill="#151a22"/><rect x="54" y="33" width="54" height="6" rx="3" fill="#3a4150"/><rect x="56" y="60" width="188" height="18" rx="4" fill="#161b24"/><path d="M64 65h8l2 2h10v8H64z" fill="#3a4150"/><rect x="90" y="66" width="60" height="5" rx="2.5" fill="#2a2f3a"/><rect x="56" y="84" width="188" height="18" rx="4" fill="rgba(47,157,255,.14)" stroke="rgba(47,157,255,.4)"/><rect x="66" y="89" width="9" height="9" rx="2" fill="#5db6ff"/><rect x="84" y="90" width="76" height="6" rx="3" fill="#5db6ff" opacity=".8"/></svg></div>
+      </div>
+
+      <div class="step reveal">
+        <span class="n">5</span>
+        <div>
+          <h3>Tap the file and allow the install</h3>
+          <p>Tap the <code style="color:var(--blue-hi)">.apk</code> file. Android will ask whether to allow installing apps from this source &mdash; turn the switch on, go back, and tap <b style="color:var(--ink)">Install</b>.</p>
+          <p class="hint">This permission is per-app: you're allowing your <b>File Manager</b> to install, not turning off security for the whole panel.</p>
+        </div>
+        <div class="art"><svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="60" y="30" width="180" height="90" rx="10" fill="#0e1117" stroke="#2a2f3a"/><rect x="76" y="46" width="90" height="7" rx="3.5" fill="#3a4150"/><rect x="76" y="62" width="130" height="5" rx="2.5" fill="#232833"/><rect x="76" y="73" width="104" height="5" rx="2.5" fill="#232833"/><rect x="178" y="92" width="48" height="18" rx="9" fill="#2f9dff"/><rect x="192" y="99" width="20" height="4" rx="2" fill="#fff" opacity=".9"/><rect x="120" y="92" width="48" height="18" rx="9" fill="none" stroke="#2a2f3a"/></svg></div>
+      </div>
+
+      <div class="step reveal">
+        <span class="n">6</span>
+        <div>
+          <h3>Open DashLink and start your free trial</h3>
+          <p>DashLink appears in your panel's app list. Open it, and your 7-day free trial starts &mdash; no payment, no card.</p>
+          <p class="hint">Connect the panel to Wi-Fi or a phone hotspot the first time so the trial can activate. After that it works offline.</p>
+        </div>
+        <div class="art"><svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="34" y="26" width="232" height="98" rx="12" fill="#14181f" stroke="#2a2f3a"/><rect x="46" y="36" width="208" height="78" rx="6" fill="#070a0f"/><rect x="56" y="46" width="112" height="58" rx="5" fill="#0d2438"/><path d="M62 92c14-10 26-26 34-40" stroke="#2f9dff" stroke-width="3.4" fill="none" stroke-linecap="round"/><circle cx="96" cy="52" r="4.5" fill="#5db6ff"/><rect x="176" y="46" width="68" height="58" rx="5" fill="#12202a"/><circle cx="210" cy="68" r="13" fill="none" stroke="#3ad29f" stroke-width="2.6"/><path d="M205 68l4 4 7-8" stroke="#3ad29f" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="190" y="88" width="40" height="5" rx="2.5" fill="#3ad29f" opacity=".5"/></svg></div>
+      </div>
+
+    </div>
+
+    <!-- alternate route -->
+    <div class="alt-box reveal">
+      <h3>No USB stick? Download straight onto the panel</h3>
+      <p>If your panel has a working browser and you can connect it to Wi-Fi or your phone's hotspot, you can skip the USB entirely:</p>
+      <ol>
+        <li>Connect the panel to Wi-Fi or your phone's hotspot.</li>
+        <!-- TODO: once the domain is live, replace with the real short address, e.g. dashlink.org/download/ -->
+        <li>Open the browser on the panel and go to <b style="color:var(--ink)">this page's web address</b> &mdash; it's in your browser's address bar right now, and it's worth writing down before you start.</li>
+        <li>Tap <b style="color:var(--ink)">Download DashLink</b>, then open the downloaded file from the notification.</li>
+        <li>Allow the install, and you're done.</li>
+      </ol>
+      <p style="margin-top:14px;font-size:.88rem;color:var(--ink-faint)">Many panel browsers are old and slow, which is why we recommend the USB method first. If the download stalls, use the USB stick instead.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TROUBLESHOOTING ============ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">If something goes wrong</span>
+      <h2>Common snags, solved.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="qa"><button aria-expanded="false"><span>I installed it on my phone and nothing happens</span><span class="plus"></span></button><div class="ans"><p>That's the most common mix-up, and it's an easy fix. DashLink is built for the Android screen in your car, not for phones &mdash; on a phone there's nothing for it to do. Uninstall it from your phone if you like, then follow the <a href="#steps" style="color:var(--blue-hi)">six steps above</a> to install it on your panel instead.</p></div></div>
+      <div class="qa"><button aria-expanded="false"><span>My panel says "install blocked" or "unknown sources"</span><span class="plus"></span></button><div class="ans"><p>Android needs permission before an app can install software. When the prompt appears, turn the switch on for the app you're installing from (usually your <b>File Manager</b>), then press back and tap Install again. On older panels you may find it under <b>Settings → Security → Unknown sources</b> instead. This grants permission to that one app, not to the whole system.</p></div></div>
+      <div class="qa"><button aria-expanded="false"><span>The panel doesn't see my USB stick</span><span class="plus"></span></button><div class="ans"><p>Try the other USB port &mdash; on many units one port is wired only for power or a reverse camera. Also try formatting the stick as <b>FAT32</b>, which older panels handle best, and use a smaller stick if you have one. Some panels only detect a stick that was plugged in before the unit powered on.</p></div></div>
+      <div class="qa"><button aria-expanded="false"><span>There's no File Manager on my panel</span><span class="plus"></span></button><div class="ans"><p>Look for an app called Files, Explorer, File Browser or ES File Explorer &mdash; it's sometimes tucked inside a folder of system tools. If there genuinely isn't one, message us on WhatsApp and we'll help you get one onto the panel first.</p></div></div>
+      <div class="qa"><button aria-expanded="false"><span>It says "app not installed" or "parse error"</span><span class="plus"></span></button><div class="ans"><p>A parse error usually means the file didn't copy completely &mdash; download it again and re-copy it to the stick. "App not installed" often means an older or differently-signed copy of DashLink is already there; uninstall the existing one first, then install again. If your panel is below Android 6.0, it can't run DashLink at all.</p></div></div>
+      <div class="qa"><button aria-expanded="false"><span>Do I need a Google account on the panel?</span><span class="plus"></span></button><div class="ans"><p>No. That's the whole point of the APK route. You need a Google account only if you install from the Play Store. Installing from the file works on panels with no Google services at all.</p></div></div>
+      <div class="qa"><button aria-expanded="false"><span>Does the panel need internet?</span><span class="plus"></span></button><div class="ans"><p>Only briefly, the first time, so your 7-day trial can activate. A phone hotspot for a minute is enough. After that DashLink works without any internet on the panel.</p></div></div>
+      <div class="qa"><button aria-expanded="false"><span>How do I update later?</span><span class="plus"></span></button><div class="ans"><p>If you installed from Google Play, updates arrive automatically. If you installed the APK, come back to this page, download the newer version and install it the same way &mdash; installing over the top keeps your licence and settings.</p></div></div>
+    </div>
+
+      </div>
+</section>
+
+<!-- ============ AFTER THE TRIAL ============ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="alt-box reveal" style="max-width:820px;margin-inline:auto;text-align:center">
+      <h3>There's a second app &mdash; for your phone</h3>
+      <p style="max-width:62ch;margin-inline:auto"><b style="color:var(--ink)">DashLink Wireless</b> is our companion app. It walks you through connecting wirelessly or over USB, and when your 7 days are up it's how you buy Premium: open <b style="color:var(--ink)">Settings &rarr; About &amp; support &rarr; Go Premium</b> on your car screen, scan the QR code with your phone, and tap <b style="color:var(--ink)">Unlock Premium</b> to pay through Google Play. Nothing to transfer, no card details shared with us &mdash; activated within 24 hours, then connect the panel to the internet and tap <b style="color:var(--ink)">Restore purchase</b>.</p>
+      <div style="margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center">
+                <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.auto.dashlinkwireless" target="_blank" rel="noopener"><svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="#00A0FF" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/><path fill="#FF3A44" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1z"/><path fill="#FFBC00" d="M472.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/><path fill="#00C853" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg><span><small>Get DashLink Wireless on</small><strong>Google Play</strong></span></a>                <a class="btn btn-ghost" href="../premium/">See pricing &amp; how to unlock</a>
+      </div>
+      <p style="margin-top:18px;font-size:.85rem;color:var(--ink-faint);max-width:56ch;margin-inline:auto">The companion app goes on your <b style="color:var(--ink-dim)">phone</b>. The app you installed above goes on your <b style="color:var(--ink-dim)">car screen</b>. You need both to buy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HELP ============ -->
+<section class="help">
+  <div class="wrap">
+    <h2>Stuck? Message us.</h2>
+    <p>Tell us your panel's brand and model and we'll walk you through it. A real person, usually within a few hours.</p>
+    <a class="btn btn-wa" href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20need%20help%20installing%20the%20app%20on%20my%20Android%20panel.%20My%20panel%20is%3A%20" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#04140b"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>      Get help on WhatsApp
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="links">
+    <a href="../">Home</a>
+    <a href="../premium/">Pricing</a>
+        <a href="../privacy/">Privacy Policy</a>    <a href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20have%20a%20question%20about%20the%20app." target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <div class="copy">&copy; 2026 DashLink. All rights reserved.</div>
+  <p class="legal">DashLink is an independent application and is not affiliated with, endorsed by or sponsored by Google LLC. Android, Android Auto and Google Play are trademarks of Google LLC.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveal on scroll */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -6% 0px'}) : null;
+  document.querySelectorAll('.reveal').forEach(function(el){
+    // Anything already on screen is revealed straight away: IntersectionObserver
+    // does not report intersections while the document is considered hidden,
+    // which would otherwise leave above-the-fold content stuck at opacity:0.
+    if(reduce || !io || el.getBoundingClientRect().top < window.innerHeight){ el.classList.add('in'); }
+    else { io.observe(el); }
+  });
+
+  /* Phone detection — the core job of this page.
+     A car panel is an Android device too, so "is Android" tells us nothing.
+     What separates a phone from a panel is screen SHAPE: phones are portrait
+     and narrow, panels are landscape and wide. We warn only when we're fairly
+     confident, because a false warning on a panel would be worse than silence. */
+  (function(){
+    var el = document.getElementById('phoneAlert');
+    if(!el) return;
+    var ua = navigator.userAgent || '';
+    var isAndroid = /Android/i.test(ua);
+    var isIOS = /iPhone|iPod/i.test(ua);
+    var w = Math.min(screen.width, screen.height);
+    var portrait = window.innerHeight > window.innerWidth;
+    var smallAndNarrow = w <= 500;
+    // iPhone is always a phone; Android only counts when it's narrow AND portrait
+    if (isIOS || (isAndroid && smallAndNarrow && portrait)) {
+      el.classList.add('on');
+    }
+  })();
+
+  /* troubleshooting accordion */
+  document.querySelectorAll('.qa button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var qa = btn.parentElement, ans = qa.querySelector('.ans'), open = qa.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : 0;
+    });
+  });
+})();
+</script>
+<style>
+.dl-fab{position:fixed;right:clamp(16px,3vw,26px);bottom:clamp(16px,3vw,26px);z-index:80;display:inline-flex;align-items:center;gap:0;height:56px;padding:0 16px;border-radius:100px;background:linear-gradient(180deg,#43d67f,#12a355);color:#04140b;box-shadow:0 14px 40px -10px rgba(18,163,85,.6),0 2px 8px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,opacity .35s;opacity:0;transform:translateY(14px) scale(.9);pointer-events:none}
+.dl-fab.on{opacity:1;transform:none;pointer-events:auto}
+.dl-fab:hover{transform:translateY(-3px);box-shadow:0 20px 52px -10px rgba(18,163,85,.75)}
+.dl-fab:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(67,214,127,.4),0 14px 40px -10px rgba(18,163,85,.6)}
+.dl-fab svg{width:28px;height:28px;fill:#04140b;flex:none}
+.dl-fab .lbl{max-width:0;overflow:hidden;white-space:nowrap;font-weight:650;font-size:.95rem;transition:max-width .45s cubic-bezier(.16,1,.3,1),margin-left .45s cubic-bezier(.16,1,.3,1);margin-left:0}
+.dl-fab:hover .lbl,.dl-fab:focus-visible .lbl{max-width:170px;margin-left:10px}
+@media(max-width:600px){.dl-fab{height:52px;padding:0 13px}.dl-fab svg{width:26px;height:26px}.dl-fab:hover .lbl{max-width:0;margin-left:0}}
+@media(prefers-reduced-motion:reduce){.dl-fab{transition:none}.dl-fab .lbl{transition:none}}
+</style>
+<a class="dl-fab" id="dlFab" href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20need%20help%20installing%20the%20app%20on%20my%20Android%20panel." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#04140b"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>  <span class="lbl">Chat with us</span>
+</a>
+<script>
+(function(){
+  var f = document.getElementById('dlFab');
+  if(!f) return;
+  // hold it back until the hero is behind them, so it doesn't fight the first impression
+  function sync(){ f.classList.toggle('on', window.scrollY > 380); }
+  sync();
+  window.addEventListener('scroll', sync, {passive:true});
+
+})();
+</script>
+	</body>
+</html>

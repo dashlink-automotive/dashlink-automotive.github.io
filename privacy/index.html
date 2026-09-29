@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>document.documentElement.className+=" js";</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="How DashLink collects, uses and protects your personal information." />
+<meta name="theme-color" content="#050506" />
+<meta name="robots" content="index, follow" />
+<style>
+:root{
+  --bg:#050506;--panel:#111318;--ink:#f4f6fb;--ink-dim:#a3a9b8;--ink-faint:#6b7180;
+  --line:rgba(255,255,255,.09);--line-2:rgba(255,255,255,.05);
+  --blue:#2f9dff;--blue-hi:#5db6ff;--glow:rgba(47,157,255,.55);--warn:#ffb27a;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --maxw:820px;--pad:clamp(20px,5vw,40px);
+  --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+  --font-head:ui-rounded,"SF Pro Rounded","Google Sans","Product Sans",-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:93.75%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+::selection{background:var(--blue);color:#04101f}
+a{color:var(--blue-hi);text-decoration:none;border-bottom:1px solid rgba(93,182,255,.3);transition:border-color .25s}
+a:hover{border-color:var(--blue-hi)}
+body.admin-bar .pp-nav{top:32px}
+@media screen and (max-width:782px){body.admin-bar .pp-nav{top:46px}}
+
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(70% 55% at 78% 6%,rgba(47,157,255,.13),transparent 60%),radial-gradient(60% 50% at 10% 30%,rgba(47,157,255,.08),transparent 55%);opacity:.9}
+main{position:relative;z-index:1}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+
+.pp-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);background:rgba(6,7,9,.72);backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid var(--line-2)}
+.brand{display:inline-flex;align-items:baseline;font-family:var(--font-head);font-weight:800;letter-spacing:-.02em;font-size:1.34rem;color:#fff;border:none}
+.brand .dot{color:var(--blue)}
+.pp-nav .back{font-size:.92rem;color:var(--ink-dim);display:inline-flex;align-items:center;gap:8px;border:none}
+.pp-nav .back:hover{color:var(--ink)}
+.pp-nav .back svg{width:16px;height:16px;stroke:currentColor;fill:none}
+
+.doc-hero{padding:130px var(--pad) 0}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-hi)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 12px var(--glow)}
+h1{font-family:var(--font-head);font-size:clamp(2.1rem,5vw,3.2rem);font-weight:640;letter-spacing:-.025em;line-height:1.05;margin-top:16px}
+.updated{margin-top:18px;font-size:.9rem;color:var(--ink-faint)}
+.summary{margin-top:30px;padding:24px 26px;border-radius:18px;border:1px solid rgba(47,157,255,.22);background:linear-gradient(180deg,rgba(47,157,255,.08),rgba(255,255,255,.012))}
+.summary h2{font-family:var(--font-head);font-size:1.15rem;font-weight:640;margin-bottom:10px}
+.summary ul{list-style:none;display:grid;gap:9px}
+.summary li{display:flex;gap:11px;font-size:.96rem;color:var(--ink-dim)}
+.summary li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--blue-hi);margin-top:9px}
+
+.admin-warn{margin-top:26px;padding:20px 24px;border-radius:16px;border:1px solid rgba(255,150,70,.4);background:linear-gradient(180deg,rgba(255,150,70,.12),rgba(255,150,70,.02));color:var(--warn);font-size:.94rem}
+.admin-warn b{display:block;margin-bottom:6px;color:#ffc79a;font-size:1rem}
+.admin-warn code{background:rgba(0,0,0,.35);padding:1px 6px;border-radius:5px;font-size:.86em}
+
+.toc{margin-top:40px;padding:22px 26px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.025)}
+.toc h2{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:14px}
+.toc ol{list-style:none;counter-reset:toc;display:grid;gap:8px}
+.toc li{counter-increment:toc;font-size:.95rem}
+.toc li a{color:var(--ink-dim);border:none}
+.toc li a:hover{color:var(--blue-hi)}
+.toc li a::before{content:counter(toc) ".";color:var(--ink-faint);margin-right:9px;font-variant-numeric:tabular-nums}
+
+.doc{padding:20px var(--pad) 90px}
+.doc section{margin-top:52px;scroll-margin-top:92px}
+.doc h2{font-family:var(--font-head);font-size:clamp(1.3rem,2.6vw,1.6rem);font-weight:640;letter-spacing:-.018em;margin-bottom:14px}
+.doc h3{font-family:var(--font-head);font-size:1.06rem;font-weight:600;margin:24px 0 8px}
+.doc p{color:var(--ink-dim);margin-bottom:14px}
+.doc p strong,.doc li strong{color:var(--ink);font-weight:600}
+.doc ul{list-style:none;margin:0 0 16px;display:grid;gap:10px}
+.doc ul li{display:flex;gap:12px;color:var(--ink-dim)}
+.doc ul li::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;background:var(--blue);margin-top:10px;opacity:.7}
+.doc table{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:.93rem;display:block;overflow-x:auto}
+.doc table thead th{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);color:var(--ink);font-weight:600;white-space:nowrap}
+.doc table td{padding:11px 14px;border-bottom:1px solid var(--line-2);color:var(--ink-dim);vertical-align:top}
+.doc table tbody tr:last-child td{border-bottom:none}
+.doc code{background:rgba(255,255,255,.06);padding:2px 7px;border-radius:6px;font-size:.87em;color:var(--ink)}
+.callout{margin:18px 0;padding:18px 22px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink-dim);font-size:.95rem}
+.callout b{color:var(--ink)}
+
+.site-foot{border-top:1px solid var(--line-2);padding:40px var(--pad);position:relative;z-index:1;text-align:center}
+.site-foot .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;font-size:.9rem}
+.site-foot .links a{color:var(--ink-dim);border:none}
+.site-foot .links a:hover{color:var(--ink)}
+.site-foot .copy{font-size:.85rem;color:var(--ink-faint)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body class="dashlink">
+<div class="aurora"></div>
+
+<nav class="pp-nav">
+  <a class="brand" href="../">DashLink<span class="dot">.</span></a>
+  <a class="back" href="../"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Back to site</a>
+</nav>
+
+<main>
+<div class="doc-hero">
+  <div class="wrap">
+    <span class="eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated September 2026</p>
+
+    
+    <div class="summary">
+      <h2>The short version</h2>
+      <ul>
+        <li>We collect what you type into the trial request form — your contact details and your car and head unit details.</li>
+        <li>We use it to check your panel is compatible, set up your 7-day trial, and support you afterwards.</li>
+        <li>We do not sell your data, and we do not send marketing you didn't ask for.</li>
+        <li>We contact you on WhatsApp because that's how the trial is delivered.</li>
+        <li>You can ask us to delete everything we hold about you at any time.</li>
+      </ul>
+    </div>
+
+    <nav class="toc" aria-label="Contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#who">Who we are</a></li>
+        <li><a href="#what">What we collect</a></li>
+        <li><a href="#why">Why we collect it</a></li>
+        <li><a href="#whatsapp">WhatsApp</a></li>
+        <li><a href="#storage">Where it's stored</a></li>
+        <li><a href="#sharing">Who we share it with</a></li>
+        <li><a href="#retention">How long we keep it</a></li>
+        <li><a href="#cookies">Cookies and browser storage</a></li>
+        <li><a href="#rights">Your rights</a></li>
+        <li><a href="#transfers">International transfers</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#app">The DashLink app</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="doc">
+  <div class="wrap">
+
+    <section id="who">
+      <h2>1. Who we are</h2>
+      <p>DashLink is an application that enables Android Auto on Android-powered car head units. This website and the DashLink service are operated under the name <strong>DashLink</strong>, based in Pakistan, by an individual trader rather than a registered company. You can reach us using the details in <a href="#contact">Contact us</a>.</p>
+      <p>This policy explains what personal information we collect through this website, why we collect it, and what you can do about it. For the purposes of data protection law, we are the <strong>data controller</strong> for that information.</p>
+      <p>If you have any question about this policy, contact us at <a href="mailto:dashlink.support@gmail.com">dashlink.support@gmail.com</a>.</p>
+    </section>
+
+    <section id="what">
+      <h2>2. What we collect</h2>
+      <p>We only collect information you give us. There is no tracking pixel, advertising tag or third-party analytics script on this site. The DashLink app on your head unit is covered by its <a href="#app">own separate policy</a>.</p>
+
+      <h3>When you request a licence</h3>
+      <p>The form on our purchase page asks for the following.</p>
+      <table>
+        <thead><tr><th>Information</th><th>Required</th><th>Why we need it</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Device ID</strong> &mdash; copied from the app on your head unit</td><td>Yes</td><td>To activate your licence on that specific panel. It identifies the device only and contains no personal information.</td></tr>
+          <tr><td>Full name</td><td>Yes</td><td>To address you and identify your request</td></tr>
+          <tr><td>WhatsApp number</td><td>Yes</td><td>To arrange payment and confirm your licence</td></tr>
+          <tr><td>Email address</td><td>No</td><td>An alternative way to reach you if you prefer</td></tr>
+          <tr><td>Notes</td><td>No</td><td>Anything you choose to tell us about your panel or setup</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Collected automatically with your request</h3>
+      <ul>
+        <li><strong>Your approximate country</strong> — derived from your network connection or your browser's timezone, used only to show prices in your local currency and recorded with your request so we quote you consistently.</li>
+        <li><strong>The currency and price you were shown</strong>, and the date and time of your request.</li>
+      </ul>
+      <p>We do not store your IP address with your request, and we do not build a profile of you or make any automated decision that produces a legal or similarly significant effect.</p>
+    </section>
+
+    <section id="why">
+      <h2>3. Why we collect it</h2>
+      <ul>
+        <li><strong>To answer your request</strong> — checking compatibility, setting up your 7-day free trial, and issuing a licence if you decide to buy.</li>
+        <li><strong>To support you</strong> — your head unit details let us help you far faster when something doesn't work.</li>
+        <li><strong>To keep proper records</strong> — of what was quoted, to whom, and when.</li>
+        <li><strong>To improve compatibility</strong> — knowing which panels and chipsets people actually own tells us what to support next. We use this in aggregate.</li>
+      </ul>
+      <p>If you are in the UK or the EU: our lawful basis is <strong>performance of a contract or steps taken at your request</strong> before entering one (Article 6(1)(b) UK/EU GDPR) for handling your trial request, and <strong>legitimate interests</strong> (Article 6(1)(f)) for keeping records and improving device compatibility.</p>
+      <p>We do not use your details for marketing unless you separately ask us to.</p>
+    </section>
+
+    <section id="whatsapp">
+      <h2>4. WhatsApp</h2>
+      <p>Trials, licence keys and support are delivered over WhatsApp, because that is how most of our customers prefer to be reached. By giving us your WhatsApp number and submitting the form, you are asking us to contact you there.</p>
+      <p class="callout"><b>Important:</b> WhatsApp is operated by Meta, not by us. When you message us, your data is also handled under <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener">WhatsApp's own privacy policy</a>, which we do not control. If you would rather not use WhatsApp, email us instead at <a href="mailto:dashlink.support@gmail.com">dashlink.support@gmail.com</a> and we will handle your trial entirely over email.</p>
+    </section>
+
+    <section id="storage">
+      <h2>5. Where it's stored</h2>
+      <p>When you submit the form, your request is saved in this website's own database, on our web hosting, and a copy is emailed to our team so we can act on it. Both live on servers operated by our hosting and email providers on our behalf.</p>
+      <p>We take reasonable measures to protect it: the site is served over HTTPS, administrative access requires an account, and your details are never published on the public website or exposed through any public interface.</p>
+      <p>No method of transmission or storage is completely secure, and we cannot guarantee absolute security. If a breach ever affects your personal data and poses a risk to you, we will tell you and the relevant regulator as the law requires.</p>
+    </section>
+
+    <section id="sharing">
+      <h2>6. Who we share it with</h2>
+      <p><strong>We do not sell your personal information, and we never have.</strong> We share it only with the service providers needed to run the service:</p>
+      <ul>
+        <li><strong>Our web hosting provider</strong> — stores the website and its database.</li>
+        <li><strong>Our email provider</strong> — delivers the notification of your request and our replies to you.</li>
+        <li><strong>Our network and security provider</strong> — routes traffic to the site and protects it from attack.</li>
+        <li><strong>WhatsApp (Meta)</strong> — if you choose to communicate with us there.</li>
+      </ul>
+      <p>We may also disclose information where we are legally required to, or to establish or defend legal claims.</p>
+    </section>
+
+    <section id="retention">
+      <h2>7. How long we keep it</h2>
+      <p>We keep trial requests for <strong>24 months</strong> from your last contact with us, so we can support you, honour your licence and keep accurate records. After that we delete them.</p>
+      <p>You can ask us to delete your details sooner — see <a href="#rights">Your rights</a>. Where we are required to keep certain records for tax or accounting purposes, we will keep only the minimum required, for the required period.</p>
+    </section>
+
+    <section id="cookies">
+      <h2>8. Cookies and browser storage</h2>
+      <p>This site sets <strong>no advertising or tracking cookies</strong>, and there is no Google Analytics, Meta Pixel or similar on these pages.</p>
+      <p>WordPress sets a cookie only if you log in as an administrator of this site. That does not apply to ordinary visitors.</p>
+      <p>The purchase page does use one item of your browser's <strong>local storage</strong> — data kept on your own device, which is never transmitted to us:</p>
+      <table>
+        <thead><tr><th>Key</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>dashlink_order_v1</code></td><td>Remembers what you typed into the licence request form so refreshing the page doesn't lose your progress.</td></tr>
+        </tbody>
+      </table>
+      <p>You can clear it at any time by clearing site data in your browser. Nothing on this site stops working if you do.</p>
+    </section>
+
+    <section id="rights">
+      <h2>9. Your rights</h2>
+      <p>Wherever you live, you can ask us to:</p>
+      <ul>
+        <li><strong>Access</strong> — get a copy of what we hold about you.</li>
+        <li><strong>Correct</strong> — fix anything that is wrong or out of date.</li>
+        <li><strong>Delete</strong> — erase your details from our records.</li>
+        <li><strong>Restrict or object</strong> — limit how we use your information.</li>
+        <li><strong>Port</strong> — receive your details in a machine-readable format.</li>
+        <li><strong>Withdraw consent</strong> — including asking us to stop contacting you on WhatsApp.</li>
+      </ul>
+      <p>Email <a href="mailto:dashlink.support@gmail.com">dashlink.support@gmail.com</a> and we will respond within <strong>30 days</strong>. We will not charge you, and we will not treat you differently for asking.</p>
+      <p>If you are in the UK or EU and you think we have handled your data badly, you may complain to your national data protection authority — in the UK, the Information Commissioner's Office (ico.org.uk).</p>
+    </section>
+
+    <section id="transfers">
+      <h2>10. International transfers</h2>
+      <p>We operate from Pakistan and serve customers worldwide, and our hosting and email providers may process data in other countries. This means your information may be transferred outside the country where you live, including outside the UK and the European Economic Area.</p>
+      <p>Where we transfer personal data out of the UK or EEA, we rely on appropriate safeguards such as the UK International Data Transfer Agreement or the European Commission's Standard Contractual Clauses with our providers.</p>
+    </section>
+
+    <section id="children">
+      <h2>11. Children</h2>
+      <p>DashLink is a product for car owners and is not directed at children. We do not knowingly collect personal information from anyone under 16. If you believe a child has given us their details, contact us and we will delete them.</p>
+    </section>
+
+    <section id="app">
+      <h2>12. The DashLink app</h2>
+      <p>This policy covers <strong>this website</strong> — browsing it and submitting a trial request.</p>
+      <p>The DashLink application you install on your head unit has its <strong>own privacy policy</strong>, which explains what the app collects on your device and why. That policy is the authoritative one for the app; nothing on this page changes it.</p>
+      <p class="callout">One thing worth knowing, because it spans both: <b>your licence is issued to your head unit</b>, so the device your licence is registered to can be linked to the contact details you gave us on this website. We keep that link only to issue, validate and support your licence — for example to confirm a licence is yours when you contact us, or to move it to a replacement unit. If you ask us to delete your data, that link is deleted along with your trial request.</p>
+      <p>Android Auto itself is Google's own software. When you connect your phone, your navigation, media and messaging are handled by Google and by the apps you use, under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a> — not by us. DashLink is an independent product and is not affiliated with, endorsed by or sponsored by Google LLC.</p>
+    </section>
+
+    <section id="changes">
+      <h2>13. Changes to this policy</h2>
+      <p>We may update this policy as the service changes. The "last updated" date at the top always reflects the current version. If we ever make a change that materially affects how we use your personal information, we will tell affected customers directly rather than relying on you to re-read this page.</p>
+    </section>
+
+    <section id="contact">
+      <h2>14. Contact us</h2>
+      <p>For anything about this policy, your data, or to make a request under <a href="#rights">Your rights</a>:</p>
+      <ul>
+        <li><strong>Email</strong> — <a href="mailto:dashlink.support@gmail.com">dashlink.support@gmail.com</a></li>
+        <li><strong>WhatsApp</strong> — <a href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20have%20a%20question%20about%20my%20personal%20data." target="_blank" rel="noopener">message us</a></li>
+              </ul>
+      <p>We trade as DashLink, based in Pakistan. Email is the fastest way to reach us and the best route for any request about your data.</p>
+    </section>
+
+  </div>
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="links">
+    <a href="../">Home</a>
+    <a href="../premium/">Get DashLink</a>
+    <a href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20have%20a%20question%20about%20the%20app." target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <div class="copy">&copy; 2026 DashLink. All rights reserved.</div>
+</footer>
+<style>
+.dl-fab{position:fixed;right:clamp(16px,3vw,26px);bottom:clamp(16px,3vw,26px);z-index:80;display:inline-flex;align-items:center;gap:0;height:56px;padding:0 16px;border-radius:100px;background:linear-gradient(180deg,#43d67f,#12a355);color:#04140b;box-shadow:0 14px 40px -10px rgba(18,163,85,.6),0 2px 8px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,opacity .35s;opacity:0;transform:translateY(14px) scale(.9);pointer-events:none}
+.dl-fab.on{opacity:1;transform:none;pointer-events:auto}
+.dl-fab:hover{transform:translateY(-3px);box-shadow:0 20px 52px -10px rgba(18,163,85,.75)}
+.dl-fab:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(67,214,127,.4),0 14px 40px -10px rgba(18,163,85,.6)}
+.dl-fab svg{width:28px;height:28px;fill:#04140b;flex:none}
+.dl-fab .lbl{max-width:0;overflow:hidden;white-space:nowrap;font-weight:650;font-size:.95rem;transition:max-width .45s cubic-bezier(.16,1,.3,1),margin-left .45s cubic-bezier(.16,1,.3,1);margin-left:0}
+.dl-fab:hover .lbl,.dl-fab:focus-visible .lbl{max-width:170px;margin-left:10px}
+@media(max-width:600px){.dl-fab{height:52px;padding:0 13px}.dl-fab svg{width:26px;height:26px}.dl-fab:hover .lbl{max-width:0;margin-left:0}}
+@media(prefers-reduced-motion:reduce){.dl-fab{transition:none}.dl-fab .lbl{transition:none}}
+</style>
+<a class="dl-fab" id="dlFab" href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20have%20a%20question%20about%20my%20data%20%2F%20privacy." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#04140b"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>  <span class="lbl">Chat with us</span>
+</a>
+<script>
+(function(){
+  var f = document.getElementById('dlFab');
+  if(!f) return;
+  // hold it back until the hero is behind them, so it doesn't fight the first impression
+  function sync(){ f.classList.toggle('on', window.scrollY > 380); }
+  sync();
+  window.addEventListener('scroll', sync, {passive:true});
+})();
+</script>
+	</body>
+</html>
