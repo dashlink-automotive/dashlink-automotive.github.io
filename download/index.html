@@ -88,6 +88,7 @@ main{position:relative;z-index:1}
 .route .who{font-size:.86rem;color:var(--ink-faint);margin-top:14px;display:flex;gap:8px;align-items:flex-start}
 .route .who svg{width:15px;height:15px;stroke:var(--ink-faint);fill:none;flex:none;margin-top:2px}
 .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.meta[hidden]{display:none}
 .meta span{font-size:.78rem;color:var(--ink-dim);background:rgba(255,255,255,.05);border:1px solid var(--line);padding:5px 11px;border-radius:100px;font-variant-numeric:tabular-nums}
 .play-badge{display:inline-flex;align-items:center;gap:12px;padding:12px 22px 12px 18px;border-radius:14px;background:#fff;color:#000;font-weight:600;transition:transform .3s var(--ease)}
 .play-badge:hover{transform:translateY(-2px)}
@@ -208,11 +209,18 @@ main{position:relative;z-index:1}
         <h3>Download the APK</h3>
         <p>Nearly all Android panels have no working Play Store, so this is the normal way to install. Download the file, copy it to a USB stick, and install it on your panel.</p>
 
-                  <span class="btn btn-primary btn-disabled">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
-            Download DashLink
-          </span>
-                  
+        <!-- falls back to the release page; the script below swaps in the direct .apk link -->
+        <a href="https://github.com/dashlink-automotive/DashLink-Head-Unit/releases/latest" class="btn btn-primary" id="apk-download" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+          Download DashLink
+        </a>
+        <!-- filled from the latest GitHub release; stays hidden if the lookup fails -->
+        <div class="meta" id="apk-meta" hidden>
+          <span id="apk-version"></span>
+          <span id="apk-size"></span>
+          <span id="apk-date"></span>
+        </div>
+
         <p class="who"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg> Works on any Android panel running 6.0 or newer, with or without Google services.</p>
       </div>
 
@@ -428,6 +436,31 @@ main{position:relative;z-index:1}
     if (isIOS || (isAndroid && smallAndNarrow && portrait)) {
       el.classList.add('on');
     }
+  })();
+
+  /* APK download — the file name carries the version (DashLink-HeadUnit-vX.Y.Z.apk),
+     so ask GitHub for the latest release's .apk and link it directly. If the API
+     is unreachable or rate-limited, the href stays on the release page. */
+  (function(){
+    var a = document.getElementById('apk-download');
+    if(!a || !window.fetch) return;
+    fetch('https://api.github.com/repos/dashlink-automotive/DashLink-Head-Unit/releases/latest')
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        var apk = d && (d.assets || []).filter(function(x){ return /\.apk$/i.test(x.name); })[0];
+        if(!apk) return;
+        a.href = apk.browser_download_url;
+        var meta = document.getElementById('apk-meta');
+        if(!meta) return;
+        document.getElementById('apk-version').textContent = 'Version ' + d.tag_name.replace(/^v/i, '');
+        document.getElementById('apk-size').textContent = (apk.size / 1048576).toFixed(1) + ' MB';
+        var when = new Date(d.published_at || apk.updated_at);
+        document.getElementById('apk-date').textContent = isNaN(when) ? '' :
+          'Updated ' + when.toLocaleDateString(undefined, {day:'numeric', month:'short', year:'numeric'});
+        meta.querySelectorAll('span').forEach(function(s){ s.hidden = !s.textContent; });
+        meta.hidden = false;
+      })
+      .catch(function(){});
   })();
 
   /* troubleshooting accordion */
