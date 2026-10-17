@@ -12,6 +12,7 @@
 ![Android 6.0+](https://img.shields.io/badge/Android-6.0%2B-3ddc84?style=flat-square&logo=android&logoColor=white)
 
 [**Visit the website**](https://dashlink-automotive.github.io/) ·
+[**What's new**](https://dashlink-automotive.github.io/features/) ·
 [**Download the APK**](https://dashlink-automotive.github.io/download/) ·
 [**Get Premium**](https://dashlink-automotive.github.io/premium/) ·
 [**Privacy policy**](https://dashlink-automotive.github.io/privacy/)
@@ -45,6 +46,7 @@ This repository is the **source of the DashLink website**. It's plain static HTM
 | Page | Path | Purpose |
 |---|---|---|
 | Home | [`index.html`](index.html) | Product overview, features, FAQ |
+| Features | [`features/index.html`](features/index.html) | The redesigned app: Home screen, Dock mode, Car care, Fuel &amp; costs |
 | Download | [`download/index.html`](download/index.html) | APK download, USB install guide, troubleshooting |
 | Premium | [`premium/index.html`](premium/index.html) | Unlocking Premium after the free trial |
 | Privacy | [`privacy/index.html`](privacy/index.html) | Privacy policy |
@@ -52,10 +54,11 @@ This repository is the **source of the DashLink website**. It's plain static HTM
 ```
 .
 ├── index.html
+├── features/index.html
 ├── download/index.html
 ├── premium/index.html
 ├── privacy/index.html
-├── assets/images/      screenshots, photos, demo video
+├── assets/images/      screenshots, photos, demo video (v2/ = redesigned app)
 └── .nojekyll           serve files as-is (no Jekyll processing)
 ```
 
