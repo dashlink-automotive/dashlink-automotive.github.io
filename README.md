@@ -98,6 +98,7 @@ Then open <http://localhost:8000>.
 | Support email | All pages: search `dashlink.support` |
 | Trial length | All pages: search `7 day` |
 | Region rules | Page JS: search `BLOCKED` |
+| GA4 Measurement ID | `assets/analytics.js`: the `GA_ID` line |
 
 ### Region handling
 
@@ -105,6 +106,38 @@ Two things depend on the visitor's country, which is inferred in the browser fro
 
 - **Google Play badges** are hidden where the app isn't listed (IL, PK, DE).
 - **The Premium purchase route** switches between Google Play Billing and manual device-ID activation. Play Billing only works in an app installed from Play, so Pakistan gets the manual route.
+
+## Analytics
+
+Google Analytics 4 (property `G-M4ZK8N420L`) runs from one shared file, [`assets/analytics.js`](assets/analytics.js), included on every page.
+
+On `localhost` nothing is sent, so testing doesn't pollute the reports; events are only logged to the browser console as `[analytics]`. Add `?ga_debug` to a local URL to send real hits, tagged as debug, to GA4's **DebugView**.
+
+**Tracked actions.** Links are classified by where they point, so new buttons are tracked automatically:
+
+| Event | Fires when someone… | Use in Google Ads |
+|---|---|---|
+| `apk_download` | clicks **Download DashLink** (GitHub release `.apk`) | ⭐ Primary conversion |
+| `premium_purchase_intent` | sends a Premium purchase request (`method`: `whatsapp` / `email`) | ⭐ Primary conversion |
+| `whatsapp_click` | opens any other WhatsApp chat | ⭐ Secondary conversion |
+| `download_cta_click` | clicks a button that leads to `/download/` | Audience / micro-conversion |
+| `play_store_click` | opens the companion app on Google Play | Audience |
+| `email_click` | opens a support email | Audience |
+
+Every event also carries `link_location` (nav, footer, floating_button or the section id) and `link_text`.
+
+**Consent.** Visitors with a European timezone (EEA, UK, Switzerland) see an Accept/Decline banner, and GA4 doesn't load until they accept. Everyone else is tracked from page load. The choice is stored in `localStorage` (`dashlink_consent_v1`), and any element with `data-cookie-settings` reopens the banner (it's linked in every footer). Consent Mode v2 signals are sent so Google Ads can use the data.
+
+**Setup**
+
+1. [analytics.google.com](https://analytics.google.com) → *Admin → Create property* → add a **Web** data stream for `https://dashlink-automotive.github.io`.
+2. Copy the Measurement ID (`G-…`) into `GA_ID` in `assets/analytics.js` and push. *(Done: `G-M4ZK8N420L`.)* Then go to *Admin → Data collection and modification → Data retention* and set it to **14 months**, which is what the privacy policy states. GA4 defaults to 2.
+3. *Admin → Events*: once each event has fired at least once, mark `apk_download`, `premium_purchase_intent` and `whatsapp_click` as **key events**.
+4. *Admin → Product links → Google Ads*: link your Ads account, and turn on **personalised advertising** in that link.
+5. In Google Ads: *Goals → Conversions → New → Import → Google Analytics 4* and pick the key events. Set `apk_download` and `premium_purchase_intent` as **primary**.
+6. Build audiences in GA4 (*Admin → Audiences*), for example "visited `/download/` but no `apk_download`". They sync to Google Ads for remarketing.
+
+To check events live, open the site with GA4's **DebugView** (*Admin → DebugView*) or the Google Tag Assistant browser extension.
 
 ## Deployment
 
