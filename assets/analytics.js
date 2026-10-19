@@ -1,20 +1,26 @@
 /* ============================================================
    DashLink — Google Analytics 4 + consent
-   One file, included on every page. On localhost nothing is sent
-   (events are only logged to the console) unless ?ga_debug is in
-   the URL, which sends them to GA4 DebugView.
+   One file, included on every page. Data is only sent from the
+   hosts in PROD_HOSTS. On localhost events are logged to the
+   console instead, unless ?ga_debug is in the URL, which sends
+   them to GA4 DebugView. Any other host sends nothing.
    ============================================================ */
 (function(){
   "use strict";
 
   var GA_ID = 'G-M4ZK8N420L'; // ← your GA4 Measurement ID (Admin → Data streams → Web)
 
+  // The repo is public, so copies of this site can turn up on other hosts.
+  // Only these hosts report to GA4.
+  var PROD_HOSTS = ['dashlink-automotive.github.io'];
+
   var CONSENT_KEY = 'dashlink_consent_v1';
   // Local previews don't send data (so testing doesn't pollute the reports)
   // unless the URL has ?ga_debug, which also routes hits to GA4 DebugView.
   var isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$|\.(localhost|test)$/.test(location.hostname);
+  var isProd = PROD_HOSTS.indexOf(location.hostname) !== -1;
   var debug = /[?&]ga_debug\b/.test(location.search);
-  var configured = /^G-[A-Z0-9]{4,}$/.test(GA_ID) && GA_ID !== 'G-XXXXXXXXXX' && (!isLocal || debug);
+  var configured = /^G-[A-Z0-9]{4,}$/.test(GA_ID) && GA_ID !== 'G-XXXXXXXXXX' && (isProd || (isLocal && debug));
   var loaded = false;
 
   /* ---------- consent ----------

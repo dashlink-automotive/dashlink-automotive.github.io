@@ -111,7 +111,12 @@ Two things depend on the visitor's country, which is inferred in the browser fro
 
 Google Analytics 4 (property `G-M4ZK8N420L`) runs from one shared file, [`assets/analytics.js`](assets/analytics.js), included on every page.
 
-On `localhost` nothing is sent, so testing doesn't pollute the reports; events are only logged to the browser console as `[analytics]`. Add `?ga_debug` to a local URL to send real hits, tagged as debug, to GA4's **DebugView**.
+Data is only sent from the hosts listed in `PROD_HOSTS` in `analytics.js`, so forks and copies of this public repo don't send fake visits or conversions into our reports and Google Ads. If the site ever moves to another address, add it to `PROD_HOSTS`, or tracking will stop there.
+
+On `localhost`, events are only logged to the browser console as `[analytics]`. Add `?ga_debug` to a local URL to send real hits, tagged as debug, to GA4's **DebugView**.
+
+> [!NOTE]
+> The Measurement ID isn't a secret: browsers send it to Google on every page view. **Never** commit a GA4 *Measurement Protocol API secret* or any Google Ads credentials. Neither is needed for this setup.
 
 **Tracked actions.** Links are classified by where they point, so new buttons are tracked automatically:
 
@@ -145,22 +150,7 @@ Pushing to `main` deploys the site. GitHub Pages rebuilds in under a minute.
 
 **Pages settings:** *Settings → Pages → Deploy from a branch → `main` / `(root)`*
 
-<details>
-<summary><b>Adding a custom domain</b></summary>
-
-<br />
-
-There's deliberately no `CNAME` file yet. Adding one before the DNS records exist makes Pages redirect to a dead address.
-
-1. Add a `CNAME` file at the repo root containing only the domain.
-2. Go to *Settings → Pages → Custom domain*, enter the same domain and save.
-3. At your registrar, point the apex `A` records to GitHub Pages:
-   `185.199.108.153` · `185.199.109.153` · `185.199.110.153` · `185.199.111.153`,
-   and add a `CNAME` record for `www` pointing to `dashlink-automotive.github.io`.
-4. Tick **Enforce HTTPS** once the certificate is issued.
-5. Search the HTML for `TODO`: `download/index.html` has a line telling users which address to type into their panel's browser.
-
-</details>
+The site is served at **https://dashlink-automotive.github.io/** and has no custom domain, so there's no `CNAME` file. That address is written into the canonical tags, `sitemap.xml`, `robots.txt`, the link-preview tags, `PROD_HOSTS` in `assets/analytics.js`, and the "type this address" step on the download page.
 
 ## Support
 
