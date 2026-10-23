@@ -81,9 +81,9 @@ h1{font-family:var(--font-head);font-size:clamp(2.1rem,5vw,3.2rem);font-weight:6
 .doc h3{font-family:var(--font-head);font-size:1.06rem;font-weight:600;margin:24px 0 8px}
 .doc p{color:var(--ink-dim);margin-bottom:14px}
 .doc p strong,.doc li strong{color:var(--ink);font-weight:600}
-.doc ul{list-style:none;margin:0 0 16px;display:grid;gap:10px}
-.doc ul li{display:flex;gap:12px;color:var(--ink-dim)}
-.doc ul li::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;background:var(--blue);margin-top:10px;opacity:.7}
+.doc ul{list-style:none;margin:0 0 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.doc ul li{position:relative;padding-left:17px;color:var(--ink-dim);overflow-wrap:anywhere}
+.doc ul li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--blue);opacity:.7}
 .doc table{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:.93rem;display:block;overflow-x:auto}
 .doc table thead th{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);color:var(--ink);font-weight:600;white-space:nowrap}
 .doc table td{padding:11px 14px;border-bottom:1px solid var(--line-2);color:var(--ink-dim);vertical-align:top}

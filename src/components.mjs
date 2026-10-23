@@ -609,7 +609,7 @@ export function recceStory(c) {
   const plane = (st, i) => `
         <div class="xp-shot lx-plane${i ? '' : ' on'}" data-xp="${st.key}">
           <img class="lx-base" src="${r('assets/images/' + st.img)}" alt="${esc(st.alt)}" width="2000" height="1250" ${i ? 'loading="lazy"' : ''} decoding="async">
-          ${st.lifts.map((l, k) => `<figure class="lx-card${l.below ? ' below' : ''}" style="--x:${l.x}%;--y:${l.y}%;--w:${l.w}%;--d:${k}"><img src="${r('assets/images/' + l.img)}" alt="" loading="lazy" decoding="async"><figcaption>${l.label}</figcaption></figure>`).join('')}
+          ${st.lifts.map((l, k) => `<figure class="lx-card${l.below ? ' below' : ''}" style="left:${l.x}%;top:${l.y}%;width:${l.w}%;--d:${k}"><img src="${r('assets/images/' + l.img)}" alt="" loading="lazy" decoding="async"><figcaption>${l.label}</figcaption></figure>`).join('')}
         </div>`;
   return `
 <section class="block lx-sec" id="${c.id}">
