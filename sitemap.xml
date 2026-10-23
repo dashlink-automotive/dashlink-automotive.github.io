@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dashlink-automotive.github.io/</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://dashlink-automotive.github.io/features/</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://dashlink-automotive.github.io/download/</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://dashlink-automotive.github.io/premium/</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://dashlink-automotive.github.io/privacy/</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/android-auto/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/dashboard/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/trips-fuel-maintenance/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/racing/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/racing/track-day/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/racing/rally/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/racing/performance/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/wireless-app/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/plans/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/support/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/terms/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/download/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/premium/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://dashlink-automotive.github.io/privacy/</loc><lastmod>2026-10-23</lastmod></url>
 </urlset>

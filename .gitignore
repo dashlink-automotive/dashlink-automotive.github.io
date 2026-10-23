@@ -6,7 +6,8 @@
 .Spotlight-V100
 .Trashes
 
-# editors
+# editors and local tooling
+.claude/
 .idea/
 .vscode/
 *.swp

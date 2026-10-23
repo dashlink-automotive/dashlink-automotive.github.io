@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en" data-page="racing-track-day" data-pillar="racing" class="t-racing">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Track day lap timer with live delta and ghost car | DashLink Racing</title>
+<meta name="description" content="A track day lap timer on your head unit: line-crossing timing, sectors, live delta, ghost car, coach and session analysis with speed traces and a grip plot.">
+<link rel="canonical" href="https://dashlink-automotive.github.io/racing/track-day/">
+<meta name="theme-color" content="#0a0405">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DashLink">
+<meta property="og:title" content="Track day lap timer with live delta and ghost car | DashLink Racing">
+<meta property="og:description" content="A track day lap timer on your head unit: line-crossing timing, sectors, live delta, ghost car, coach and session analysis with speed traces and a grip plot.">
+<meta property="og:url" content="https://dashlink-automotive.github.io/racing/track-day/">
+<meta property="og:image" content="https://dashlink-automotive.github.io/assets/images/og/racing-track-day.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.dashlinkReady)document.documentElement.classList.add('no-reveal')},3000)</script>
+<link rel="stylesheet" href="../../assets/site.css?v=202610231103">
+<script src="../../assets/analytics.js?v=202610231103" defer></script>
+<script src="../../assets/site.js?v=202610231103" defer></script>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="../../" aria-label="DashLink home"><span class="lockup "><span class="wm">DashLink<span class="wm-dot">.</span></span><span class="lk-div" aria-hidden="true"></span><svg class="rmark " viewBox="0 0 44 28" aria-hidden="true" focusable="false"><defs><linearGradient id="rmg13" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#5b1820"/><stop offset=".55" stop-color="#e63946"/><stop offset="1" stop-color="#ffb4a8"/></linearGradient></defs><path fill="url(#rmg13)" d="M3 27 9 17h6L9 27zM14 27 22 10h6l-8 17zM25 27 36 1h6L31 27z"/></svg><span class="lk-racing">Racing</span></span></a>
+  <nav class="nav-links" aria-label="Main"><a href="../../android-auto/">Android Auto</a><a href="../../dashboard/">Dashboard</a><a href="../../trips-fuel-maintenance/">Trips & fuel</a><a href="../../racing/" class="nl-racing" aria-current="page">Racing</a><a href="../../wireless-app/">Wireless app</a><a href="../../plans/">Plans</a><a href="../../support/">Support</a></nav>
+  <div class="nav-end">
+    <a class="btn btn-primary btn-sm nav-cta" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dracing-track-day%26utm_term%3Dracing-track-day" data-play="headunit" data-cta="nav" data-fallback="../../download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu"><svg class="ic i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="ic i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+</header>
+<div class="sheet" id="sheet" hidden><nav aria-label="Main"><a href="../../android-auto/"><b>Android Auto</b><small>USB, wireless and self mode on your head unit</small></a><a href="../../dashboard/"><b>Dashboard</b><small>Dock mode, 7 layouts, 6 speedometers</small></a><a href="../../trips-fuel-maintenance/"><b>Trips & fuel</b><small>Trip computer, fuel estimates, service reminders</small></a><a href="../../racing/" class="nl-racing"><b>Racing</b><small>Lap timing, rally stages, performance tests</small></a><a href="../../wireless-app/"><b>Wireless app</b><small>The companion app for your phone</small></a><a href="../../plans/"><b>Plans</b><small>Free, Drive or Pro. Try everything free</small></a><a href="../../support/"><b>Support</b><small>Compatibility, troubleshooting, contact</small></a></nav></div>
+<main id="top">
+
+<section class="hero hero-split" id="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <div class="race-top reveal"><span class="lockup lg"><span class="wm">DashLink<span class="wm-dot">.</span></span><span class="lk-div" aria-hidden="true"></span><svg class="rmark " viewBox="0 0 44 28" aria-hidden="true" focusable="false"><defs><linearGradient id="rmg2" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#5b1820"/><stop offset=".55" stop-color="#e63946"/><stop offset="1" stop-color="#ffb4a8"/></linearGradient></defs><path fill="url(#rmg2)" d="M3 27 9 17h6L9 27zM14 27 22 10h6l-8 17zM25 27 36 1h6L31 27z"/></svg><span class="lk-racing">Racing</span></span><nav class="race-tabs" aria-label="DashLink Racing"><a href="../../racing/"><span>Overview</span></a><a href="../../racing/track-day/" aria-current="page"><span>Track day</span></a><a href="../../racing/rally/"><span>Rally</span></a><a href="../../racing/performance/"><span>Performance</span></a></nav></div>
+      <span class="eyebrow reveal" data-h="eyebrow">Track day</span>
+      <h1 class="display reveal d1" data-h="title">Find the time <span class="grad-text">you&rsquo;re leaving out there.</span></h1>
+      <p class="lead reveal d2" data-h="sub">Lap timing to the line, automatic sectors, live delta and a ghost car of your best lap. Then a debrief that tells you which corners cost you.</p>
+      <div class="hero-cta reveal d3"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dracing-track-day%26utm_term%3Dracing-track-day" data-play="headunit" data-cta="hero_primary" data-plan="pro" data-fallback="../../download/" data-fallback-label="Try DashLink Racing free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink Racing free</span></a><a class="btn btn-ghost" href="../../plans/" data-cta="hero_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <p class="hero-note reveal d3">Closed courses only</p>
+      <p class="page-tier reveal d3"><span class="badge badge-pro" title="Included in DashLink Pro">Pro</span><span>DashLink Racing is part of Pro. The performance tests are free. <a href="../../plans/#pro">See plans</a></span></p>
+    </div>
+    <div class="hero-media reveal-scale d2" data-h="media"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../../assets/images/v8/mode-track.webp" alt="Track mode: lap time, live delta, sectors and chase map" width="2000" height="1250" fetchpriority="high" decoding="async"></div></div></div>
+  </div>
+  <template data-hv="ghost"><div class="cn-stage st-stage" data-tilt><span class="cn-glow" aria-hidden="true"></span><div class="cn-float st-float"><div class="cn-card3d st-card st-back mirror"><span class="cn-depth" aria-hidden="true"></span><span class="cn-edge" aria-hidden="true"></span><img src="../../assets/images/v8/ghost-notes.webp" alt="Chase map with pace notes L3, R3 and a hairpin marked, and the ghost car just ahead" width="915" height="866" loading="lazy" decoding="async"><span class="cn-sheen" aria-hidden="true"></span><span class="st-tag t-note" style="left:57.9%;top:46.4%"><i></i>Pace notes on the map</span></div><div class="cn-card3d st-card st-front"><span class="cn-depth" aria-hidden="true"></span><span class="cn-edge" aria-hidden="true"></span><img src="../../assets/images/v8/ghost-straight.webp" alt="Chase map on a straight: the yellow ghost car of your best lap just ahead of you" width="915" height="866" loading="lazy" decoding="async"><span class="cn-sheen" aria-hidden="true"></span><span class="st-tag t-ghost" style="left:49%;top:63.4%"><i></i>Ghost: your best lap</span><span class="st-tag t-you" style="left:50.2%;top:67.7%"><i></i>You</span></div></div></div></template><template data-hv="analysis"><div class="bs-window bs-mini"><div class="bs-chrome"><span class="bs-dots"><i></i><i></i><i></i></span><span class="bs-url"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><b>192.168.0.109:8765</b><em>local Wi-Fi</em></span></div><div class="bs-view"><img src="../../assets/images/v6/web-overview.webp" alt="Session analysis in a web browser" width="1600" height="1123" fetchpriority="high" decoding="async"></div></div></template>
+</section><script>(function(V){var q=new URLSearchParams(location.search),n=function(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'')},c=n(q.get('c')),u=n(q.get('utm_campaign')),k=null,x,i;if(c){for(x in V){if(V[x].m.indexOf(c)>-1){k=x;break}}}if(!k&&u){for(x in V){for(i=0;i<V[x].m.length;i++){if(u.indexOf(V[x].m[i])>-1){k=x;break}}if(k)break}}document.documentElement.setAttribute('data-variant',k||'default');if(!k)return;var v=V[k],H=document.getElementById('hero');['eyebrow','title','sub'].forEach(function(f){var e=H.querySelector('[data-h='+f+']');if(e&&v[f]!=null)e.innerHTML=v[f]});if(v.media){var t=H.querySelector('template[data-hv="'+k+'"]'),s=H.querySelector('[data-h=media]');if(t&&s)s.innerHTML=t.innerHTML}})({"ghost":{"m":["ghost","delta"],"eyebrow":"Ghost car &amp; live delta","title":"Chase <span class=\"grad-text\">your best lap.</span>","sub":"Your best lap drives with you on the map, and the delta tells you live whether you&rsquo;re up or down.","media":1},"analysis":{"m":["analysis","data","telemetry","coach"],"eyebrow":"Session analysis","title":"Where the time goes, <span class=\"grad-text\">in plain words.</span>","sub":"Theoretical best, speed traces, gap to best, a grip plot, and the corners that cost you.","media":1}});</script><nav class="anchors" aria-label="On this page"><div class="anchors-in"><a href="#track-day">Lap timer</a><a href="#ghost">Ghost car</a><a href="#live">Live</a><a href="#analysis">Analysis</a><a href="#debrief">Debrief</a><a href="#coach">Coach</a><a href="#tracks">Tracks</a><a href="#import">Import</a><a href="#phone-sensors">Phone sensors</a><a href="#wheel">Wheel</a><a href="#safety">Safety</a></div></nav>
+<section class="fb" id="track-day">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Track day lap timer<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+      <h2 class="h-lg reveal d1">Every lap, timed to the line.</h2>
+      <p class="fb-body reveal d2">Laps are timed by crossing the start/finish line, interpolated between GPS fixes rather than snapped to the nearest point. The line lays itself, or set it with one tap.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span><b>Flying or standing starts</b>: stop on the grid and the clock starts as you pull away</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Automatic sector lines after lap 1, with sector times</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Live <b>delta</b> to your best lap</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Upcoming pace notes on top, with the distance to the next one</span></li></ul>
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="spotted" data-spotted><div class="spotted-in"><img src="../../assets/images/v8/mode-track.webp" alt="Track mode at the start of a stage: next pace notes, lap time, best sectors, chase map and a Start now button" width="2000" height="1250" loading="lazy" decoding="async"><button type="button" class="xp-spot sp-l" style="left:9%;top:16.5%" aria-label="Next pace note, with distance"><i></i><span>Next pace note, with distance</span></button><button type="button" class="xp-spot" style="left:60%;top:16.5%" aria-label="The two notes after it"><i></i><span>The two notes after it</span></button><button type="button" class="xp-spot sp-l" style="left:10%;top:27.4%" aria-label="Standing or flying start"><i></i><span>Standing or flying start</span></button><button type="button" class="xp-spot" style="left:42%;top:27.4%" aria-label="Stage recognised, pace notes ready"><i></i><span>Stage recognised, pace notes ready</span></button><button type="button" class="xp-spot" style="left:31%;top:63%" aria-label="Live delta to your best"><i></i><span>Live delta to your best</span></button><button type="button" class="xp-spot sp-l" style="left:25%;top:78.5%" aria-label="Sector times, best in yellow"><i></i><span>Sector times, best in yellow</span></button><button type="button" class="xp-spot sp-r" style="left:74%;top:45%" aria-label="Chase map, heading-up"><i></i><span>Chase map, heading-up</span></button><button type="button" class="xp-spot" style="left:63%;top:78.5%" aria-label="Last and best lap"><i></i><span>Last and best lap</span></button><button type="button" class="xp-spot sp-r" style="left:86%;top:92%" aria-label="The clock starts by itself, or tap Start now"><i></i><span>The clock starts by itself, or tap Start now</span></button></div></div></div>
+  </div>
+</section>
+<section class="fb flip" id="ghost">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Ghost car<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+      <h2 class="h-lg reveal d1">Race your best lap.</h2>
+      <p class="fb-body reveal d2">The yellow arrow on the chase map is your best lap, driving with you. When it pulls ahead you&rsquo;re losing time; when you catch it, you&rsquo;re on a personal best. Pace notes ride along on the same map.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Your best lap, replayed in real time</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>See exactly where it pulls away</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Pace notes marked on the road ahead</span></li></ul>
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="cn-stage st-stage" data-tilt><span class="cn-glow" aria-hidden="true"></span><div class="cn-float st-float"><div class="cn-card3d st-card st-back mirror"><span class="cn-depth" aria-hidden="true"></span><span class="cn-edge" aria-hidden="true"></span><img src="../../assets/images/v8/ghost-notes.webp" alt="Chase map with pace notes L3, R3 and a hairpin marked, and the ghost car just ahead" width="915" height="866" loading="lazy" decoding="async"><span class="cn-sheen" aria-hidden="true"></span><span class="st-tag t-note" style="left:57.9%;top:46.4%"><i></i>Pace notes on the map</span></div><div class="cn-card3d st-card st-front"><span class="cn-depth" aria-hidden="true"></span><span class="cn-edge" aria-hidden="true"></span><img src="../../assets/images/v8/ghost-straight.webp" alt="Chase map on a straight: the yellow ghost car of your best lap just ahead of you" width="915" height="866" loading="lazy" decoding="async"><span class="cn-sheen" aria-hidden="true"></span><span class="st-tag t-ghost" style="left:49%;top:63.4%"><i></i>Ghost: your best lap</span><span class="st-tag t-you" style="left:50.2%;top:67.7%"><i></i>You</span></div></div></div></div>
+  </div>
+</section>
+<section class="fb" id="live">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Live modes<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+      <h2 class="h-lg reveal d1">Sport. Track. Race.</h2>
+      <p class="fb-body reveal d2">Three live screens, one tap apart. Upcoming pace notes stay on top in every mode, with the distance to the next one, and the cabin tints as you gain or lose time.</p>
+      
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="modes" data-modes style="--mc:#ff9c94">
+      <div class="md-seg" role="tablist" aria-label="Live modes"><button type="button" role="tab" aria-selected="true" data-mode="track" data-color="#ff9c94" data-desc="Track: lap time, live delta to your best and sector times, beside a heading-up chase map. Stop at the line or roll across it, and the clock starts by itself.">TRACK</button><button type="button" role="tab" aria-selected="false" data-mode="race" data-color="#ff3b30" data-desc="Race: nothing but the gap. A huge live delta, how many metres behind or ahead of your best you are, and the progress of the run.">RACE</button><button type="button" role="tab" aria-selected="false" data-mode="sport" data-color="#ffa21a" data-desc="Sport: big speed with an LED bar, top speed, and a live grip trace with cornering and acceleration g.">SPORT</button></div>
+      <div class="hu md-hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img class="md-shot on" data-mode="track" src="../../assets/images/v8/mode-track.webp" alt="Track mode" width="2000" height="1250" loading="lazy" decoding="async"><img class="md-shot" data-mode="race" src="../../assets/images/v8/mode-race.webp" alt="Race mode: plus 5.31 seconds, 110 metres behind your best" width="2000" height="1250" loading="lazy" decoding="async"><img class="md-shot" data-mode="sport" src="../../assets/images/v8/mode-sport.webp" alt="Sport mode: 123 km/h with an LED bar and a live grip trace" width="2000" height="1250" loading="lazy" decoding="async"></div></div>
+      <p class="md-desc" aria-live="polite">Track: lap time, live delta to your best and sector times, beside a heading-up chase map. Stop at the line or roll across it, and the clock starts by itself.</p>
+    </div></div>
+  </div>
+</section>
+<section class="fb flip" id="analysis">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Session analysis<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+      <h2 class="h-lg reveal d1">Where the time goes, in plain words.</h2>
+      <p class="fb-body reveal d2">Best lap, <b>theoretical best</b> and consistency. The corners that cost you, and why: braking early, slow apex, late on the throttle. Lap and sector tables, <b>speed traces</b> against your best, <b>gap to best</b>, a map coloured by speed or gain/loss, a full-screen zoomable map, a <b>grip (g-g) plot</b> with cornering, braking and acceleration figures, and a corner-by-corner tab.</p>
+      
+      <p class="fb-note reveal d3">Shown here in DashLink Wireless, with a session sent from the car.</p>
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="pt" data-explorer><div class="cn-stage ph-stage pt-stage" data-tilt><span class="cn-glow" aria-hidden="true"></span><div class="cn-float"><div class="cn-card3d ph3d">
+    <span class="cn-depth" aria-hidden="true"></span>
+    <div class="ph-body"><span class="ph-island" aria-hidden="true"></span><div class="ph-screen pt-screen"><img class="xp-shot on" data-xp="overview" src="../../assets/images/v10/wl-overview.webp" alt="Session overview: best lap 2:56.240, theoretical best, consistency, top speed, peak g-forces and best sectors" width="898" height="1830"  decoding="async"><img class="xp-shot" data-xp="map" src="../../assets/images/v10/wl-map.webp" alt="Track map coloured by speed with 15 numbered corners and lap 2 highlighted" width="898" height="1830" loading="lazy" decoding="async"><img class="xp-shot" data-xp="laps" src="../../assets/images/v10/wl-laps.webp" alt="Lap table: three laps with sector times coloured from fastest to slowest" width="898" height="1830" loading="lazy" decoding="async"><img class="xp-shot" data-xp="speed" src="../../assets/images/v10/wl-speed.webp" alt="Speed trace of lap 3 against the best lap, and the time lost along the lap" width="898" height="1830" loading="lazy" decoding="async"><img class="xp-shot" data-xp="grip" src="../../assets/images/v10/wl-grip.webp" alt="g-g plot of the session with peak braking, cornering and acceleration" width="898" height="1830" loading="lazy" decoding="async"></div></div>
+    <span class="cn-sheen ph-sheen" aria-hidden="true"></span>
+    <figure class="ph-lift below" data-xp-lift="overview" style="--x:-30%;--y:60%;--w:112%;--d:0"><img src="../../assets/images/v10/wl-time.webp" alt="" loading="lazy" decoding="async"><figcaption>The corners that cost you</figcaption></figure><figure class="ph-lift cap-r" data-xp-lift="map" style="--x:22%;--y:72%;--w:104%;--d:1"><img src="../../assets/images/v10/wl-lap-card.webp" alt="" loading="lazy" decoding="async"><figcaption>Tap a lap: time and sectors</figcaption></figure><figure class="ph-lift" data-xp-lift="laps" style="--x:-26%;--y:16%;--w:116%;--d:2"><img src="../../assets/images/v10/wl-lap-best.webp" alt="" loading="lazy" decoding="async"><figcaption>Best lap and sectors in gold</figcaption></figure><figure class="ph-lift cap-r" data-xp-lift="speed" style="--x:20%;--y:52%;--w:104%;--d:3"><img src="../../assets/images/v10/wl-delta.webp" alt="" loading="lazy" decoding="async"><figcaption>Where the time goes, metre by metre</figcaption></figure><figure class="ph-lift below" data-xp-lift="grip" style="--x:-24%;--y:72%;--w:110%;--d:4"><img src="../../assets/images/v10/wl-peaks.webp" alt="" loading="lazy" decoding="async"><figcaption>Your peaks, in g</figcaption></figure>
+  </div></div></div><div class="xp-tabs pt-tabs" role="tablist" aria-label="Session analysis screens"><button type="button" role="tab" class="xp-tab on" aria-selected="true" data-xp="overview"><span class="xp-bar" aria-hidden="true"></span><b>Overview</b><small>Best lap, theoretical best, consistency, top speed and your g-force peaks.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="map"><span class="xp-bar" aria-hidden="true"></span><b>Map</b><small>Your line coloured by speed, every corner numbered. Tap a lap to light it up.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="laps"><span class="xp-bar" aria-hidden="true"></span><b>Laps</b><small>Every lap and sector side by side. Gold is the best in each column.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="speed"><span class="xp-bar" aria-hidden="true"></span><b>Speed</b><small>Any lap against your best: who carries more speed where, and the time gained or lost.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="grip"><span class="xp-bar" aria-hidden="true"></span><b>Grip</b><small>Braking, cornering and acceleration on one g-g plot. Measured when you use phone sensors.</small></button></div></div></div>
+  </div>
+</section>
+<section class="block pw-sec" id="debrief">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Big-screen debrief <span class="badge badge-pro" title="Included in DashLink Pro">Pro</span> <span class="badge badge-new" title="New in DashLink">New</span></span>
+    <h2 class="h-xl reveal d1">Take the session <span class="grad-text">to the pit wall.</span></h2>
+    <p class="lead reveal d2">Open every session on a laptop or a big screen with DashLink Wireless: corner losses, lap and sector tables, speed traces and the grip plot, big enough for the whole team.</p>
+  </div>
+    <div class="pw reveal-scale"><div class="spotted" data-spotted><div class="spotted-in"><img src="../../assets/images/v11/pit-wall.webp" alt="A team engineer reviewing a DashLink Racing session in Browser view on a big monitor: every corner with best, typical and time lost, and where the time is" width="1672" height="700" loading="lazy" decoding="async"><button type="button" class="xp-spot" style="left:48.4%;top:12.6%" aria-label="Served by your phone, on local Wi-Fi"><i></i><span>Served by your phone, on local Wi-Fi</span></button><button type="button" class="xp-spot" style="left:54%;top:30%" aria-label="Overview, map, laps, corners, speed, grip"><i></i><span>Overview, map, laps, corners, speed, grip</span></button><button type="button" class="xp-spot" style="left:47%;top:52%" aria-label="Every corner: best, typical and the loss"><i></i><span>Every corner: best, typical and the loss</span></button><button type="button" class="xp-spot sp-r" style="left:80%;top:40%" aria-label="Where the time is, in plain words"><i></i><span>Where the time is, in plain words</span></button><button type="button" class="xp-spot sp-r" style="left:81%;top:76%" aria-label="Session details, down to the GPS rate"><i></i><span>Session details, down to the GPS rate</span></button></div></div><span class="pw-fade" aria-hidden="true"></span></div>
+    <ul class="pw-chips reveal"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>No cloud or account: your phone serves it</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Over Wi-Fi or the phone&rsquo;s hotspot</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Made for driver and coach debriefs</span></li></ul>
+    <div class="hero-cta center reveal" style="margin-top:26px"><a class="btn btn-ghost" href="../../wireless-app/#browser" data-cta="feature_debrief"><span>See Browser view</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+<section class="fb" id="coach">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Coach<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+      <h2 class="h-lg reveal d1">A voice in the car that knows your laps.</h2>
+      <p class="fb-body reveal d2">Sector calls while you drive, and a spoken debrief after the session.</p>
+      
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="mk-wrap"><div class="mk mk-coach" role="img" aria-label="Spoken coach calls and debrief">
+    <div class="mk-bar"><span><b>Coach</b></span><span>Debrief</span></div>
+    <div class="bubbles">
+      <p class="bub">Sector two, two tenths up.</p>
+      <p class="bub">Turn four: you're braking early. Try the 100 board.</p>
+      <p class="bub me">Session best 1:41.977. Theoretical 1:41.402.</p>
+    </div></div></div></div>
+  </div>
+</section>
+<section class="fb flip" id="tracks">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Track library</span>
+      <h2 class="h-lg reveal d1">Every circuit and stage, on its own page.</h2>
+      <p class="fb-body reveal d2">A map with coloured sectors, direction arrows and numbered corners. Length, corners left and right, the longest straight, your best lap, the pace notes and every session you&rsquo;ve driven there. Tap <b>Drive</b> to start.</p>
+      
+      <p class="fb-note reveal d3">Import and view tracks free; drive a session with Pro.</p>
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="spotted" data-spotted><div class="spotted-in"><img src="../../assets/images/v8/stage-page.webp" alt="A stage page: map with three coloured sectors and 13 corners, length, longest straight, best lap and pace notes" width="2000" height="1250" loading="lazy" decoding="async"><button type="button" class="xp-spot sp-l" style="left:23%;top:17.5%" aria-label="Start and finish"><i></i><span>Start and finish</span></button><button type="button" class="xp-spot" style="left:40%;top:49%" aria-label="Sectors in colour, with direction"><i></i><span>Sectors in colour, with direction</span></button><button type="button" class="xp-spot sp-r" style="left:77.6%;top:18%" aria-label="Corners: left and right"><i></i><span>Corners: left and right</span></button><button type="button" class="xp-spot sp-r" style="left:91%;top:18%" aria-label="Longest straight, tap to show it"><i></i><span>Longest straight, tap to show it</span></button><button type="button" class="xp-spot" style="left:64.5%;top:31.5%" aria-label="Your best lap here"><i></i><span>Your best lap here</span></button><button type="button" class="xp-spot sp-r" style="left:91%;top:31.5%" aria-label="Pace notes for the stage"><i></i><span>Pace notes for the stage</span></button><button type="button" class="xp-spot sp-r" style="left:78%;top:58%" aria-label="Every session you drove here"><i></i><span>Every session you drove here</span></button><button type="button" class="xp-spot sp-r" style="left:93%;top:6%" aria-label="Drive the stage"><i></i><span>Drive the stage</span></button></div></div></div>
+  </div>
+</section>
+<section class="fb" id="import">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Import any track</span>
+      <h2 class="h-lg reveal d1">GPX or KML, from your phone or a file.</h2>
+      <p class="fb-body reveal d2">A closed loop becomes a circuit (a START / FINISH waypoint sets the line). Anything else becomes a stage, with pace notes generated for you.</p>
+      
+      <p class="fb-note reveal d3">Import and view free; drive a session with Pro.</p>
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="mk-wrap"><div class="mk mk-imp" role="img" aria-label="GPX and KML import">
+    <div class="mk-bar"><span><b>Import a track</b></span><span>GPX &middot; KML</span></div>
+    <ul class="imp">
+      <li><span class="file">circuit.gpx</span><i>&rarr;</i><b>Circuit</b><small>closed loop &middot; START/FINISH sets the line</small></li>
+      <li><span class="file">stage.kml</span><i>&rarr;</i><b>Stage</b><small>with generated pace notes</small></li>
+    </ul></div></div></div>
+  </div>
+</section>
+<section class="block ps" id="phone-sensors">
+  <div class="wrap">
+    <div class="ps-top">
+      <div class="ps-copy">
+        <span class="kicker reveal">Phone sensors<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span><span class="badge badge-new" title="New in DashLink">New</span></span>
+        <h2 class="h-xl reveal d1">Your phone becomes <span class="grad-text">a precision timing sensor.</span></h2>
+        <p class="lead reveal d2">A typical head unit reads its GPS about once a second. At 120 km/h that&rsquo;s one reading every 33 metres, and a lot happens in a corner in 33 metres. Mount a phone running <a href="../../wireless-app/">DashLink Wireless</a> and its GPS and motion sensors fill in the gaps.</p>
+        <ul class="ps-vals">
+          <li class="reveal d0"><span class="ps-big">25<small>/s</small></span><div><b>Far more detail</b><span>Up to 25 readings a second instead of about one. Start lines, sectors and speed traces are pinned down far more precisely.</span></div></li>
+          <li class="reveal d1"><span class="ps-big">g</span><div><b>Real g-forces</b><span>Braking, cornering and acceleration measured by the phone&rsquo;s motion sensors, not estimated from GPS.</span></div></li>
+          <li class="reveal d2"><span class="ps-big"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>Nothing to lose</b><span>If the phone drops out, DashLink carries on with the car&rsquo;s GPS by itself. The data goes only to your car.</span></div></li>
+        </ul>
+      </div>
+      <div class="reveal-scale d1"><div class="cn-stage ph-stage " data-tilt><span class="cn-glow" aria-hidden="true"></span><div class="cn-float"><div class="cn-card3d ph3d">
+    <span class="cn-depth" aria-hidden="true"></span>
+    <div class="ph-body"><span class="ph-island" aria-hidden="true"></span><div class="ph-screen"><img src="../../assets/images/v10/ps-live.webp" alt="DashLink Wireless using the phone as a sensor: calibration steps, motion sensors running and the maximum rate set to 25 Hz" width="898" height="1830" loading="lazy" decoding="async"></div></div>
+    <span class="cn-sheen ph-sheen" aria-hidden="true"></span>
+    <figure class="ph-lift" style="--x:-34%;--y:7%;--w:100%;--d:0"><img src="../../assets/images/v10/ps-chips.webp" alt="" loading="lazy" decoding="async"><figcaption>Sent only to your car</figcaption></figure><figure class="ph-lift below" style="--x:-30%;--y:59%;--w:46%;--d:1"><img src="../../assets/images/v10/ps-motion.webp" alt="" loading="lazy" decoding="async"><figcaption>Motion sensors running</figcaption></figure><figure class="ph-lift cap-r" style="--x:62%;--y:70%;--w:56%;--d:2"><img src="../../assets/images/v10/ps-rate.webp" alt="" loading="lazy" decoding="async"><figcaption>Up to 25 a second</figcaption></figure>
+  </div></div></div></div>
+    </div>
+
+    
+    <div class="ps-demo  reveal-scale" data-ps-demo data-metres="260">
+      <div class="psd-head">
+        <span class="eyebrow">See the difference</span>
+        <h3 class="h-lg">What the car&rsquo;s GPS misses in a corner.</h3>
+        <p>Drag the speed, then switch between the car&rsquo;s GPS alone and the car with your phone.</p>
+      </div>
+      <div class="psd-ctrl">
+        <div class="md-seg psd-seg" role="radiogroup" aria-label="Timing source">
+          <button type="button" role="radio" aria-checked="true" data-hz="1">Car GPS only</button>
+          <button type="button" role="radio" aria-checked="false" data-hz="25">Car + phone</button>
+        </div>
+        <label class="psd-speed"><span>Speed <b data-psd-v>120</b> km/h</span><input type="range" min="60" max="220" step="10" value="120" data-psd-range aria-label="Speed through the corner, km/h"></label>
+      </div>
+      <div class="psd-view">
+        <svg viewBox="0 0 640 360" role="img" aria-label="A corner, with the readings the timer gets through it">
+          <path class="psd-road" d="M30 300 L300 300 C480 300 560 262 560 180 C560 98 480 60 380 60 L110 60"/>
+          <path class="psd-true" d="M30 300 L300 300 C480 300 560 262 560 180 C560 98 480 60 380 60 L110 60" data-psd-path/>
+          <polyline class="psd-rec" data-psd-rec points=""/>
+          <g data-psd-dots></g>
+          <circle class="psd-car" r="9" data-psd-car cx="-20" cy="-20"/>
+        </svg>
+        <div class="psd-legend"><span class="lg-true">The line you drove</span><span class="lg-rec">What the timer records</span><span class="lg-fix">GPS fix</span><span class="lg-fill">Filled in by the phone</span></div>
+      </div>
+      <dl class="psd-stats" aria-live="polite">
+        <div><dt>Readings a second</dt><dd data-psd-hz>1</dd></div>
+        <div><dt>Distance between readings</dt><dd data-psd-gap>33 m</dd></div>
+        <div><dt>Readings in this corner</dt><dd data-psd-n>7</dd></div>
+        <div><dt>g-forces</dt><dd data-psd-g>Estimated from GPS</dd></div>
+      </dl>
+      <p class="psd-note">Illustration. Many head units&rsquo; GPS updates about once a second; yours may be faster. The phone sends up to 25 readings a second, at 10 or 25 Hz.</p>
+    </div>
+
+    <div class="ps-setup">
+      <div class="reveal-scale"><div class="cn-stage ph-stage ps-setup-stage" data-tilt><span class="cn-glow" aria-hidden="true"></span><div class="cn-float"><div class="cn-card3d ph3d mirror">
+    <span class="cn-depth" aria-hidden="true"></span>
+    <div class="ph-body"><span class="ph-island" aria-hidden="true"></span><div class="ph-screen"><img src="../../assets/images/v10/ps-start.webp" alt="The Use as sensor card in DashLink Wireless with a Start button" width="898" height="1830" loading="lazy" decoding="async"></div></div>
+    <span class="cn-sheen ph-sheen" aria-hidden="true"></span>
+    <figure class="ph-lift" style="--x:34%;--y:33%;--w:108%;--d:0"><img src="../../assets/images/v10/ps-calib.webp" alt="" loading="lazy" decoding="async"><figcaption>Calibrates itself in seconds</figcaption></figure>
+  </div></div></div></div>
+      <div>
+        <div class="shead">
+    <span class="eyebrow reveal">Set up in a minute</span>
+    <h2 class="h-xl reveal d1">Mount it. Pair it. Drive.</h2>
+    
+  </div>
+        <ol class="cn-steps ps-steps"><li class="reveal d0"><span class="cn-n">1</span><div><b>Mount the phone</b><span>In a holder on the dash or windscreen. Not in a hand, cup holder or pocket.</span></div></li><li class="reveal d1"><span class="cn-n">2</span><div><b>Start Racing on the head unit</b><span>Tap the phone icon at the top and choose Auto. In DashLink Wireless, tap Start, then your car.</span></div></li><li class="reveal d2"><span class="cn-n">3</span><div><b>Let it calibrate</b><span>Stopped, keep still for 2 seconds. Then on a straight, pull away firmly for 2 seconds above 20 km/h.</span></div></li><li class="reveal d0"><span class="cn-n">4</span><div><b>Drive</b><span>Turn the phone&rsquo;s screen off if you like. The sensors keep running until the car closes Racing or you tap Stop.</span></div></li></ol>
+        <p class="fb-note reveal">Phone sensors are part of DashLink Pro on the head unit. DashLink Wireless is free, for Android 7.0+ phones.</p>
+        <div class="reveal" style="margin-top:24px"><a class="btn btn-ghost" href="../../wireless-app/" data-cta="feature_phone-sensors"><span>Get DashLink Wireless</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="fb" id="wheel">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Steering-wheel buttons<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+      <h2 class="h-lg reveal d1">Hands stay on the wheel.</h2>
+      <p class="fb-body reveal d2">Use your steering-wheel buttons for Racing: mark, voice, repeat and mode.</p>
+      
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="mk-wrap"><div class="mk mk-wheel" role="img" aria-label="Steering-wheel buttons: mark, voice, repeat, mode">
+    <div class="keys">
+      <span><b>Mark</b><small>Drop a note</small></span>
+      <span><b>Voice</b><small>Record memo</small></span>
+      <span><b>Repeat</b><small>Last call</small></span>
+      <span><b>Mode</b><small>Sport &middot; Track &middot; Race</small></span>
+    </div></div></div></div>
+  </div>
+</section>
+<section class="block" id="safety">
+  <div class="wrap">
+    <div class="safety reveal">
+      <span class="safety-flag" aria-hidden="true"></span>
+      <div>
+        <h2>Closed courses only.</h2>
+        <p>DashLink Racing is for track days, rallies on closed roads, recce and private test venues. Never time yourself on public roads. On first use the app asks you to accept its safety terms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="block pl-sec pl-strip" id="plans">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Plans</span>
+    <h2 class="h-xl reveal d1">DashLink Racing is <span class="grad-text">part of Pro.</span></h2>
+    <p class="lead reveal d2">Try every Racing feature free during your trial. The performance tests stay free for good.</p>
+  </div>
+    <div class="table-wrap reveal d1"><table class="compare plans-table">
+      <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col" class="pl-free"><a href="../../plans/#free">Free</a></th><th scope="col" class="pl-drive"><a href="../../plans/#drive">Drive</a></th><th scope="col" class="pl-pro"><a href="../../plans/#pro">Pro</a></th></tr></thead>
+      <tbody><tr><th scope="row">Dashboard (Dock), trips, fuel, logbook, car care</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Speedometers: Digital, Chrono, Minimal</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">Performance tests: 0&ndash;100, braking, 80&ndash;120, dyno, stats</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Bluetooth music on the dashboard</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Android Auto (USB, wireless, self mode) and auto-start</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">DashLink Racing: track day, rally, recce + pace notes, regularity (TSD), saved-track sessions, coach, session analysis</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Premium speedometers: Corsa, Sport, Hyper</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Theme presets (all except Signature) and accent colours</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">Home-screen widgets, steering-wheel key mapping, phone sensors</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr></tbody>
+    </table></div>
+    <p class="fine center">Every feature is unlocked during your free trial.</p>
+    <div class="hero-cta center reveal" style="margin-top:26px"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dracing-track-day%26utm_term%3Dracing-track-day" data-play="headunit" data-cta="plans_try" data-fallback="../../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../../plans/" data-cta="plans_see"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Questions</span>
+    <h2 class="h-xl reveal d1">Good to know.</h2>
+    
+  </div>
+    <div class="faq-list reveal d1">
+      
+      <div class="qa"><button type="button" aria-expanded="false"><span>Can I use DashLink Racing on public roads?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>No. DashLink Racing is for closed courses only: track days, rallies on closed roads, recce and private test venues. Never time yourself on public roads.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Do I need extra hardware?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>No. DashLink uses your head unit&rsquo;s GPS. For faster, more precise timing you can pair a phone running DashLink Wireless (phone sensors, Pro).</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Is it allowed at my event?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Check your event&rsquo;s rules on electronic devices. Rules differ between organisers, especially for rallies and regularity events.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Can I get my sessions off the car?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Yes. Send sessions, laps, tracks and pace notes to your phone over a direct, encrypted link, then export GPX or CSV. See <a href="../../wireless-app/#send-to-phone">DashLink Wireless</a>.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Is DashLink Racing free?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Try all of it free during your trial. Afterwards DashLink Racing is part of <a href="../../plans/#pro">Pro</a>. The performance tests (0&ndash;100, braking, 80&ndash;120 and the road dyno) stay free.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="final" id="get">
+  <div class="wrap">
+    
+    <h2 class="display reveal d1">Next track day, <span class="grad-text">bring data.</span></h2>
+    
+    <div class="hero-cta center reveal d2"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dracing-track-day%26utm_term%3Dracing-track-day" data-play="headunit" data-cta="final_primary" data-plan="pro" data-fallback="../../download/" data-fallback-label="Try DashLink Racing free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink Racing free</span></a><a class="btn btn-ghost" href="../../plans/" data-cta="final_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <p class="hero-note reveal d3">Closed courses only.</p>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="../../" class="brand"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+        <p>Adds Android Auto, a car dashboard and a motorsport timing suite to the Android head unit already in your car. Try it free.</p>
+        <a href="../../racing/" class="foot-racing"><span class="lockup sm"><span class="wm">DashLink<span class="wm-dot">.</span></span><span class="lk-div" aria-hidden="true"></span><svg class="rmark " viewBox="0 0 44 28" aria-hidden="true" focusable="false"><defs><linearGradient id="rmg14" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#5b1820"/><stop offset=".55" stop-color="#e63946"/><stop offset="1" stop-color="#ffb4a8"/></linearGradient></defs><path fill="url(#rmg14)" d="M3 27 9 17h6L9 27zM14 27 22 10h6l-8 17zM25 27 36 1h6L31 27z"/></svg><span class="lk-racing">Racing</span></span></a>
+      </div>
+      <div class="fcol"><h4>Product</h4><a href="../../android-auto/">Android Auto</a><a href="../../dashboard/">Dashboard</a><a href="../../trips-fuel-maintenance/">Trips, fuel &amp; car care</a><a href="../../plans/">Plans</a></div>
+      <div class="fcol"><h4>Racing</h4><a href="../../racing/">Overview</a><a href="../../racing/track-day/">Track day</a><a href="../../racing/rally/">Rally</a><a href="../../racing/performance/">Performance</a></div>
+      <div class="fcol"><h4>Help</h4><a href="../../wireless-app/">DashLink Wireless</a><a href="../../support/">Support</a><a href="../../download/">Download &amp; install</a><a href="../../premium/">Activate your plan</a><a href="mailto:dashlink.support@gmail.com">Email us</a></div>
+    </div>
+    <div class="foot-legal">
+      <p>Android Auto and Android are trademarks of Google LLC. Google Play is a trademark of Google LLC. DashLink is an independent app and is not affiliated with or endorsed by Google.</p>
+      <p>Screens are illustrative. Features and compatibility depend on your head unit, phone and software version. Fuel, range, trip cost and dyno power figures are estimates. DashLink Racing is for closed courses only.</p>
+      <p class="foot-row"><span>&copy; 2026 DashLink</span><a href="../../privacy/">Privacy</a><a href="../../terms/">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="cta-bar" id="ctaBar" aria-hidden="true">
+  <span class="cta-bar-txt"><b>DashLink Racing</b><small>Part of Pro. Try it free</small></span>
+  <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dracing-track-day%26utm_term%3Dracing-track-day" data-play="headunit" data-cta="cta_bar" data-plan="pro" data-fallback="../../download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+</div>
+<a class="wa-fab" href="https://wa.me/923229914024?text=Hi%20DashLink!%20I%20have%20a%20question." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.69-6.16A11.87 11.87 0 0 1 .16 11.9C.16 5.34 5.5 0 12.05 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45zm6.6-3.81c1.67 1 3.27 1.6 5.39 1.6 5.45 0 9.88-4.44 9.89-9.89 0-5.46-4.42-9.89-9.88-9.89-5.45 0-9.89 4.43-9.89 9.88 0 2.23.65 3.9 1.75 5.64l-1 3.65zm11.38-5.46c-.07-.13-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.41z"/></svg></a>
+</body>
+</html>

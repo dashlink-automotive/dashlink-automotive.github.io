@@ -1,165 +1,176 @@
-<div align="center">
+# DashLink website
 
-<img src="assets/images/hero-alto.webp" alt="DashLink running Android Auto on a car's head unit" width="100%" />
+Marketing site for **DashLink** (head-unit app, works with Android Auto), **DashLink Racing** and the companion phone app **DashLink Wireless**. Static HTML on GitHub Pages at **https://dashlink-automotive.github.io/**.
 
-# DashLink
-
-**Turn the Android panel in your car into an Android Auto receiver.**
-
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fdashlink-automotive.github.io%2F&label=website&up_message=live&style=flat-square)](https://dashlink-automotive.github.io/)
-[![Latest release](https://img.shields.io/github/v/release/dashlink-automotive/DashLink-Head-Unit?label=APK&style=flat-square&color=2f9dff)](https://github.com/dashlink-automotive/DashLink-Head-Unit/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/dashlink-automotive/DashLink-Head-Unit/total?style=flat-square&color=3ad29f)](https://github.com/dashlink-automotive/DashLink-Head-Unit/releases)
-![Android 6.0+](https://img.shields.io/badge/Android-6.0%2B-3ddc84?style=flat-square&logo=android&logoColor=white)
-
-[**Visit the website**](https://dashlink-automotive.github.io/) ·
-[**What's new**](https://dashlink-automotive.github.io/features/) ·
-[**Download the APK**](https://dashlink-automotive.github.io/download/) ·
-[**Get Premium**](https://dashlink-automotive.github.io/premium/) ·
-[**Privacy policy**](https://dashlink-automotive.github.io/privacy/)
-
-</div>
-
----
-
-## About
-
-DashLink brings wired and wireless Android Auto to aftermarket Android head units: Google Maps navigation, music, hands-free calls, messaging and Google Assistant on your dashboard screen.
-
-This repository is the **source of the DashLink website**. It's plain static HTML with no build step, no framework and no server, hosted for free on GitHub Pages.
-
-> [!NOTE]
-> Looking for the app itself? Get the latest APK from the [download page](https://dashlink-automotive.github.io/download/), which includes a step-by-step install guide. Every new user starts with a **7-day free trial**.
-
-## Features
-
-| | |
-|---|---|
-| 🧭 **Navigation** | Google Maps, turn-by-turn, on the big screen |
-| 🎵 **Music** | Spotify, YouTube Music and your other audio apps |
-| 📞 **Hands-free calling** | Make and take calls from the dial pad |
-| 💬 **Messaging** | Messages read aloud, replies by voice |
-| 🎙️ **Voice control** | Google Assistant and Gemini |
-| 🔌 **Wired or wireless** | USB, wireless, or a self-contained mode with no phone |
+The site has one landing page per campaign pillar, a stable anchor on every feature block, hero variants picked by `?c=` or `utm_campaign`, and Play Store buttons that carry the visitor's UTMs into the install referrer.
 
 ## Pages
 
-| Page | Path | Purpose |
+| Path | Source | What |
 |---|---|---|
-| Home | [`index.html`](index.html) | Product overview, features, FAQ |
-| Features | [`features/index.html`](features/index.html) | The redesigned app: Home screen, Dock mode, Car care, Fuel &amp; costs |
-| Download | [`download/index.html`](download/index.html) | APK download, USB install guide, troubleshooting |
-| Premium | [`premium/index.html`](premium/index.html) | Unlocking Premium after the free trial |
-| Privacy | [`privacy/index.html`](privacy/index.html) | Privacy policy |
+| `/` | `src/pages/00-home.mjs` | "Try DashLink free" hero, pillar cards with plan badges, Android Auto showcase, DashLink Racing band, three ways to connect, plans table |
+| `/android-auto/` | `10-android-auto.mjs` | USB, wireless, self mode, cheap units, wheel keys… |
+| `/dashboard/` | `20-dashboard.mjs` | Dock mode, layouts, speedometers, car paint… |
+| `/trips-fuel-maintenance/` | `30-trips.mjs` | Trip computer, logbook, fuel estimates, reminders |
+| `/racing/` | `50-racing.mjs` | DashLink Racing overview (red theme) |
+| `/racing/track-day/` · `/racing/rally/` · `/racing/performance/` | `51…53-racing-*.mjs` | Racing sub-pages for big campaigns |
+| `/wireless-app/` | `60-wireless-app.mjs` | DashLink Wireless (its buttons go to the *phone* app) |
+| `/plans/` | `70-plans.mjs` | Free / Drive / Pro: steps, plan cards, comparison table, how to buy |
+| `/support/` | `80-support.mjs` | Compatibility, troubleshooting, contact |
+| `/terms/` | `90-terms.mjs` | Terms of use (draft: have it legally reviewed) |
+| `/download/`, `/premium/`, `/privacy/` | hand-written HTML | APK install guide (Google Ads final URL), activation, privacy |
+| `/features/` | generated redirect | Old page; forwards `#dock`, `#care` and `#fuel` to the new pillars |
+| `/pro/` | generated redirect | Old Pro page; forwards to `/plans/#pro`, keeping the query string (UTMs, `?c=`) and hash. GitHub Pages can't send a real 301 |
 
-```
-.
-├── index.html
-├── features/index.html
-├── download/index.html
-├── premium/index.html
-├── privacy/index.html
-├── assets/images/      screenshots, photos, demo video (v2/ = redesigned app)
-└── .nojekyll           serve files as-is (no Jekyll processing)
-```
+`docs/hero-variants.md` lists every page's anchors and hero variants. It is generated, so don't edit it by hand.
 
-Every page is self-contained, with its CSS and JS inline. That means one request per page and nothing to build.
+## Build
 
-## APK distribution
-
-The `.apk` is **not** stored in this repository. It's published as an asset on **[GitHub Releases](https://github.com/dashlink-automotive/DashLink-Head-Unit/releases)** in the app repository, which provides free CDN bandwidth and a version history.
-
-When the download page loads, it asks the GitHub API for the latest release and then:
-
-- points the **Download DashLink** button straight at the newest `.apk`
-- shows that release's **version**, **file size** and **release date**
-
-**Publishing a new release updates the site automatically, with no HTML edits.** If the API can't be reached (it allows 60 lookups per hour per visitor IP), the button falls back to the release page and the version details stay hidden.
-
-> [!IMPORTANT]
-> Publish the **Play-signed universal APK** from *Play Console → App Bundle Explorer → Downloads*. An APK signed with your local upload key has a different signature from the Play Store build, and users can't install one over the other.
-
-## Development
-
-There's nothing to install. Open any `.html` file in a browser, or serve the folder locally:
+There are no dependencies; you need Node 18 or newer.
 
 ```bash
-python3 -m http.server 8000
+node src/build.mjs
 ```
 
-Then open <http://localhost:8000>.
+This writes every `…/index.html`, `sitemap.xml`, `features/index.html` and `docs/hero-variants.md`. **Edit `src/`, never the generated HTML**: the next build overwrites it.
 
-### Common edits
+To preview locally (this binds to this machine only):
 
-| What | Where |
-|---|---|
-| APK link, version and size | Automatic. See `apk-download` in `download/index.html` |
-| Google Play links | `download/`, `premium/`: search `play.google.com` |
-| WhatsApp number | All pages: search `wa.me/` |
-| Support email | All pages: search `dashlink.support` |
-| Trial length | All pages: search `7 day` |
-| Region rules | Page JS: search `BLOCKED` |
-| GA4 Measurement ID | `assets/analytics.js`: the `GA_ID` line |
+```bash
+python3 -m http.server 8765 --bind 127.0.0.1
+```
 
-### Region handling
+You can add these flags to any URL:
+- `?forceplay` shows the Google Play buttons even from a country where Play is hidden.
+- `?noplay` shows the APK fallback.
+- `?ga_debug` sends GA4 hits to DebugView.
 
-Two things depend on the visitor's country, which is inferred in the browser from the timezone, falling back to the locale:
+Share images live in `assets/images/og/<page>.jpg` (1200×630). To regenerate them, run `python3 src/og.py` (needs Pillow and macOS fonts). You can also drop in designed ones with the same names.
 
-- **Google Play badges** are hidden where the app isn't listed (IL, PK, DE).
-- **The Premium purchase route** switches between Google Play Billing and manual device-ID activation. Play Billing only works in an app installed from Play, so Pakistan gets the manual route.
+## How it fits together
 
-## Analytics
+```
+src/
+  config.mjs       app ids, nav, base URL, plans and the plans-table rows
+  play-url.mjs     Play URL builder (build-time twin of the one in assets/site.js)
+  components.mjs   hero, feature block, cards, gallery, showcase (sticky scroll), before/after slider,
+                   steps, compare table, plans table, plan cards, pillar cards, FAQ, CTA bar,
+                   Free/Drive/Pro/New badges, prose, layout
+  mocks.mjs        HTML/SVG illustrations used until real screenshots arrive
+  racing.mjs       DashLink Racing feature blocks shared by /racing/ and its sub-pages
+  pages/*.mjs      one file per page = an arrangement of components
+  build.mjs        renders everything
+  og.py            share images
+assets/
+  site.css         all styles (racing pages add .t-racing, which swaps the accent to red)
+  site.js          variants, Play links, region fallback, events, nav, FAQ, reveal
+  analytics.js     GA4 + consent (unchanged rules, plus pillar/variant on page_view)
+```
 
-Google Analytics 4 (property `G-M4ZK8N420L`) runs from one shared file, [`assets/analytics.js`](assets/analytics.js), included on every page.
+## Add a campaign variant (2 minutes)
 
-Data is only sent from the hosts listed in `PROD_HOSTS` in `analytics.js`, so forks and copies of this public repo don't send fake visits or conversions into our reports and Google Ads. If the site ever moves to another address, add it to `PROD_HOSTS`, or tracking will stop there.
+1. Open the page's file, for example `src/pages/50-racing.mjs`.
+2. Add an entry under `hero.variants`:
 
-On `localhost`, events are only logged to the browser console as `[analytics]`. Add `?ga_debug` to a local URL to send real hits, tagged as debug, to GA4's **DebugView**.
+   ```js
+   hillclimb: {
+     match: ['hillclimb', 'hill-climb'],          // also matched inside utm_campaign
+     eyebrow: 'Hillclimb',
+     title: 'Every run, <span class="grad-text">timed to the line.</span>',
+     sub: 'Standing starts, finish at the line, every run compared.',
+     media: { mock: 'rally' },                    // optional: { img: 'v3/x.webp', w, h, alt }
+   },
+   ```
 
-> [!NOTE]
-> The Measurement ID isn't a secret: browsers send it to Google on every page view. **Never** commit a GA4 *Measurement Protocol API secret* or any Google Ads credentials. Neither is needed for this setup.
+3. Run `node src/build.mjs` and test `/racing/?c=hillclimb` locally.
+4. In the ad, use the final URL `https://dashlink-automotive.github.io/racing/?c=hillclimb`, or just put `hillclimb` in `utm_campaign`.
 
-**Tracked actions.** Links are classified by where they point, so new buttons are tracked automatically:
+**Matching rules.** `?c=` is checked first and must equal a key or an alias. If it doesn't match, `utm_campaign` is checked: it's lower-cased with punctuation removed, and the first variant whose key or alias appears inside it wins. So `PK_Racing_Rally_Search` picks `rally`. With no match, the default hero shows. The swap happens before first paint, and the chosen variant is sent with `page_view` and every `cta_click`.
 
-| Event | Fires when someone… | Use in Google Ads |
+**Keep the trailing slash** in ad URLs (`/racing/`, not `/racing`). GitHub Pages redirects the bare form, which costs a round trip.
+
+## Add a feature block
+
+In any page's `body()`:
+
+```js
+feature({
+  id: 'launch-control',              // stable anchor: /racing/#launch-control. Never rename it once ads use it.
+  kicker: 'Launch',
+  title: 'Launch detected to the millisecond.',
+  body: 'Plain-English copy. Say "estimate" for fuel, range, trip cost and power.',
+  bullets: ['Optional', 'tick list'],
+  media: { img: 'v3/launch.webp', w: 2000, h: 1250, alt: '…' },  // or { mock: 'perf' }
+  pro: true, isNew: true,            // Pro badge / New badge
+  flip: true,                        // image on the left
+}),
+```
+
+Use `cards({ items: [{ id, icon, title, body, pro, isNew }] })` for a grid of smaller features. Each card is an anchor too. The build fails if a page has duplicate ids.
+
+## Play URL builder
+
+Every Play button is `button({ play: 'headunit' | 'wireless' })`. The builder works like this:
+
+```
+https://play.google.com/store/apps/details?id=<app id>&referrer=<URL-encoded>
+  utm_source=…&utm_medium=…&utm_campaign=…&utm_content=…&utm_term=<page key>
+```
+
+- The UTMs come from the landing URL and are kept in `sessionStorage` while the visitor clicks around the site.
+- With no UTMs the referrer is `utm_source=website&utm_medium=organic&utm_campaign=<page key>&utm_term=<page key>`.
+- The page key is the path with `/` turned into `-`, for example `racing-track-day`.
+- The HTML ships with the organic URL so links work without JavaScript, and `site.js` rewrites them on load.
+
+**Region fallback.** Where the apps aren't listed on Google Play (`NO_PLAY` in `assets/site.js`, currently PK, IL and DE, detected from the timezone), head-unit buttons become "Download DashLink" and point to `/download/` (the APK). DashLink Wireless buttons are hidden there.
+
+## Analytics events
+
+GA4 property `G-M4ZK8N420L`, all in `assets/analytics.js` and `assets/site.js`. No personal data is sent.
+
+| Event | When | Parameters |
 |---|---|---|
-| `apk_download` | clicks **Download DashLink** (GitHub release `.apk`) | ⭐ Primary conversion |
-| `premium_purchase_intent` | sends a Premium purchase request (`method`: `whatsapp` / `email`) | ⭐ Primary conversion |
-| `whatsapp_click` | opens any other WhatsApp chat | ⭐ Secondary conversion |
-| `download_cta_click` | clicks a button that leads to `/download/` | Audience / micro-conversion |
-| `play_store_click` | opens the companion app on Google Play | Audience |
-| `email_click` | opens a support email | Audience |
+| `page_view` | every page | `pillar`, `hero_variant` |
+| `cta_click` | any button or card marked `data-cta` | `pillar`, `page`, `anchor` (section id), `variant`, `cta` (e.g. `hero_primary`, `cta_bar`, `nav`), `destination` (`play_headunit`, `play_wireless`, `apk_page` or the link), `plan` (`free`, `drive`, `pro` or `none`, from `data-plan`) |
+| `plans_view` | the `/plans/` page loads | `variant` (the `?c=` hero variant, or `default`) |
+| `plan_card_click` | the Try free button on a plan card | `page`, `variant`, `plan` |
+| `faq_open` | an FAQ answer is opened | `pillar`, `page`, `question` |
+| `video_play` | the first play of any `<video>` | `pillar`, `page`, `video`, `anchor` |
+| `play_store_click` | any link to Google Play | `app_id`, `link_location`, `link_text` |
+| `apk_download` | the APK download on `/download/` | `file_name`, `app_version` |
+| `download_cta_click` | a link to `/download/` | `link_location`, `link_text` |
+| `premium_purchase_intent` | a plan purchase request (WhatsApp or email, from `/premium/`) | `method` |
+| `whatsapp_click`, `email_click` | support contact | `link_location`, `link_text` |
 
-Every event also carries `link_location` (nav, footer, floating_button or the section id) and `link_text`.
+In GA4 → Admin → Custom definitions, register `pillar`, `hero_variant`, `variant`, `anchor`, `cta`, `destination` and `plan` as event-scoped dimensions.
 
-**Consent.** Visitors with a European timezone (EEA, UK, Switzerland) see an Accept/Decline banner, and GA4 doesn't load until they accept. Everyone else is tracked from page load. The choice is stored in `localStorage` (`dashlink_consent_v1`), and any element with `data-cookie-settings` reopens the banner (it's linked in every footer). Consent Mode v2 signals are sent so Google Ads can use the data.
+**Consent.** Visitors with a European timezone see a banner, and GA4 loads only after they accept. To ask everyone (non-essential off by default everywhere), set `CONSENT_EVERYWHERE = true` in `assets/analytics.js`.
 
-**Setup**
+## Brand and legal rules (from the website brief)
 
-1. [analytics.google.com](https://analytics.google.com) → *Admin → Create property* → add a **Web** data stream for `https://dashlink-automotive.github.io`.
-2. Copy the Measurement ID (`G-…`) into `GA_ID` in `assets/analytics.js` and push. *(Done: `G-M4ZK8N420L`.)* Then go to *Admin → Data collection and modification → Data retention* and set it to **14 months**, which is what the privacy policy states. GA4 defaults to 2.
-3. *Admin → Events*: once each event has fired at least once, mark `apk_download`, `premium_purchase_intent` and `whatsapp_click` as **key events**.
-4. *Admin → Product links → Google Ads*: link your Ads account, and turn on **personalised advertising** in that link.
-5. In Google Ads: *Goals → Conversions → New → Import → Google Analytics 4* and pick the key events. Set `apk_download` and `premium_purchase_intent` as **primary**.
-6. Build audiences in GA4 (*Admin → Audiences*), for example "visited `/download/` but no `apk_download`". They sync to Google Ads for remarketing.
+- Names: **DashLink**, **DashLink Wireless**, **DashLink Racing**. Plans: **DashLink Free**, **DashLink Drive**, **DashLink Pro**.
+- Model: try free (every feature unlocked during the trial); afterwards DashLink stays free and Drive or Pro unlock more. Both plans are "pay once". Never say the app stops working after the trial.
+- Primary CTA everywhere: "Try DashLink free" (Play link). Secondary: "See plans" (`/plans/`). Both are the hero and final-CTA defaults.
+- Badges: Drive or Pro; features with no badge are free. The rows of the plans table live in `PLAN_ROWS` in `src/config.mjs`.
+- Say "works with Android Auto" only. Use no Google logos, and keep the trademark line in the footer.
+- Don't state the trial length, prices, or "lifetime / monthly".
+- No third-party brands in copy or visuals: no car makers, no music or map app names.
+- Racing is for closed courses only. Rally and regularity pages say "Check your event's rules on electronic devices."
+- Say "estimate" for fuel, range, trip cost and dyno power.
+- Items flagged *(confirm)* in the brief carry a **New** badge until the dev has verified them on hardware.
 
-To check events live, open the site with GA4's **DebugView** (*Admin → DebugView*) or the Google Tag Assistant browser extension.
+## Deploy
 
-## Deployment
+The local folder isn't a git repo. Copy these into the Pages repo (`dashlink-automotive/dashlink-automotive.github.io`) and push `main`:
 
-Pushing to `main` deploys the site. GitHub Pages rebuilds in under a minute.
+```
+index.html  android-auto/  dashboard/  trips-fuel-maintenance/  racing/  wireless-app/  plans/  pro/  support/  terms/
+features/  download/  premium/  privacy/  assets/  src/  docs/  sitemap.xml  robots.txt  README.md  .nojekyll  .gitignore
+```
 
-**Pages settings:** *Settings → Pages → Deploy from a branch → `main` / `(root)`*
-
-The site is served at **https://dashlink-automotive.github.io/** and has no custom domain, so there's no `CNAME` file. That address is written into the canonical tags, `sitemap.xml`, `robots.txt`, the link-preview tags, `PROD_HOSTS` in `assets/analytics.js`, and the "type this address" step on the download page.
+Never upload `.claude/`.
 
 ## Support
 
-- **Email:** [dashlink.support@gmail.com](mailto:dashlink.support@gmail.com)
-- **WhatsApp:** [Chat with us](https://wa.me/923229914024)
-- **Companion app:** [DashLink Wireless on Google Play](https://play.google.com/store/apps/details?id=com.auto.dashlinkwireless)
-
----
-
-<div align="center">
-<sub>© DashLink. All rights reserved. Android, Android Auto and Google Play are trademarks of Google LLC.</sub>
-</div>
+- Email: dashlink.support@gmail.com
+- WhatsApp: https://wa.me/923229914024

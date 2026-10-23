@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" data-page="trips-fuel-maintenance" data-pillar="trips-fuel-maintenance" class="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trip computer, fuel costs and service reminders | DashLink</title>
+<meta name="description" content="Trip A and B, a logbook you can export as CSV, estimated fuel, range and trip cost, and service reminders by distance or months, on your head unit.">
+<link rel="canonical" href="https://dashlink-automotive.github.io/trips-fuel-maintenance/">
+<meta name="theme-color" content="#050506">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DashLink">
+<meta property="og:title" content="Trip computer, fuel costs and service reminders | DashLink">
+<meta property="og:description" content="Trip A and B, a logbook you can export as CSV, estimated fuel, range and trip cost, and service reminders by distance or months, on your head unit.">
+<meta property="og:url" content="https://dashlink-automotive.github.io/trips-fuel-maintenance/">
+<meta property="og:image" content="https://dashlink-automotive.github.io/assets/images/og/trips-fuel-maintenance.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.dashlinkReady)document.documentElement.classList.add('no-reveal')},3000)</script>
+<link rel="stylesheet" href="../assets/site.css?v=202610231103">
+<script src="../assets/analytics.js?v=202610231103" defer></script>
+<script src="../assets/site.js?v=202610231103" defer></script>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="../" aria-label="DashLink home"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+  <nav class="nav-links" aria-label="Main"><a href="../android-auto/">Android Auto</a><a href="../dashboard/">Dashboard</a><a href="../trips-fuel-maintenance/" aria-current="page">Trips & fuel</a><a href="../racing/" class="nl-racing">Racing</a><a href="../wireless-app/">Wireless app</a><a href="../plans/">Plans</a><a href="../support/">Support</a></nav>
+  <div class="nav-end">
+    <a class="btn btn-primary btn-sm nav-cta" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dtrips-fuel-maintenance%26utm_term%3Dtrips-fuel-maintenance" data-play="headunit" data-cta="nav" data-fallback="../download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu"><svg class="ic i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="ic i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+</header>
+<div class="sheet" id="sheet" hidden><nav aria-label="Main"><a href="../android-auto/"><b>Android Auto</b><small>USB, wireless and self mode on your head unit</small></a><a href="../dashboard/"><b>Dashboard</b><small>Dock mode, 7 layouts, 6 speedometers</small></a><a href="../trips-fuel-maintenance/"><b>Trips & fuel</b><small>Trip computer, fuel estimates, service reminders</small></a><a href="../racing/" class="nl-racing"><b>Racing</b><small>Lap timing, rally stages, performance tests</small></a><a href="../wireless-app/"><b>Wireless app</b><small>The companion app for your phone</small></a><a href="../plans/"><b>Plans</b><small>Free, Drive or Pro. Try everything free</small></a><a href="../support/"><b>Support</b><small>Compatibility, troubleshooting, contact</small></a></nav></div>
+<main id="top">
+
+<section class="hero hero-split" id="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      
+      <span class="eyebrow reveal" data-h="eyebrow">Trips, fuel &amp; car care</span>
+      <h1 class="display reveal d1" data-h="title">Know every trip. <span class="grad-text">Miss no service.</span></h1>
+      <p class="lead reveal d2" data-h="sub">A trip computer, a logbook of every drive, fuel and cost estimates, and reminders for oil, tyres and paperwork. All on your head unit, all offline.</p>
+      <div class="hero-cta reveal d3"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dtrips-fuel-maintenance%26utm_term%3Dtrips-fuel-maintenance" data-play="headunit" data-cta="hero_primary" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="hero_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      
+      <p class="page-tier reveal d3"><span class="badge badge-free" title="Free in DashLink">Free</span><span>Free. Trips, fuel and car care stay free after the trial.</span></p>
+    </div>
+    <div class="hero-media reveal-scale d2" data-h="media"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v2/fuel-costs.webp" alt="Fuel and costs: estimated fuel left, range and consumption" width="2000" height="1250" fetchpriority="high" decoding="async"></div></div></div>
+  </div>
+  <template data-hv="service"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v2/car-care.webp" alt="Car care reminders and maintenance log" width="2000" height="1250" fetchpriority="high" decoding="async"></div></div></template><template data-hv="logbook"><div class="mk-wrap"><div class="mk mk-log" role="img" aria-label="Logbook of drives with CSV export">
+    <div class="mk-bar"><span><b>Logbook</b></span><span><span class="mk-chip">Export CSV</span></span></div>
+    <table class="lb"><thead><tr><th>Date</th><th>Distance</th><th>Time</th><th>Cost (est.)</th></tr></thead><tbody>
+      <tr><td>Mon 14</td><td class="num">23.4 km</td><td class="num">38 min</td><td class="num">312</td></tr>
+      <tr><td>Mon 14</td><td class="num">22.9 km</td><td class="num">41 min</td><td class="num">305</td></tr>
+      <tr><td>Tue 15</td><td class="num">8.1 km</td><td class="num">17 min</td><td class="num">108</td></tr>
+      <tr><td>Wed 16</td><td class="num">146.0 km</td><td class="num">2 h 06</td><td class="num">1,946</td></tr>
+    </tbody></table></div></div></template>
+</section><script>(function(V){var q=new URLSearchParams(location.search),n=function(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'')},c=n(q.get('c')),u=n(q.get('utm_campaign')),k=null,x,i;if(c){for(x in V){if(V[x].m.indexOf(c)>-1){k=x;break}}}if(!k&&u){for(x in V){for(i=0;i<V[x].m.length;i++){if(u.indexOf(V[x].m[i])>-1){k=x;break}}if(k)break}}document.documentElement.setAttribute('data-variant',k||'default');if(!k)return;var v=V[k],H=document.getElementById('hero');['eyebrow','title','sub'].forEach(function(f){var e=H.querySelector('[data-h='+f+']');if(e&&v[f]!=null)e.innerHTML=v[f]});if(v.media){var t=H.querySelector('template[data-hv="'+k+'"]'),s=H.querySelector('[data-h=media]');if(t&&s)s.innerHTML=t.innerHTML}})({"fuel":{"m":["fuel","mileage","mpg","petrol","cost"],"eyebrow":"Fuel &amp; costs","title":"What every trip <span class=\"grad-text\">really costs.</span>","sub":"Range, fuel left and each trip&rsquo;s cost, estimated from the distance you drive, in your units and currency."},"service":{"m":["service","maintenance","oil","carcare","reminder"],"eyebrow":"Service reminders","title":"Your car, <span class=\"grad-text\">looked after.</span>","sub":"Oil change, service, tyre rotation, brakes, insurance and registration. Due by distance or months.","media":1},"logbook":{"m":["logbook","expenses","csv","business"],"eyebrow":"Logbook","title":"Every drive, <span class=\"grad-text\">logged.</span>","sub":"Every drive recorded and exported as CSV, ready for expenses or mileage claims.","media":1}});</script><nav class="anchors" aria-label="On this page"><div class="anchors-in"><a href="#trip">Trip computer</a><a href="#logbook">Logbook</a><a href="#fuel">Fuel &amp; costs</a><a href="#car-care">Service reminders</a><a href="#odometer">Odometer</a></div></nav>
+<section class="fb" id="trip">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Trip computer</span>
+      <h2 class="h-lg reveal d1">Trip A, Trip B and this drive.</h2>
+      <p class="fb-body reveal d2">Distance, moving time, average and top speed for the current journey, plus two trips you reset when you like. The Journey layout puts it all on the dashboard, with the estimated trip cost.</p>
+      
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v4/dock-journey.webp" alt="The Journey layout: range, trip cost, distance, driving time and average" width="2000" height="1250" loading="lazy" decoding="async"></div></div></div>
+  </div>
+</section>
+<section class="fb flip" id="logbook">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Logbook</span>
+      <h2 class="h-lg reveal d1">Every drive, recorded.</h2>
+      <p class="fb-body reveal d2">Each drive goes in the logbook. Export it as CSV for expenses or mileage claims.</p>
+      
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="mk-wrap"><div class="mk mk-log" role="img" aria-label="Logbook of drives with CSV export">
+    <div class="mk-bar"><span><b>Logbook</b></span><span><span class="mk-chip">Export CSV</span></span></div>
+    <table class="lb"><thead><tr><th>Date</th><th>Distance</th><th>Time</th><th>Cost (est.)</th></tr></thead><tbody>
+      <tr><td>Mon 14</td><td class="num">23.4 km</td><td class="num">38 min</td><td class="num">312</td></tr>
+      <tr><td>Mon 14</td><td class="num">22.9 km</td><td class="num">41 min</td><td class="num">305</td></tr>
+      <tr><td>Tue 15</td><td class="num">8.1 km</td><td class="num">17 min</td><td class="num">108</td></tr>
+      <tr><td>Wed 16</td><td class="num">146.0 km</td><td class="num">2 h 06</td><td class="num">1,946</td></tr>
+    </tbody></table></div></div></div>
+  </div>
+</section>
+<section class="fb" id="fuel">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Fuel &amp; costs</span>
+      <h2 class="h-lg reveal d1">Range and cost, estimated honestly.</h2>
+      <p class="fb-body reveal d2">Range, fuel left and each trip&rsquo;s cost, all <b>estimated</b> from the distance you drive. Tap &ldquo;I filled up&rdquo; to keep the estimate on track.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>km/L, mpg (US) or mpg (UK)</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Your own fuel price and currency</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>No sensor or adapter needed</span></li></ul>
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v2/fuel-costs.webp" alt="Estimated fuel left, range and consumption" width="2000" height="1250" loading="lazy" decoding="async"></div></div></div>
+  </div>
+</section>
+<section class="fb flip" id="car-care">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Service &amp; maintenance</span>
+      <h2 class="h-lg reveal d1">Reminders before it&rsquo;s overdue.</h2>
+      <p class="fb-body reveal d2">Oil change, service, tyre rotation, brake check, insurance, registration, or your own. Due by distance or by months, with &ldquo;due soon&rdquo; and &ldquo;overdue&rdquo; status and a maintenance log with date and odometer.</p>
+      
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v2/car-care.webp" alt="Service reminders and a maintenance log" width="2000" height="1250" loading="lazy" decoding="async"></div></div></div>
+  </div>
+</section>
+<section class="block">
+  <div class="wrap">
+    
+    <div class="cards cols-2">
+      
+      <article class="card reveal d0" id="odometer">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 14l4-4"/><path d="M3.3 19a9 9 0 1 1 17.4 0"/></svg></span>
+        <h3>Odometer</h3>
+        <p>Set it once from your car. DashLink keeps it up to date while DashLink or Android Auto is on screen.</p>
+        
+      </article>
+      <article class="card reveal d1" id="offline">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 3l18 18M8.5 8.5A5 5 0 0 0 6 18h11M19.5 16.5A4 4 0 0 0 17 9h-.5A6 6 0 0 0 11 5.1"/></svg></span>
+        <h3>Offline and private</h3>
+        <p>Trips, costs and reminders stay on your head unit. No account, no cloud.</p>
+        
+      </article>
+    </div>
+  </div>
+</section>
+<section class="block pl-sec pl-strip" id="plans">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Plans</span>
+    <h2 class="h-xl reveal d1">Trips, fuel and car care <span class="grad-text">are free.</span></h2>
+    <p class="lead reveal d2">They keep working after the trial, on every plan.</p>
+  </div>
+    <div class="table-wrap reveal d1"><table class="compare plans-table">
+      <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col" class="pl-free"><a href="../plans/#free">Free</a></th><th scope="col" class="pl-drive"><a href="../plans/#drive">Drive</a></th><th scope="col" class="pl-pro"><a href="../plans/#pro">Pro</a></th></tr></thead>
+      <tbody><tr class="pl-hl"><th scope="row">Dashboard (Dock), trips, fuel, logbook, car care</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Speedometers: Digital, Chrono, Minimal</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Performance tests: 0&ndash;100, braking, 80&ndash;120, dyno, stats</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Bluetooth music on the dashboard</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Android Auto (USB, wireless, self mode) and auto-start</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">DashLink Racing: track day, rally, recce + pace notes, regularity (TSD), saved-track sessions, coach, session analysis</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Premium speedometers: Corsa, Sport, Hyper</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Theme presets (all except Signature) and accent colours</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Home-screen widgets, steering-wheel key mapping, phone sensors</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr></tbody>
+    </table></div>
+    <p class="fine center">Every feature is unlocked during your free trial.</p>
+    <div class="hero-cta center reveal" style="margin-top:26px"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dtrips-fuel-maintenance%26utm_term%3Dtrips-fuel-maintenance" data-play="headunit" data-cta="plans_try" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="plans_see"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Questions</span>
+    <h2 class="h-xl reveal d1">Good to know.</h2>
+    
+  </div>
+    <div class="faq-list reveal d1">
+      
+      <div class="qa"><button type="button" aria-expanded="false"><span>Is this free?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Yes. The trip computer, logbook, fuel estimates and service reminders are in DashLink Free and keep working after the trial.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>How accurate is the fuel estimate?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>It&rsquo;s an estimate based on distance and the consumption you set. Logging &ldquo;I filled up&rdquo; keeps it close to reality. DashLink doesn&rsquo;t read your car&rsquo;s fuel sensor.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Can I export my drives?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Yes, the logbook exports as CSV.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Does the odometer match my car?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>You set it once from your car&rsquo;s reading. It then counts while DashLink or Android Auto is on screen, so set it again now and then.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="final" id="get">
+  <div class="wrap">
+    
+    <h2 class="display reveal d1">Every kilometre, <span class="grad-text">counted.</span></h2>
+    <p class="lead reveal d2">Free, and it stays free. Try DashLink now.</p>
+    <div class="hero-cta center reveal d2"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dtrips-fuel-maintenance%26utm_term%3Dtrips-fuel-maintenance" data-play="headunit" data-cta="final_primary" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="final_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="../" class="brand"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+        <p>Adds Android Auto, a car dashboard and a motorsport timing suite to the Android head unit already in your car. Try it free.</p>
+        <a href="../racing/" class="foot-racing"><span class="lockup sm"><span class="wm">DashLink<span class="wm-dot">.</span></span><span class="lk-div" aria-hidden="true"></span><svg class="rmark " viewBox="0 0 44 28" aria-hidden="true" focusable="false"><defs><linearGradient id="rmg9" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#5b1820"/><stop offset=".55" stop-color="#e63946"/><stop offset="1" stop-color="#ffb4a8"/></linearGradient></defs><path fill="url(#rmg9)" d="M3 27 9 17h6L9 27zM14 27 22 10h6l-8 17zM25 27 36 1h6L31 27z"/></svg><span class="lk-racing">Racing</span></span></a>
+      </div>
+      <div class="fcol"><h4>Product</h4><a href="../android-auto/">Android Auto</a><a href="../dashboard/">Dashboard</a><a href="../trips-fuel-maintenance/">Trips, fuel &amp; car care</a><a href="../plans/">Plans</a></div>
+      <div class="fcol"><h4>Racing</h4><a href="../racing/">Overview</a><a href="../racing/track-day/">Track day</a><a href="../racing/rally/">Rally</a><a href="../racing/performance/">Performance</a></div>
+      <div class="fcol"><h4>Help</h4><a href="../wireless-app/">DashLink Wireless</a><a href="../support/">Support</a><a href="../download/">Download &amp; install</a><a href="../premium/">Activate your plan</a><a href="mailto:dashlink.support@gmail.com">Email us</a></div>
+    </div>
+    <div class="foot-legal">
+      <p>Android Auto and Android are trademarks of Google LLC. Google Play is a trademark of Google LLC. DashLink is an independent app and is not affiliated with or endorsed by Google.</p>
+      <p>Screens are illustrative. Features and compatibility depend on your head unit, phone and software version. Fuel, range, trip cost and dyno power figures are estimates. DashLink Racing is for closed courses only.</p>
+      <p class="foot-row"><span>&copy; 2026 DashLink</span><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="cta-bar" id="ctaBar" aria-hidden="true">
+  <span class="cta-bar-txt"><b>DashLink</b><small>Try every feature free</small></span>
+  <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dtrips-fuel-maintenance%26utm_term%3Dtrips-fuel-maintenance" data-play="headunit" data-cta="cta_bar" data-fallback="../download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+</div>
+<a class="wa-fab" href="https://wa.me/923229914024?text=Hi%20DashLink!%20I%20have%20a%20question." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.69-6.16A11.87 11.87 0 0 1 .16 11.9C.16 5.34 5.5 0 12.05 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45zm6.6-3.81c1.67 1 3.27 1.6 5.39 1.6 5.45 0 9.88-4.44 9.89-9.89 0-5.46-4.42-9.89-9.88-9.89-5.45 0-9.89 4.43-9.89 9.88 0 2.23.65 3.9 1.75 5.64l-1 3.65zm11.38-5.46c-.07-.13-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.41z"/></svg></a>
+</body>
+</html>

@@ -28,7 +28,12 @@
      We use the browser timezone as a stand-in for location (the same signal
      the rest of the site uses). It errs on the side of asking: anyone with a
      European timezone, or no timezone at all, gets the banner. */
+  // true = ask every visitor before loading GA4 (strict "off by default").
+  // false = ask only visitors with a European timezone (current behaviour).
+  var CONSENT_EVERYWHERE = false;
+
   function needsConsent(){
+    if(CONSENT_EVERYWHERE) return true;
     var tz = '';
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
     if(!tz) return true;
@@ -53,7 +58,13 @@
       ad_personalization: 'granted', analytics_storage: 'granted'
     });
     gtag('js', new Date());
-    gtag('config', GA_ID, debug ? { debug_mode: true } : {});
+    // page_view carries the page's pillar and the hero variant the visitor saw
+    // (register both as event-scoped custom dimensions in GA4).
+    var root = document.documentElement, cfg = {};
+    if(root.getAttribute('data-pillar')) cfg.pillar = root.getAttribute('data-pillar');
+    if(root.getAttribute('data-variant')) cfg.hero_variant = root.getAttribute('data-variant');
+    if(debug) cfg.debug_mode = true;
+    gtag('config', GA_ID, cfg);
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID);
@@ -73,9 +84,10 @@
      automatically as long as they point at the same places. */
   function locationOf(a){
     if(a.closest('nav, .nav')) return 'nav';
-    if(a.closest('footer, .site-foot')) return 'footer';
-    if(a.closest('.dl-fab')) return 'floating_button';
-    var sec = a.parentElement && a.parentElement.closest('section[id]');
+    if(a.closest('footer, .site-foot, .foot')) return 'footer';
+    if(a.closest('.dl-fab, .wa-fab')) return 'floating_button';
+    if(a.closest('.cta-bar')) return 'cta_bar';
+    var sec = a.parentElement && a.parentElement.closest('section[id], article[id]');
     return sec ? sec.id : 'page';
   }
   function textOf(a){

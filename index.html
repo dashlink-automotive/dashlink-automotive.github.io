@@ -1,1132 +1,301 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page="home" data-pillar="home" class="">
 <head>
-<script>document.documentElement.className+=" js";</script>
-
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="description" content="DashLink transforms the cheap Android screen already in your car into a full Android Auto experience. No new hardware. Just an app." />
-<meta name="theme-color" content="#050506" />
-<script src="assets/analytics.js" defer></script>
-<title>DashLink — Android Auto for your car's Android screen</title>
-<link rel="canonical" href="https://dashlink-automotive.github.io/" />
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="DashLink" />
-<meta property="og:title" content="DashLink — Android Auto for your car&#x27;s Android screen" />
-<meta property="og:description" content="DashLink transforms the cheap Android screen already in your car into a full Android Auto experience. No new hardware. Just an app." />
-<meta property="og:url" content="https://dashlink-automotive.github.io/" />
-<meta property="og:image" content="https://dashlink-automotive.github.io/assets/images/og-home.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<style>
-/* ============================================================
-   DashLink — cinematic single-page landing
-   Design: dark, minimal, massive type, electric-blue accent
-   ============================================================ */
-
-:root{
-  --bg:#050506;
-  --bg-2:#0b0c0f;
-  --panel:#111318;
-  --ink:#f4f6fb;
-  --ink-dim:#a3a9b8;
-  --ink-faint:#6b7180;
-  --line:rgba(255,255,255,.09);
-  --line-2:rgba(255,255,255,.05);
-  --blue:#2f9dff;
-  --blue-hi:#5db6ff;
-  --blue-deep:#0a72e0;
-  --glow:rgba(47,157,255,.55);
-  --radius:22px;
-  --ease:cubic-bezier(.22,.61,.36,1);
-  --ease-out:cubic-bezier(.16,1,.3,1);
-  --maxw:1180px;
-  --pad:clamp(20px,5vw,40px);
-  /* android.com-style friendly, rounded display face (approximates Product Sans) */
-  --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
-  --font-head:ui-rounded,"SF Pro Rounded","Google Sans","Product Sans",-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:93.75%} /* 15px base — a touch smaller site-wide */
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:var(--font-body);
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  overflow-x:clip;
-}
-::selection{background:var(--blue);color:#04101f}
-a{color:inherit;text-decoration:none}
-img,svg{display:block;max-width:100%}
-button{font-family:inherit}
-
-/* keep the WP admin bar from breaking the fixed nav */
-body.admin-bar .nav{top:32px}
-@media screen and (max-width:782px){body.admin-bar .nav{top:46px}}
-
-/* ---------- ambient background ---------- */
-.aurora{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(70% 55% at 78% 8%, rgba(47,157,255,.18), transparent 60%),
-    radial-gradient(60% 50% at 12% 30%, rgba(47,157,255,.10), transparent 55%),
-    radial-gradient(80% 60% at 50% 120%, rgba(20,80,160,.20), transparent 60%);
-  opacity:.9;
-}
-.grain{
-  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-/* ---------- layout ---------- */
-main{position:relative;z-index:1}
-.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
-section{position:relative}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--blue-hi);
-}
-.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 12px var(--glow)}
-
-/* fluid display type — android.com-inspired: rounded face, medium weight, relaxed tracking */
-h1,h2,h3,h4{font-family:var(--font-head);letter-spacing:-.022em;line-height:1.05;font-weight:600}
-.display{font-family:var(--font-head);font-size:clamp(2.4rem,7.2vw,5.4rem);font-weight:640;letter-spacing:-.025em;line-height:1}
-.h-xl{font-size:clamp(2rem,4.9vw,3.6rem);font-weight:600}
-.h-lg{font-size:clamp(1.75rem,3.9vw,2.85rem);font-weight:600}
-.lead{font-size:clamp(1.1rem,2.1vw,1.45rem);color:var(--ink-dim);font-weight:420;line-height:1.5}
-.muted{color:var(--ink-dim)}
-.faint{color:var(--ink-faint)}
-.grad-text{background:linear-gradient(100deg,#fff 10%,var(--blue-hi) 55%,var(--blue) 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-
-/* ---------- buttons ---------- */
-.btn{
-  --b:var(--blue);
-  display:inline-flex;align-items:center;gap:10px;
-  padding:15px 26px;border-radius:100px;border:1px solid transparent;
-  font-size:1.02rem;font-weight:600;cursor:pointer;position:relative;
-  transition:transform .3s var(--ease),box-shadow .4s var(--ease),background .3s;
-  will-change:transform;
-}
-.btn-primary{
-  background:linear-gradient(180deg,#3a9bf5,#0a56cc);
-  color:#fff;font-weight:650;text-shadow:0 1px 1px rgba(2,18,45,.35);
-  box-shadow:0 12px 42px -12px var(--glow), inset 0 1px 0 rgba(255,255,255,.28);
-}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 55px -12px var(--glow), inset 0 1px 0 rgba(255,255,255,.45)}
-.btn-ghost{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--ink);backdrop-filter:blur(8px)}
-.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
-.btn svg{width:18px;height:18px}
-
-/* ---------- nav ---------- */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px var(--pad);
-  transition:background .4s var(--ease),backdrop-filter .4s,border-color .4s,padding .4s;
-  border-bottom:1px solid transparent;
-}
-.nav.scrolled{background:rgba(6,7,9,.72);backdrop-filter:blur(18px) saturate(150%);border-color:var(--line-2);padding:11px var(--pad)}
-.brand{display:inline-flex;align-items:baseline;font-family:var(--font-head);font-weight:800;letter-spacing:-.02em;font-size:1.34rem;color:#fff}
-.brand .dot{color:var(--blue);margin-left:1px}
-.brand .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,var(--blue-hi),var(--blue-deep));display:grid;place-items:center;box-shadow:0 6px 22px -6px var(--glow)}
-.brand .mark svg{width:17px;height:17px}
-.nav-links{display:flex;gap:30px;align-items:center}
-.nav-links a{font-size:.95rem;color:var(--ink-dim);transition:color .25s;position:relative;white-space:nowrap}
-.nav-links a:hover{color:var(--ink)}
-.nav-cta{padding:9px 18px;font-size:.92rem}
-@media(max-width:1000px){.nav-links{display:none}}
-
-/* ---------- reveal system ---------- */
-.js .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
-.js .reveal.in{opacity:1;transform:none}
-.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
-.js .reveal-scale{opacity:0;transform:scale(.94) translateY(30px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
-.js .reveal-scale.in{opacity:1;transform:none}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px var(--pad) 60px;position:relative}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:100px;
-  border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:.85rem;color:var(--ink-dim);
-  margin-bottom:30px;backdrop-filter:blur(8px);
-}
-.hero-badge b{color:var(--ink);font-weight:600}
-.hero h1{max-width:16ch;margin-inline:auto}
-.hero .lead{max-width:44ch;margin:26px auto 0}
-.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
-.hero-note{margin-top:20px;font-size:.86rem;color:var(--ink-faint)}
-.hero-stage{margin-top:min(6vh,52px);width:100%;max-width:1120px}
-/* clean hero photo — no fake head-unit bezel */
-.hero-photo{width:100%;height:auto;display:block;border-radius:20px;
-  box-shadow:0 50px 130px -40px rgba(0,0,0,.9), 0 0 90px -30px rgba(47,157,255,.18);
-  transition:transform .8s var(--ease)}
-.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-faint);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;user-select:none;cursor:pointer;text-decoration:none;transition:color .3s}
-.scroll-cue:hover{color:var(--ink)}
-.scroll-cue .mouse{width:22px;height:34px;border:1.5px solid var(--line);border-radius:12px;position:relative}
-.scroll-cue .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:7px;border-radius:2px;background:var(--blue);animation:scrolldot 1.8s var(--ease) infinite}
-@keyframes scrolldot{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}60%{opacity:1;transform:translate(-50%,9px)}100%{opacity:0;transform:translate(-50%,9px)}}
-
-/* head unit mockup (reused) */
-.unit{
-  position:relative;border-radius:20px;padding:14px;
-  background:linear-gradient(180deg,#1a1d24,#0c0e12);
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 40px 120px -30px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.06);
-}
-.unit::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(180deg,rgba(255,255,255,.14),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.unit .screen{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:16/9;background:#04070c}
-.hero-stage .unit{transform:rotateX(6deg);transition:transform .8s var(--ease)}
-/* real app screenshot inside the head unit */
-.unit .screen.screen-photo{aspect-ratio:2400/1080;border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 0 0 1px rgba(0,0,0,.6), inset 0 2px 18px rgba(0,0,0,.55)}
-.screen-photo img{width:100%;height:100%;object-fit:cover;display:block}
-/* looping video inside the head unit — sized to the clip's native 8:3 ratio */
-.unit .screen.screen-video{aspect-ratio:1280/480;border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 0 0 1px rgba(0,0,0,.6), inset 0 2px 18px rgba(0,0,0,.55)}
-.screen-video video{width:100%;height:100%;object-fit:cover;display:block}
-
-/* ============================================================
-   PROBLEM (sticky word-swap)
-   ============================================================ */
-.problem{padding:120px 0}
-.problem .big{font-size:clamp(1.9rem,4.7vw,3.5rem);font-weight:650;letter-spacing:-.03em;line-height:1.1;max-width:20ch}
-/* blue highlight (not a strikethrough) with an animated underline */
-.strike{position:relative;color:var(--blue-hi);white-space:nowrap;font-weight:inherit}
-.strike::after{content:"";position:absolute;left:0;right:0;bottom:-.04em;height:3px;border-radius:3px;background:var(--blue);box-shadow:0 0 14px var(--glow);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.strike.in::after{transform:scaleX(1)}
-.price-tags{display:flex;flex-wrap:wrap;gap:14px;margin-top:44px}
-.tag{display:flex;flex-direction:column;gap:4px;padding:18px 22px;border-radius:16px;border:1px solid var(--line);background:var(--panel)}
-.tag .n{font-family:var(--font-head);font-size:1.7rem;font-weight:640;letter-spacing:-.02em}
-.tag .l{font-size:.8rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.1em}
-.tag.good{border-color:rgba(47,157,255,.4);background:linear-gradient(180deg,rgba(47,157,255,.12),rgba(47,157,255,.02))}
-.tag.good .n{color:var(--blue-hi)}
-
-/* ============================================================
-   SOLUTION — sticky reveal
-   ============================================================ */
-.solution{padding:60px 0 120px}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
-@media(max-width:900px){.split{grid-template-columns:1fr;gap:44px}}
-.transform-stage{position:relative}
-.transform-stage .unit{transition:transform .9s var(--ease)}
-.unit .screen.tf-screen{aspect-ratio:1716/772}
-.scr-launcher img,.scr-aa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.tf-labels{display:flex;gap:10px;margin-top:22px;justify-content:center}
-.chip{font-size:.78rem;padding:7px 14px;border-radius:100px;border:1px solid var(--line);color:var(--ink-dim);cursor:pointer;transition:.3s;user-select:none}
-.chip.active{background:linear-gradient(180deg,#3a9bf5,#0a56cc);border-color:transparent;color:#fff;font-weight:650;text-shadow:0 1px 1px rgba(2,18,45,.35)}
-
-/* before/after toggle layers (cross-fade) */
-.scr-launcher{position:absolute;inset:0;transition:opacity .6s var(--ease)}
-
-/* android-auto style screen */
-.scr-aa{position:absolute;inset:0;opacity:0;transition:opacity .6s var(--ease)}
-.stage-after .scr-aa{opacity:1}
-.stage-after .scr-launcher{opacity:0}
-
-/* ============================================================
-   WHAT IS ANDROID AUTO
-   ============================================================ */
-.what{padding:120px 0}
-.what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,64px);align-items:center}
-@media(max-width:900px){.what-grid{grid-template-columns:1fr}}
-.pill-list{display:flex;flex-direction:column;gap:2px;margin-top:34px}
-.pill-list .row{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-top:1px solid var(--line)}
-.pill-list .row:last-child{border-bottom:1px solid var(--line)}
-.pill-list .ic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(47,157,255,.12);border:1px solid rgba(47,157,255,.25)}
-.pill-list .ic svg{width:22px;height:22px;stroke:var(--blue-hi)}
-.pill-list h4{font-size:1.12rem;font-weight:600;margin-bottom:3px}
-.pill-list p{font-size:.95rem;color:var(--ink-dim);line-height:1.45}
-
-/* ============================================================
-   BENEFITS — seamless feature grid (android.com "What's new" style)
-   ============================================================ */
-.benefits{padding:120px 0}
-.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(40px,5vw,80px) clamp(28px,4vw,64px);margin-top:64px}
-@media(max-width:820px){.feat-grid{grid-template-columns:1fr;gap:56px}}
-.feat{display:flex;flex-direction:column}
-/* text on top, like the reference */
-.feat .kicker{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-hi)}
-.feat h3{font-size:clamp(1.35rem,2.3vw,1.9rem);font-weight:640;margin:12px 0 10px;letter-spacing:-.02em;line-height:1.1}
-.feat p{font-size:1rem;color:var(--ink-dim);line-height:1.5;max-width:44ch}
-/* the visual sits on a soft glow stage — no hard card border = seamless */
-.feat-stage{position:relative;margin-top:28px;border-radius:26px;padding:clamp(16px,3.6%,30px);
-  display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(120% 130% at 50% -10%, rgba(47,157,255,.16), rgba(12,17,26,.5) 48%, rgba(5,6,9,0) 82%);
-  transition:transform .6s var(--ease);
-}
-/* faint lit top edge instead of a full border */
-.feat-stage::before{content:"";position:absolute;inset:0;border-radius:26px;padding:1px;pointer-events:none;
-  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0) 45%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;}
-.feat:hover .feat-stage{transform:translateY(-6px)}
-/* the media shows at its natural aspect ratio — never cropped */
-.feat-shot{position:relative;width:100%;border-radius:14px;overflow:hidden;
-  box-shadow:0 30px 60px -24px rgba(0,0,0,.85), 0 18px 70px -34px var(--glow), 0 0 0 1px rgba(255,255,255,.06);
-  transition:transform .6s var(--ease);
-}
-.feat:hover .feat-shot{transform:scale(1.02)}
-.feat-shot img{width:100%;height:auto;display:block}
-
-/* ============================================================
-   MODES
-   ============================================================ */
-.modes{padding:120px 0}
-.mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
-@media(max-width:900px){.mode-grid{grid-template-columns:1fr}}
-.mode{border-radius:var(--radius);border:1px solid var(--line);background:var(--panel);padding:30px;position:relative;overflow:hidden;transition:.5s var(--ease)}
-.mode:hover{border-color:rgba(47,157,255,.35);transform:translateY(-5px)}
-.mode .n{font-size:.8rem;color:var(--ink-faint);letter-spacing:.14em;text-transform:uppercase}
-.mode h3{font-size:1.55rem;margin:6px 0 12px;font-weight:650}
-.mode p{font-size:.95rem;color:var(--ink-dim);line-height:1.5}
-.mode-anim{aspect-ratio:1830/920;margin:8px 0 22px;position:relative;border-radius:14px;background:radial-gradient(120% 100% at 50% 0,#12151c,#07090d);border:1px solid var(--line-2);overflow:hidden}
-.mode-anim img{width:100%;height:100%;object-fit:cover;display:block}
-
-/* ============================================================
-   BEFORE / AFTER slider
-   ============================================================ */
-.compare{padding:120px 0}
-.slider{position:relative;max-width:1000px;margin:56px auto 0;border-radius:var(--radius);overflow:hidden;aspect-ratio:1716/772;border:1px solid var(--line);box-shadow:0 50px 120px -40px #000, 0 0 0 1px rgba(255,255,255,.04);touch-action:none;user-select:none;cursor:ew-resize}
-.slider .layer{position:absolute;inset:0}
-.slider .layer img{width:100%;height:100%;object-fit:cover;display:block}
-.slider .before{z-index:1}
-.slider .after{z-index:2;clip-path:inset(0 0 0 50%)}
-.slider .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,.85);z-index:3;transform:translateX(-1px)}
-.slider .handle .knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(10,12,16,.7);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.7);display:grid;place-items:center;box-shadow:0 8px 30px -6px #000}
-.slider .handle .knob svg{width:22px;height:22px;stroke:#fff}
-.slider .lbl{position:absolute;bottom:16px;padding:7px 14px;border-radius:100px;font-size:.78rem;font-weight:600;letter-spacing:.05em;backdrop-filter:blur(8px);z-index:4}
-.slider .lbl.b{left:16px;background:rgba(0,0,0,.5);color:#cfd4de;border:1px solid var(--line)}
-.slider .lbl.a{right:16px;background:rgba(10,86,204,.9);color:#fff;text-shadow:0 1px 1px rgba(2,18,45,.35)}
-
-/* ============================================================
-   COMPAT + PERFORMANCE
-   ============================================================ */
-.compat{padding:120px 0}
-.req-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
-@media(max-width:760px){.req-grid{grid-template-columns:1fr}}
-.req{padding:28px;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
-.req .ic{width:42px;height:42px;border-radius:11px;background:rgba(47,157,255,.12);border:1px solid rgba(47,157,255,.25);display:grid;place-items:center;margin-bottom:16px}
-.req .ic svg{width:22px;height:22px;stroke:var(--blue-hi)}
-.req h4{font-size:1.1rem;margin-bottom:6px;font-weight:600}
-.req p{font-size:.92rem;color:var(--ink-dim);line-height:1.45}
-/* "whatever you call it" — the same device, many local names */
-.names{margin-top:36px;padding:30px clamp(20px,3vw,34px);border-radius:20px;border:1px solid rgba(47,157,255,.22);background:linear-gradient(180deg,rgba(47,157,255,.07),rgba(255,255,255,.012))}
-.names h4{font-size:clamp(1.15rem,2.2vw,1.42rem);font-weight:600;letter-spacing:-.015em}
-.names p{margin-top:9px;font-size:.95rem;color:var(--ink-dim);line-height:1.5;max-width:62ch}
-.name-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
-.name-chips span{padding:8px 15px;border-radius:100px;font-size:.88rem;color:var(--ink);background:rgba(255,255,255,.05);border:1px solid var(--line);transition:border-color .3s,background .3s}
-.name-chips span:hover{border-color:rgba(47,157,255,.45);background:rgba(47,157,255,.1)}
-.name-chips span.lead-chip{background:linear-gradient(180deg,rgba(47,157,255,.28),rgba(47,157,255,.1));border-color:rgba(47,157,255,.5);font-weight:600}
-.names .rule{margin-top:20px;padding-top:18px;border-top:1px solid var(--line-2);font-size:.95rem;color:var(--ink-dim);line-height:1.55}
-.names .rule b{color:var(--ink);font-weight:600}
-
-.perf{padding:60px 0 120px}
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:52px}
-@media(max-width:760px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
-.stat{padding:30px 24px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.03),transparent)}
-.stat .num{font-family:var(--font-head);font-size:clamp(2.2rem,4.6vw,3.2rem);font-weight:640;letter-spacing:-.02em;background:linear-gradient(180deg,#fff,var(--blue-hi));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.stat .lbl{font-size:.86rem;color:var(--ink-dim);margin-top:6px}
-
-/* ============================================================
-   INSTALL steps
-   ============================================================ */
-.install{padding:120px 0}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px;counter-reset:step}
-@media(max-width:820px){.steps{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.steps{grid-template-columns:1fr}}
-.step{position:relative;padding:30px 26px;border-radius:18px;border:1px solid var(--line);background:var(--panel);counter-increment:step;overflow:hidden}
-.step::before{content:counter(step,decimal-leading-zero);position:absolute;top:18px;right:20px;font-size:2.4rem;font-weight:700;color:rgba(255,255,255,.06);letter-spacing:-.03em}
-.step .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(47,157,255,.12);border:1px solid rgba(47,157,255,.25);margin-bottom:18px}
-.step .ic svg{width:24px;height:24px;stroke:var(--blue-hi)}
-.step h4{font-size:1.2rem;font-weight:650;margin-bottom:7px}
-.step p{font-size:.92rem;color:var(--ink-dim);line-height:1.45}
-
-/* ============================================================
-   FAQ
-   ============================================================ */
-.faq{padding:60px 0 120px}
-.faq-list{max-width:820px;margin:52px auto 0}
-.qa{border-top:1px solid var(--line)}
-.qa:last-child{border-bottom:1px solid var(--line)}
-.qa button{width:100%;background:none;border:none;color:var(--ink);text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 4px;cursor:pointer;font-size:clamp(1.05rem,2.2vw,1.35rem);font-weight:550;letter-spacing:-.01em}
-.qa .plus{flex:0 0 auto;width:26px;height:26px;position:relative;transition:transform .4s var(--ease)}
-.qa .plus::before,.qa .plus::after{content:"";position:absolute;background:var(--blue-hi);border-radius:2px}
-.qa .plus::before{top:50%;left:0;right:0;height:2px;transform:translateY(-50%)}
-.qa .plus::after{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);transition:transform .4s var(--ease)}
-.qa.open .plus{transform:rotate(180deg)}
-.qa.open .plus::after{transform:translateX(-50%) scaleY(0)}
-.qa .ans{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
-.qa .ans p{padding:0 4px 26px;color:var(--ink-dim);font-size:1rem;line-height:1.6;max-width:64ch}
-
-/* ============================================================
-   FINAL CTA
-   ============================================================ */
-.final{padding:140px 0 120px;text-align:center;position:relative}
-.final::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(900px,90%);height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
-.final h2{max-width:16ch;margin:0 auto 22px}
-.final .lead{max-width:40ch;margin:0 auto}
-.final-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px}
-.final .whisper{margin-top:34px;font-size:1.05rem;color:var(--blue-hi);font-weight:500}
-
-/* ---------- footer ---------- */
-.site-foot{border-top:1px solid var(--line-2);padding:48px var(--pad);position:relative;z-index:1}
-.foot-in{max-width:var(--maxw);margin-inline:auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-.foot-links{display:flex;gap:26px;flex-wrap:wrap}
-.foot-links a{font-size:.9rem;color:var(--ink-faint);transition:color .25s}
-.foot-links a:hover{color:var(--ink)}
-.site-foot .copy{font-size:.85rem;color:var(--ink-faint)}
-/* legal + disclaimers */
-.foot-legal{max-width:var(--maxw);margin:28px auto 0;padding-top:22px;border-top:1px solid var(--line-2)}
-.foot-legal p{font-size:.76rem;line-height:1.6;color:var(--ink-faint);max-width:none}
-.foot-legal p + p{margin-top:10px}
-.disclaimer{font-size:.78rem;color:var(--ink-faint);text-align:center;margin:18px auto 0;max-width:60ch;line-height:1.5}
-
-.section-head{max-width:38ch}
-.section-head .lead{margin-top:18px}
-
-/* ============================================================
-   SHOWCASE — sticky dashboard, scroll-synced AA screen
-   ============================================================ */
-.showcase{position:relative}
-.sc-track{position:relative} /* height set inline per scene count via JS-safe padding */
-.sc-sticky{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2.4vh,28px);overflow:hidden;padding:clamp(70px,10vh,110px) var(--pad) clamp(20px,4vh,40px)}
-.sc-eyebrow{z-index:5}
-/* changing headline stack */
-.sc-copy{position:relative;width:min(720px,90vw);min-height:clamp(120px,17vh,158px);text-align:center;z-index:5;pointer-events:none}
-.sc-copy .cap{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
-.sc-copy .cap.on{opacity:1;transform:none}
-.sc-copy h3{font-size:clamp(1.7rem,4vw,3rem);font-weight:680;letter-spacing:-.03em;line-height:1.04}
-.sc-copy p{margin-top:14px;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--ink-dim);max-width:34ch;margin-inline:auto;line-height:1.45}
-
-/* dashboard + device */
-.sc-dash{position:relative;width:min(920px,92vw);flex:0 0 auto;perspective:1600px}
-.sc-dash::after{ /* dashboard shelf under the unit */
-  content:"";position:absolute;left:-8%;right:-8%;bottom:-8%;height:60%;z-index:-1;border-radius:40px 40px 0 0;
-  background:linear-gradient(180deg,#0e1015,#050506);border-top:1px solid rgba(255,255,255,.05);
-  box-shadow:0 -30px 80px -40px rgba(47,157,255,.25);
-}
-.sc-wheel{position:absolute;left:-6%;bottom:-14%;width:170px;height:170px;border-radius:50%;border:14px solid #14171d;z-index:-1;opacity:.9;box-shadow:inset 0 0 0 2px rgba(255,255,255,.04)}
-.sc-wheel::before{content:"";position:absolute;inset:26px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#1c2027,#0c0e12)}
-@media(max-width:700px){.sc-wheel{display:none}}
-.sc-unit{position:relative;border-radius:22px;padding:14px;background:linear-gradient(180deg,#1a1d24,#0b0d11);border:1px solid rgba(255,255,255,.09);box-shadow:0 50px 130px -30px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.06);transform:rotateX(4deg)}
-.sc-screen{position:relative;border-radius:13px;overflow:hidden;aspect-ratio:2400/1080;background:#04070c;border:1px solid rgba(255,255,255,.10);box-shadow:inset 0 0 0 1px rgba(0,0,0,.6), inset 0 2px 18px rgba(0,0,0,.5)}
-/* real AA screen swaps */
-.sc-scene{position:absolute;inset:0;opacity:0;transition:opacity .6s var(--ease)}
-.sc-scene.on{opacity:1}
-.sc-scene img,.sc-scene video{width:100%;height:100%;object-fit:cover;display:block}
-
-/* progress dot rail */
-.sc-rail{position:absolute;right:clamp(16px,3vw,40px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:6}
-.sc-rail button{width:9px;height:9px;padding:0;border:none;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:background .35s,transform .35s}
-.sc-rail button.on{background:var(--blue-hi);transform:scale(1.35);box-shadow:0 0 12px var(--glow)}
-@media(max-width:700px){.sc-rail{right:10px}}
-
-/* ============================================================
-   APP SHOWCASE — the DashLink app, in head-unit device frames
-   ============================================================ */
-.app{padding:120px 0}
-/* head-unit device frame */
-.hu{position:relative;border-radius:22px;padding:clamp(9px,1.3vw,15px);background:linear-gradient(180deg,#1b1e25,#090b0f);border:1px solid rgba(255,255,255,.09);box-shadow:0 44px 120px -34px #000, 0 0 70px -34px rgba(47,157,255,.18), inset 0 1px 0 rgba(255,255,255,.06)}
-.hu::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.14),transparent 42%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.hu-screen{border-radius:12px;overflow:hidden;aspect-ratio:16/10;background:#0a0c10;box-shadow:inset 0 0 0 1px rgba(0,0,0,.55)}
-.hu-screen img{width:100%;height:100%;object-fit:cover;display:block}
-.hu-hero{max-width:920px;margin:52px auto 0}
-.hu-hero-cap{text-align:center;margin-top:20px;font-size:.98rem;color:var(--ink-dim)}
-.hu-hero-cap b{color:var(--ink);font-weight:600}
-/* highlight grid of app screens — each screen gets its own "why it matters" */
-.hu-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,26px);margin-top:clamp(30px,3.4vw,48px)}
-@media(max-width:900px){.hu-gallery{grid-template-columns:1fr;max-width:560px;margin-inline:auto}}
-.hu-card{display:block;margin:0;position:relative;padding:clamp(13px,1.3vw,17px);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));border:1px solid var(--line);transition:transform .5s var(--ease),border-color .4s,box-shadow .5s var(--ease)}
-.hu-card::after{content:"";position:absolute;inset:0;border-radius:20px;pointer-events:none;opacity:0;transition:opacity .5s var(--ease);box-shadow:0 40px 90px -42px #000,0 0 64px -30px var(--glow)}
-.hu-card:hover{transform:translateY(-6px);border-color:rgba(47,157,255,.35)}
-.hu-card:hover::after{opacity:1}
-.hu-card .hu{padding:7px;border-radius:14px;box-shadow:0 24px 60px -32px #000,inset 0 1px 0 rgba(255,255,255,.05)}
-.hu-card .hu::before{border-radius:14px}
-.hu-card .hu-screen{border-radius:8px}
-.hu-meta{display:flex;align-items:flex-start;gap:13px;margin:17px 4px 5px}
-.hu-ic{flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:radial-gradient(120% 120% at 30% 20%,rgba(47,157,255,.24),rgba(47,157,255,.05));border:1px solid rgba(47,157,255,.3);color:var(--blue-hi)}
-.hu-ic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.hu-meta h4{font-size:1.04rem;font-weight:600;letter-spacing:-.01em;line-height:1.2}
-.hu-meta p{margin-top:5px;font-size:.87rem;line-height:1.5;color:var(--ink-dim)}
-
-/* reduced motion */
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;scroll-behavior:auto!important}
-  .reveal,.reveal-scale{opacity:1!important;transform:none!important;transition:none!important}
-  .strike::after{transform:scaleX(1)!important}
-}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DashLink — add Android Auto to the head unit already in your car</title>
+<meta name="description" content="No Android Auto on your Android head unit? DashLink adds it, plus a full car dashboard and motorsport timing. No new stereo, no new hardware, no account.">
+<link rel="canonical" href="https://dashlink-automotive.github.io/">
+<meta name="theme-color" content="#050506">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DashLink">
+<meta property="og:title" content="DashLink — add Android Auto to the head unit already in your car">
+<meta property="og:description" content="No Android Auto on your Android head unit? DashLink adds it, plus a full car dashboard and motorsport timing. No new stereo, no new hardware, no account.">
+<meta property="og:url" content="https://dashlink-automotive.github.io/">
+<meta property="og:image" content="https://dashlink-automotive.github.io/assets/images/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.dashlinkReady)document.documentElement.classList.add('no-reveal')},3000)</script>
+<link rel="stylesheet" href="assets/site.css?v=202610231103">
+<script src="assets/analytics.js?v=202610231103" defer></script>
+<script src="assets/site.js?v=202610231103" defer></script>
 </head>
-<body class="dashlink">
-<div class="aurora"></div>
-<div class="grain"></div>
+<body>
+<div class="ambient" aria-hidden="true"></div>
 
-<!-- ============ NAV ============ -->
-<nav class="nav" id="nav">
-  <a class="brand" href="#top" aria-label="DashLink home">DashLink<span class="dot">.</span></a>
-  <div class="nav-links">
-    <a href="features/">What's new</a>
-    <a href="#app">The app</a>
-    <a href="#what">Android Auto</a>
-    <a href="#benefits">Benefits</a>
-    <a href="#modes">Modes</a>
-    <a href="#install">Install</a>
-    <a href="premium/">Premium</a>
-    <a href="#faq">FAQ</a>
+<header class="nav" id="nav">
+  <a class="brand" href="./" aria-label="DashLink home"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+  <nav class="nav-links" aria-label="Main"><a href="android-auto/">Android Auto</a><a href="dashboard/">Dashboard</a><a href="trips-fuel-maintenance/">Trips & fuel</a><a href="racing/" class="nl-racing">Racing</a><a href="wireless-app/">Wireless app</a><a href="plans/">Plans</a><a href="support/">Support</a></nav>
+  <div class="nav-end">
+    <a class="btn btn-primary btn-sm nav-cta" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dhome%26utm_term%3Dhome" data-play="headunit" data-cta="nav" data-fallback="download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu"><svg class="ic i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="ic i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
-    <a href="download/" class="btn btn-primary nav-cta">Download</a>
-</nav>
-
+</header>
+<div class="sheet" id="sheet" hidden><nav aria-label="Main"><a href="android-auto/"><b>Android Auto</b><small>USB, wireless and self mode on your head unit</small></a><a href="dashboard/"><b>Dashboard</b><small>Dock mode, 7 layouts, 6 speedometers</small></a><a href="trips-fuel-maintenance/"><b>Trips & fuel</b><small>Trip computer, fuel estimates, service reminders</small></a><a href="racing/" class="nl-racing"><b>Racing</b><small>Lap timing, rally stages, performance tests</small></a><a href="wireless-app/"><b>Wireless app</b><small>The companion app for your phone</small></a><a href="plans/"><b>Plans</b><small>Free, Drive or Pro. Try everything free</small></a><a href="support/"><b>Support</b><small>Compatibility, troubleshooting, contact</small></a></nav></div>
 <main id="top">
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap" style="display:flex;flex-direction:column;align-items:center">
-    <div class="hero-badge reveal">Your car already has the screen &mdash; <b>DashLink unlocks it</b></div>
-    <h1 class="display reveal d1">The Android Auto<br><span class="grad-text">your car was waiting for.</span></h1>
-    <p class="lead reveal d2">Turn the Android screen already in your dashboard into a clean, safe, premium Android Auto experience. No new hardware. No expensive branded unit. Just an app.</p>
-    <div class="hero-cta reveal d3">
-      <a href="download/" class="btn btn-primary">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Try free for 7 days
-      </a>
-      <a href="#what" class="btn btn-ghost">See how it works</a>
-    </div>
-    <p class="hero-note reveal d3">Free for 7 days • Works on any Android Panel or head unit • Self, USB &amp; Wireless modes</p>
-
-    <div class="hero-stage reveal-scale d2" id="heroStage">
-      <img class="hero-photo" src="assets/images/hero-alto.webp" alt="DashLink running Android Auto on the head unit of a Suzuki Alto" width="1536" height="1024" fetchpriority="high" decoding="async">
-    </div>
-  </div>
-  <a class="scroll-cue" href="#problem" aria-label="Scroll to content"><span class="mouse"></span>Scroll</a>
-</section>
-
-<!-- ============ PROBLEM ============ -->
-<section class="problem" id="problem">
-  <div class="wrap">
-    <span class="eyebrow reveal">The problem</span>
-    <p class="big reveal d1" style="margin-top:24px">A cheap Android head unit, missing just one thing: <span class="strike" data-strike>Android Auto</span>.</p>
-    <p class="lead reveal d2" style="margin-top:26px;max-width:46ch">Plain Android looks great but drives clumsy &mdash; no driving-first maps, no real voice control. Replacing the whole unit feels like the only fix. It isn't.</p>
-    <div class="price-tags reveal d2">
-      <div class="tag"><span class="n">Rs 60k&ndash;150k</span><span class="l">New branded Android Auto unit</span></div>
-      <div class="tag"><span class="n">+ install</span><span class="l">Wiring, fitting, downtime</span></div>
-      <div class="tag good"><span class="n">Just an app</span><span class="l">DashLink on the screen you own</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SOLUTION / TRANSFORM ============ -->
-<section class="solution" id="solution">
-  <div class="wrap">
-    <div class="split">
-      <div class="section-head">
-        <span class="eyebrow reveal">The solution</span>
-        <h2 class="h-xl reveal d1" style="margin-top:20px">Same screen.<br>Whole new car.</h2>
-        <p class="lead reveal d2">Install DashLink and your cluttered launcher becomes a focused, driving-first Android Auto interface — big touch targets, live navigation, and your voice in control. Tap below to see the difference.</p>
-        <div class="tf-labels reveal d2" style="justify-content:flex-start;margin-top:30px">
-          <span class="chip" data-stage="before">Before &middot; plain Android</span>
-          <span class="chip active" data-stage="after">After &middot; DashLink</span>
-        </div>
-      </div>
-      <div class="transform-stage reveal-scale d1">
-        <div class="unit">
-                    <div class="screen tf-screen stage-after" id="tfScreen">
-            <div class="scr-launcher"><img src="assets/images/before.webp" alt="A cluttered generic Android launcher" loading="lazy" decoding="async"></div>
-            <div class="scr-aa"><img src="assets/images/after.webp" alt="The clean Android Auto interface running DashLink" loading="lazy" decoding="async"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ APP SHOWCASE (the DashLink app on the head unit) ============ -->
-<section class="app" id="app">
-  <div class="wrap">
-        <span class="eyebrow reveal">The DashLink app</span>
-    <h2 class="h-xl reveal d1" style="margin-top:18px;max-width:20ch">This is DashLink. Right on your head unit.</h2>
-    <p class="lead reveal d2" style="margin-top:18px;max-width:58ch">DashLink is its own app &mdash; clean, fast and built for the car. Open it on your Android screen, choose how you want to connect (Self, USB or Wireless), tap Start, and Android Auto is running. Your speed, trip and apps sit right beside it.</p>
-
-    <div class="hu-hero reveal-scale">
-      <div class="hu"><div class="hu-screen"><img src="assets/images/v2/home.webp" alt="The DashLink home screen: USB, Wireless and Self Mode, a Start button, a live drive card with speed and trip stats, and pinned apps" width="2000" height="1250" loading="lazy" decoding="async"></div></div>
-      <p class="hu-hero-cap">One home screen &mdash; pick <b>USB</b>, <b>Wireless</b> or <b>Self Mode</b>, tap <b>Start</b>, and you're driving.</p>
-    </div>
-
-    <div class="hu-gallery">
-      <a class="hu-card reveal" href="features/#dock">
-        <div class="hu"><div class="hu-screen"><img src="assets/images/v2/dock-dial.webp" alt="DashLink Dock mode with a dial speedometer, speed-limit marker, clock, fuel range and trip stats" width="2000" height="1250" loading="lazy" decoding="async"></div></div>
-        <div class="hu-meta">
-          <span class="hu-ic"><svg viewBox="0 0 24 24"><path d="M12 14l4-4"/><path d="M3.3 19a9 9 0 1 1 17.4 0"/></svg></span>
-          <span><h4>Dock mode</h4><p>A clean driving screen: big speed, speed-limit sign, fuel range and this trip. Four layouts, two speedometers.</p></span>
-        </div>
-      </a>
-      <a class="hu-card reveal d1" href="features/#care">
-        <div class="hu"><div class="hu-screen"><img src="assets/images/v2/car-care.webp" alt="DashLink Car care: odometer, oil change and tyre rotation reminders, and a maintenance log" width="2000" height="1250" loading="lazy" decoding="async"></div></div>
-        <div class="hu-meta">
-          <span class="hu-ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
-          <span><h4>Car care</h4><p>DashLink counts your kilometres and reminds you when the oil change or tyre rotation is due.</p></span>
-        </div>
-      </a>
-      <a class="hu-card reveal d2" href="features/#fuel">
-        <div class="hu"><div class="hu-screen"><img src="assets/images/v2/fuel-costs.webp" alt="DashLink Fuel and costs: estimated fuel left, range, consumption, tank size and fuel price" width="2000" height="1250" loading="lazy" decoding="async"></div></div>
-        <div class="hu-meta">
-          <span class="hu-ic"><svg viewBox="0 0 24 24"><path d="M4 20V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v14M3 20h12M14 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V8l-3-3"/></svg></span>
-          <span><h4>Fuel &amp; costs</h4><p>Estimated fuel left, range and what each trip costs, in your units and currency.</p></span>
-        </div>
-      </a>
-    </div>
-
-    <p class="reveal" style="text-align:center;margin-top:clamp(28px,3vw,40px)">
-      <a href="features/" class="btn btn-ghost">See everything new in DashLink
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </p>
-
-  </div>
-</section>
-
-<!-- ============ WHAT IS ANDROID AUTO ============ -->
-<section class="what" id="what">
-  <div class="wrap">
-    <div class="what-grid">
-      <div>
-        <span class="eyebrow reveal">New to this?</span>
-        <h2 class="h-lg reveal d1" style="margin-top:20px">So&hellip; what is<br>Android Auto?</h2>
-        <p class="lead reveal d2" style="margin-top:22px">It's Google's driving mode for your car screen. Instead of tiny buttons and fiddly menus, you get large, glanceable cards for the three things that matter on the road &mdash; <b style="color:var(--ink)">where you're going, what you're listening to, and who you're talking to</b>. Everything else gets out of the way.</p>
-        <div class="pill-list reveal d2">
-          <div class="row">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <div><h4>Made for glancing, not staring</h4><p>Big text and simple layouts you read in a split second, so your eyes stay on the road.</p></div>
-          </div>
-          <div class="row">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3zM5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
-            <div><h4>Just say it out loud</h4><p>"Navigate home", "Play my drive playlist", "Text I'm on my way" &mdash; hands never leave the wheel.</p></div>
-          </div>
-          <div class="row">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>
-            <div><h4>Your apps, driving-ready</h4><p>Google Maps, Spotify, YouTube Music, WhatsApp and more &mdash; redrawn for the car.</p></div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal-scale d1">
-        <div class="unit">
-          <div class="screen screen-video">
-            <video id="whatVideo" src="assets/images/aa-spotify.mp4" poster="assets/images/aa_home_maps.webp" width="1280" height="480" autoplay muted loop playsinline preload="metadata"></video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SHOWCASE (sticky, scroll-synced) ============ -->
-<section class="showcase" id="showcase" data-scenes="4">
-  <div class="sc-track">
-    <div class="sc-sticky">
-      <span class="eyebrow sc-eyebrow reveal">A closer look</span>
-
+<section class="hero hero-split" id="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
       
-      <!-- changing headline -->
-      <div class="sc-copy" id="scCopy">
-        <div class="cap on" data-cap="0"><h3>Everything, one glance away.</h3><p>Maps, music and more share the screen &mdash; so what you need is always in view.</p></div>
-        <div class="cap" data-cap="1"><h3>Never miss a turn.</h3><p>Full-screen Google Maps with clear, timely guidance, right where you're looking.</p></div>
-        <div class="cap" data-cap="2"><h3>Your music, playing.</h3><p>Spotify, YouTube Music and more, with big controls you can hit without looking down.</p></div>
-        <div class="cap" data-cap="3"><h3>Take the call, keep the map.</h3><p>Dial, answer and talk hands-free while your navigation stays right beside you.</p></div>
-      </div>
-
-      <!-- dashboard + real AA screens -->
-      <div class="sc-dash">
-        <div class="sc-wheel"></div>
-        <div class="sc-unit">
-          <div class="sc-screen">
-            <div class="sc-scene on" data-scene="0"><img src="assets/images/aa_home.webp" alt="Android Auto home with map and music" loading="lazy" decoding="async"></div>
-            <div class="sc-scene" data-scene="1"><img src="assets/images/navigation_light.webp" alt="Android Auto turn-by-turn navigation" loading="lazy" decoding="async"></div>
-            <div class="sc-scene" data-scene="2"><video src="assets/images/aa-spotify.mp4" muted loop playsinline preload="none" poster="assets/images/aa_navigation_and_music.webp"></video></div>
-            <div class="sc-scene" data-scene="3"><img src="assets/images/dial_pad_light.webp" alt="Making a hands-free call on the dial pad while the map stays in view" loading="lazy" decoding="async"></div>
+      <span class="eyebrow reveal" data-h="eyebrow">For the Android head unit already in your car</span>
+      <h1 class="display reveal d1" data-h="title">Add Android Auto to your head unit. <span class="grad-text">Try DashLink free.</span></h1>
+      <p class="lead reveal d2" data-h="sub">DashLink brings Android Auto to head units that don&rsquo;t have it, plus a full car dashboard and motorsport timing. Every feature is unlocked during your trial, and afterwards DashLink stays free.</p>
+      <div class="hero-cta reveal d3"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dhome%26utm_term%3Dhome" data-play="headunit" data-cta="hero_primary" data-fallback="download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="plans/" data-cta="hero_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <p class="hero-note reveal d3">Android 6.0+ head units &middot; No account &middot; No new hardware</p>
+      
+    </div>
+    <div class="hero-media reveal-scale d2" data-h="media"><div class="cs3"><div class="cs3-in"><div class="cs3-scr cs3-0" style="--i:0"><img src="assets/images/v8/mode-race.webp" alt="DashLink Racing: a live delta to your best lap" width="2000" height="1250" decoding="async" loading="lazy"><span class="cs3-tag">Racing &middot; Pro</span></div><div class="cs3-scr cs3-1" style="--i:1"><img src="assets/images/v5/dock-cockpit.webp" alt="Dock mode: the Cockpit layout with the Corsa dial" width="2000" height="1250" decoding="async" loading="lazy"><span class="cs3-tag">Dashboard &middot; Free</span></div><div class="cs3-scr cs3-2" style="--i:2"><img src="assets/images/aa_home.webp" alt="Android Auto with a map and music on an aftermarket head unit" width="2000" height="1250" decoding="async" fetchpriority="high"><span class="cs3-tag">Android Auto &middot; Drive</span></div></div></div></div>
+  </div>
+  
+</section>
+<section class="block" id="explore">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">What&rsquo;s inside</span>
+    <h2 class="h-xl reveal d1">One app. <span class="grad-text">Four upgrades for your car.</span></h2>
+    <p class="lead reveal d2">Try all of them free. Features with a Drive or Pro badge stay with those plans after the trial; the rest stay free.</p>
+  </div>
+    <div class="pcards pc4">
+      <a class="pcard reveal d0" href="android-auto/" data-cta="pillar_android_auto" data-plan="drive">
+        <div class="pc-media"><div class="hu"><div class="hu-screen" style="aspect-ratio:2400/1080"><img src="assets/images/aa_home.webp" alt="Android Auto on a head unit" width="2400" height="1080" loading="lazy" decoding="async"></div></div></div>
+        <div class="pc-copy"><h3>Android Auto<span class="badge badge-drive" title="Included in DashLink Drive and Pro">Drive</span></h3><p>Maps, music and calls on the screen you already have. USB, wireless or no phone at all.</p><span class="card-link">Learn more<svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="pcard reveal d1" href="dashboard/" data-cta="pillar_dashboard" data-plan="free">
+        <div class="pc-media"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="assets/images/v5/dock-cockpit.webp" alt="Dock mode, Cockpit layout" width="2000" height="1250" loading="lazy" decoding="async"></div></div></div>
+        <div class="pc-copy"><h3>Dashboard<span class="badge badge-free" title="Free in DashLink">Free</span></h3><p>Dock mode turns the screen into a car dashboard: speed, time, music, trip and apps.</p><span class="card-link">Learn more<svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="pcard reveal d2" href="trips-fuel-maintenance/" data-cta="pillar_trips_fuel_maintenance" data-plan="free">
+        <div class="pc-media"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="assets/images/v2/fuel-costs.webp" alt="Fuel and costs on the head unit" width="2000" height="1250" loading="lazy" decoding="async"></div></div></div>
+        <div class="pc-copy"><h3>Trips &amp; fuel<span class="badge badge-free" title="Free in DashLink">Free</span></h3><p>A trip computer, fuel and cost estimates, and service reminders before they&rsquo;re overdue.</p><span class="card-link">Learn more<svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="pcard reveal d0" href="racing/" data-cta="pillar_racing" data-plan="pro">
+        <div class="pc-media"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="assets/images/v8/mode-race.webp" alt="DashLink Racing in Race mode" width="2000" height="1250" loading="lazy" decoding="async"></div></div></div>
+        <div class="pc-copy"><h3>DashLink Racing<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></h3><p>Lap timing, rally pace notes and performance tests. The performance tests are free.</p><span class="card-link">Learn more<svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="showcase" id="showcase" data-scenes="4">
+  <div class="sc-track" style="height:400svh">
+    <div class="sc-sticky">
+      <span class="eyebrow">Android Auto for your head unit <span class="badge badge-drive" title="Included in DashLink Drive and Pro">Drive</span></span>
+      <div class="sc-copy"><div class="cap on"><h3>No Android Auto? <span class="grad-text">Add it.</span></h3><p>DashLink brings Android Auto to Android head units that don&rsquo;t have it built in. It&rsquo;s an app, not a new stereo.</p></div><div class="cap"><h3>Maps on the big screen.</h3><p>Full-screen navigation with clear, timely guidance, on the screen already in your dash.</p></div><div class="cap"><h3>Your music, playing.</h3><p>Big controls you can hit without looking down.</p></div><div class="cap"><h3>Calls, hands-free.</h3><p>Dial, answer and talk while navigation stays beside you. No new head unit needed.</p></div></div>
+      <div class="sc-dash"><div class="sc-unit"><div class="sc-screen"><div class="sc-scene on"><img src="assets/images/aa_home.webp" alt="Android Auto with a map and music side by side on an aftermarket head unit" loading="lazy" decoding="async"></div><div class="sc-scene"><img src="assets/images/navigation_light.webp" alt="Turn-by-turn navigation in Android Auto" loading="lazy" decoding="async"></div><div class="sc-scene"><video src="assets/images/aa-spotify.mp4" poster="assets/images/aa_navigation_and_music.webp" muted loop playsinline preload="none" aria-label="Music playing beside navigation in Android Auto"></video></div><div class="sc-scene"><img src="assets/images/dial_pad_light.webp" alt="A hands-free call with the map still in view" loading="lazy" decoding="async"></div></div></div></div>
+      <div class="sc-rail" aria-hidden="true"><button type="button" tabindex="-1" class="on" data-go="0"></button><button type="button" tabindex="-1" data-go="1"></button><button type="button" tabindex="-1" data-go="2"></button><button type="button" tabindex="-1" data-go="3"></button></div>
+    </div>
+  </div>
+</section>
+<section class="block ug" id="upgrade">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">The cheaper upgrade</span>
+    <h2 class="h-xl reveal d1">Don&rsquo;t replace your head unit. <span class="grad-text">Upgrade it.</span></h2>
+    <p class="lead reveal d2">Many Android head units run apps but don&rsquo;t come with Android Auto. DashLink adds it to the screen you already have.</p>
+  </div>
+    <div class="ug-grid"><div class="ug-col ug-rep reveal">
+      <span class="ug-tag"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>Replace it</span>
+      <h3>A new head unit</h3>
+      <ul><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>A new stereo with Android Auto built in</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Fitting, wiring and often a new dash kit</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Your current screen ends up in a drawer</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>You pay up front, before you know it suits you</span></li></ul>
+    </div><span class="ug-vs reveal" aria-hidden="true">vs</span><div class="ug-col ug-add reveal d1">
+      <span class="ug-tag"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg>Upgrade it</span>
+      <h3>DashLink</h3>
+      <ul><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>An app on the head unit you already have</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Installs in minutes. No tools, no wiring, no dongle</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>USB, wireless, or no phone at all</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Try it free first. No account</span></li></ul>
+    </div></div>
+    <div class="hero-cta center reveal" style="margin-top:34px"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dhome%26utm_term%3Dhome" data-play="headunit" data-cta="home_upgrade" data-fallback="download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="android-auto/" data-cta="home_upgrade_more"><span>How it works</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <p class="hero-note center reveal">For Android head units on Android 6.0 or newer, even 1&ndash;2 GB ones. Not made or endorsed by Google.</p>
+  </div>
+</section><section class="band-racing t-racing" id="racing">
+        <div class="br-stripes" aria-hidden="true"></div>
+        <div class="wrap br-in">
+          <div class="br-copy">
+            <span class="lockup lg reveal"><span class="wm">DashLink<span class="wm-dot">.</span></span><span class="lk-div" aria-hidden="true"></span><svg class="rmark " viewBox="0 0 44 28" aria-hidden="true" focusable="false"><defs><linearGradient id="rmg5" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#5b1820"/><stop offset=".55" stop-color="#e63946"/><stop offset="1" stop-color="#ffb4a8"/></linearGradient></defs><path fill="url(#rmg5)" d="M3 27 9 17h6L9 27zM14 27 22 10h6l-8 17zM25 27 36 1h6L31 27z"/></svg><span class="lk-racing">Racing</span></span>
+            <h2 class="display reveal d1">Lap timing, rally stages and performance tests.</h2>
+            <p class="lead reveal d2">On the screen already in your car. Live delta, ghost car, pace notes, 0&ndash;100 and a road dyno. Built for closed courses.</p>
+            <div class="hero-cta reveal d3"><a class="btn btn-primary" href="racing/" data-cta="home_racing"><span>Explore DashLink Racing</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+            <p class="page-tier reveal d3"><span class="badge badge-pro" title="Included in DashLink Pro">Pro</span><span>Part of Pro. Try it free; the performance tests stay free.</span></p>
+            <div class="br-subs reveal d3"><a href="racing/track-day/">Track day</a><a href="racing/rally/">Rally</a><a href="racing/performance/">Performance</a></div>
           </div>
+          <div class="br-media reveal-scale d1"><div class="lx-stage xl"><div class="lx-planes"><div class="lx-plane on"><img class="lx-base" src="assets/images/v8/mode-race.webp" alt="DashLink Racing in Race mode: a huge live delta to your best lap, the next pace notes and your best time" width="2000" height="1250" loading="lazy" decoding="async"><figure class="lx-card" style="left:1.8%;top:10.7%;width:42%;--d:0"><img src="assets/images/v13/race-note.webp" alt="" decoding="async" loading="lazy"><figcaption>Next pace note, 160 m out</figcaption></figure><figure class="lx-card" style="left:15%;top:44.8%;width:69%;--d:1"><img src="assets/images/v13/race-delta.webp" alt="" decoding="async" loading="lazy"><figcaption>Live gap to your best lap</figcaption></figure><figure class="lx-card below cap-r" style="left:82.5%;top:89.9%;width:15%;--d:2"><img src="assets/images/v13/race-best.webp" alt="" decoding="async" loading="lazy"><figcaption>Your best</figcaption></figure><figure class="lx-card xl-ghost" style="left:79%;top:2%;width:28%;--d:3"><img src="assets/images/v8/ghost-straight.webp" alt="" decoding="async" loading="lazy"><figcaption>Ghost car: your best lap</figcaption></figure></div></div></div></div>
         </div>
-      </div>
-
-      <!-- progress rail -->
-      <div class="sc-rail" id="scRail" aria-hidden="true">
-        <button class="on" data-go="0"></button>
-        <button data-go="1"></button>
-        <button data-go="2"></button>
-        <button data-go="3"></button>
-      </div>
-    </div>
+      </section><section class="block t-racing" id="debrief"><div class="wrap">
+        <div class="shead center">
+    <span class="eyebrow reveal">DashLink Racing &middot; Debrief <span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+    <h2 class="h-xl reveal d1">Where the time goes, <span class="grad-text">in plain words.</span></h2>
+    <p class="lead reveal d2">After the session, DashLink shows which corners cost you and what each is worth a lap. Every lap, sector, speed trace and g-force, on your phone.</p>
+  </div>
+        <div class="home-tour"><div class="pt pt-side" data-explorer><div class="xp-tabs pt-tabs" role="tablist" aria-label="Session analysis screens"><button type="button" role="tab" class="xp-tab on" aria-selected="true" data-xp="overview"><span class="xp-bar" aria-hidden="true"></span><b>Overview</b><small>Best lap, theoretical best, consistency, top speed and your g-force peaks.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="map"><span class="xp-bar" aria-hidden="true"></span><b>Map</b><small>Your line coloured by speed, every corner numbered. Tap a lap to light it up.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="laps"><span class="xp-bar" aria-hidden="true"></span><b>Laps</b><small>Every lap and sector side by side. Gold is the best in each column.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="speed"><span class="xp-bar" aria-hidden="true"></span><b>Speed</b><small>Any lap against your best: who carries more speed where, and the time gained or lost.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="grip"><span class="xp-bar" aria-hidden="true"></span><b>Grip</b><small>Braking, cornering and acceleration on one g-g plot. Measured when you use phone sensors.</small></button></div><div class="cn-stage ph-stage pt-stage" data-tilt><span class="cn-glow" aria-hidden="true"></span><div class="cn-float"><div class="cn-card3d ph3d">
+    <span class="cn-depth" aria-hidden="true"></span>
+    <div class="ph-body"><span class="ph-island" aria-hidden="true"></span><div class="ph-screen pt-screen"><img class="xp-shot on" data-xp="overview" src="assets/images/v10/wl-overview.webp" alt="Session overview: best lap 2:56.240, theoretical best, consistency, top speed, peak g-forces and best sectors" width="898" height="1830"  decoding="async"><img class="xp-shot" data-xp="map" src="assets/images/v10/wl-map.webp" alt="Track map coloured by speed with 15 numbered corners and lap 2 highlighted" width="898" height="1830" loading="lazy" decoding="async"><img class="xp-shot" data-xp="laps" src="assets/images/v10/wl-laps.webp" alt="Lap table: three laps with sector times coloured from fastest to slowest" width="898" height="1830" loading="lazy" decoding="async"><img class="xp-shot" data-xp="speed" src="assets/images/v10/wl-speed.webp" alt="Speed trace of lap 3 against the best lap, and the time lost along the lap" width="898" height="1830" loading="lazy" decoding="async"><img class="xp-shot" data-xp="grip" src="assets/images/v10/wl-grip.webp" alt="g-g plot of the session with peak braking, cornering and acceleration" width="898" height="1830" loading="lazy" decoding="async"></div></div>
+    <span class="cn-sheen ph-sheen" aria-hidden="true"></span>
+    <figure class="ph-lift below" data-xp-lift="overview" style="--x:-30%;--y:60%;--w:112%;--d:0"><img src="assets/images/v10/wl-time.webp" alt="" loading="lazy" decoding="async"><figcaption>The corners that cost you</figcaption></figure><figure class="ph-lift cap-r" data-xp-lift="map" style="--x:22%;--y:72%;--w:104%;--d:1"><img src="assets/images/v10/wl-lap-card.webp" alt="" loading="lazy" decoding="async"><figcaption>Tap a lap: time and sectors</figcaption></figure><figure class="ph-lift" data-xp-lift="laps" style="--x:-26%;--y:16%;--w:116%;--d:2"><img src="assets/images/v10/wl-lap-best.webp" alt="" loading="lazy" decoding="async"><figcaption>Best lap and sectors in gold</figcaption></figure><figure class="ph-lift cap-r" data-xp-lift="speed" style="--x:20%;--y:52%;--w:104%;--d:3"><img src="assets/images/v10/wl-delta.webp" alt="" loading="lazy" decoding="async"><figcaption>Where the time goes, metre by metre</figcaption></figure><figure class="ph-lift below" data-xp-lift="grip" style="--x:-24%;--y:72%;--w:110%;--d:4"><img src="assets/images/v10/wl-peaks.webp" alt="" loading="lazy" decoding="async"><figcaption>Your peaks, in g</figcaption></figure>
+  </div></div></div></div></div>
+        <div class="hero-cta center" style="margin-top:30px"><a class="btn btn-ghost" href="racing/track-day/#analysis" data-cta="home_analysis"><span>See the session analysis</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div></section>
+<section class="block pw-sec t-racing" id="pit-wall">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Then, on the big screen <span class="badge badge-pro" title="Included in DashLink Pro">Pro</span> <span class="badge badge-new" title="New in DashLink">New</span></span>
+    <h2 class="h-xl reveal d1">Take the session <span class="grad-text">to the pit wall.</span></h2>
+    <p class="lead reveal d2">Open every session on a laptop or a big screen with DashLink Wireless: corner losses, lap and sector tables, speed traces and the grip plot, big enough for the whole team.</p>
+  </div>
+    <div class="pw reveal-scale"><div class="spotted" data-spotted><div class="spotted-in"><img src="assets/images/v11/pit-wall.webp" alt="A team engineer reviewing a DashLink Racing session in Browser view on a big monitor: every corner with best, typical and time lost, and where the time is" width="1672" height="700" loading="lazy" decoding="async"><button type="button" class="xp-spot" style="left:48.4%;top:12.6%" aria-label="Served by your phone, on local Wi-Fi"><i></i><span>Served by your phone, on local Wi-Fi</span></button><button type="button" class="xp-spot" style="left:54%;top:30%" aria-label="Overview, map, laps, corners, speed, grip"><i></i><span>Overview, map, laps, corners, speed, grip</span></button><button type="button" class="xp-spot" style="left:47%;top:52%" aria-label="Every corner: best, typical and the loss"><i></i><span>Every corner: best, typical and the loss</span></button><button type="button" class="xp-spot sp-r" style="left:80%;top:40%" aria-label="Where the time is, in plain words"><i></i><span>Where the time is, in plain words</span></button><button type="button" class="xp-spot sp-r" style="left:81%;top:76%" aria-label="Session details, down to the GPS rate"><i></i><span>Session details, down to the GPS rate</span></button></div></div><span class="pw-fade" aria-hidden="true"></span></div>
+    <ul class="pw-chips reveal"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>No cloud or account: your phone serves it</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Over Wi-Fi or the phone&rsquo;s hotspot</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Made for driver and coach debriefs</span></li></ul>
+    <div class="hero-cta center reveal" style="margin-top:26px"><a class="btn btn-ghost" href="wireless-app/#browser" data-cta="feature_pit-wall"><span>See Browser view</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
-
-<!-- ============ BENEFITS ============ -->
-<section class="benefits" id="benefits">
-  <div class="wrap">
-    <span class="eyebrow reveal">Why you'll love it</span>
-    <h2 class="h-xl reveal d1" style="margin-top:20px;max-width:16ch">Everything that makes driving better &mdash; in one upgrade.</h2>
-        <div class="feat-grid">
-
-      <div class="feat reveal">
-        <span class="kicker">Navigation</span>
-        <h3>Google Maps, sized for the windshield</h3>
-        <p>Live traffic, lane guidance and clear turns on a big, bright map &mdash; so you never miss an exit again.</p>
-        <div class="feat-stage"><div class="feat-shot"><img src="assets/images/map_light.webp" alt="Google Maps turn-by-turn navigation in Android Auto" width="2400" height="1080" loading="lazy" decoding="async"></div></div>
-      </div>
-
-      <div class="feat reveal d1">
-        <span class="kicker">Music</span>
-        <h3>Your soundtrack, one tap away</h3>
-        <p>Spotify, YouTube Music and more, with big controls you can hit without ever looking down.</p>
-        <div class="feat-stage"><div class="feat-shot"><img src="assets/images/aa_home.webp" alt="Spotify playing next to the map in Android Auto" loading="lazy" decoding="async"></div></div>
-      </div>
-
-      <div class="feat reveal">
-        <span class="kicker">Gemini</span>
-        <h3>Just ask Gemini.</h3>
-        <p>Ask for directions, a song, even a tour of the road ahead &mdash; Google's AI answers out loud, hands on the wheel.</p>
-        <div class="feat-stage"><div class="feat-shot"><img src="assets/images/gemini.webp" alt="Google Gemini Live answering questions in Android Auto" width="1650" height="742" loading="lazy" decoding="async"></div></div>
-      </div>
-
-      <div class="feat reveal d1">
-        <span class="kicker">Calling</span>
-        <h3>Hands-free calls</h3>
-        <p>Answer and dial by voice and keep the whole conversation on the big screen in front of you.</p>
-        <div class="feat-stage"><div class="feat-shot"><img src="assets/images/aa_dialpad.webp" alt="The phone dial pad open beside the map in Android Auto" width="2400" height="1080" loading="lazy" decoding="async"></div></div>
-      </div>
-
-      <div class="feat reveal">
-        <span class="kicker">Messaging</span>
-        <h3>Texts read aloud</h3>
-        <p>Hear messages the moment they arrive and reply by voice &mdash; you never type while driving.</p>
-        <div class="feat-stage"><div class="feat-shot"><img src="assets/images/speak_aloud.webp" alt="Messages read aloud and answered by voice in Android Auto" width="2400" height="1080" loading="lazy" decoding="async"></div></div>
-      </div>
-
-      <div class="feat reveal d1">
-        <span class="kicker">Safer driving</span>
-        <h3>Less looking down, more looking up</h3>
-        <p>Fewer, bigger targets and a calmer interface mean fewer distractions &mdash; the whole point of Android Auto.</p>
-        <div class="feat-stage"><div class="feat-shot"><img src="assets/images/city-dashboard.webp" alt="A driver using DashLink Android Auto on a Honda City head unit" width="1535" height="691" loading="lazy" decoding="async"></div></div>
-      </div>
-
+<section class="fb flip t-racing home-sensors" id="phone-sensors">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Phone sensors<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span><span class="badge badge-new" title="New in DashLink">New</span></span>
+      <h2 class="h-lg reveal d1">Your phone becomes <span class="grad-text">a precision timing sensor.</span></h2>
+      <p class="fb-body reveal d2">A typical head unit reads its GPS about once a second. At 120 km/h that&rsquo;s one reading every 33 metres, and a lot happens in a corner in 33 metres. Mount a phone running <a href="wireless-app/">DashLink Wireless</a> and its GPS and motion sensors fill in the gaps.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Up to <b>25 readings a second</b> instead of about one</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span><b>Real g-forces</b>, measured by the phone</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Carries on with the car&rsquo;s GPS if the phone drops out</span></li></ul>
+      
+      <div class="reveal d3" style="margin-top:26px"><a class="btn btn-ghost" href="racing/track-day/#phone-sensors" data-cta="feature_phone-sensors"><span>How phone sensors work</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
+    <div class="fb-media reveal-scale d1">
+    <div class="ps-demo  psd-compact" data-ps-demo data-metres="260">
+      
+      <div class="psd-ctrl">
+        <div class="md-seg psd-seg" role="radiogroup" aria-label="Timing source">
+          <button type="button" role="radio" aria-checked="true" data-hz="1">Car GPS only</button>
+          <button type="button" role="radio" aria-checked="false" data-hz="25">Car + phone</button>
+        </div>
+        <label class="psd-speed"><span>Speed <b data-psd-v>120</b> km/h</span><input type="range" min="60" max="220" step="10" value="120" data-psd-range aria-label="Speed through the corner, km/h"></label>
+      </div>
+      <div class="psd-view">
+        <svg viewBox="0 0 640 360" role="img" aria-label="A corner, with the readings the timer gets through it">
+          <path class="psd-road" d="M30 300 L300 300 C480 300 560 262 560 180 C560 98 480 60 380 60 L110 60"/>
+          <path class="psd-true" d="M30 300 L300 300 C480 300 560 262 560 180 C560 98 480 60 380 60 L110 60" data-psd-path/>
+          <polyline class="psd-rec" data-psd-rec points=""/>
+          <g data-psd-dots></g>
+          <circle class="psd-car" r="9" data-psd-car cx="-20" cy="-20"/>
+        </svg>
+        <div class="psd-legend"><span class="lg-true">The line you drove</span><span class="lg-rec">What the timer records</span><span class="lg-fix">GPS fix</span><span class="lg-fill">Filled in by the phone</span></div>
+      </div>
+      <dl class="psd-stats" aria-live="polite">
+        <div><dt>Readings a second</dt><dd data-psd-hz>1</dd></div>
+        <div><dt>Distance between readings</dt><dd data-psd-gap>33 m</dd></div>
+        <div><dt>Readings in this corner</dt><dd data-psd-n>7</dd></div>
+        <div><dt>g-forces</dt><dd data-psd-g>Estimated from GPS</dd></div>
+      </dl>
+      <p class="psd-note">Illustration. Many head units&rsquo; GPS updates about once a second; yours may be faster. The phone sends up to 25 readings a second, at 10 or 25 Hz.</p>
+    </div></div>
   </div>
 </section>
-
-<!-- ============ MODES ============ -->
-<section class="modes" id="modes">
-  <div class="wrap">
-    <span class="eyebrow reveal">Three ways to connect</span>
-    <h2 class="h-xl reveal d1" style="margin-top:20px;max-width:18ch">One app. Whatever your setup, DashLink fits.</h2>
-    <p class="lead reveal d2" style="margin-top:20px;max-width:46ch">Run it straight on the head unit, or pair your phone by cable or Wi-Fi. Pick what suits your car.</p>
-    <div class="mode-grid">
-            <div class="mode reveal-scale">
-        <div class="mode-anim"><img src="assets/images/self_mode.webp" alt="Android Auto running directly on the head unit" width="1768" height="890" loading="lazy" decoding="async"></div>
-        <span class="n">Mode 01</span>
-        <h3>Self Mode</h3>
-        <p>Runs Android Auto directly on the head unit itself &mdash; no phone needed. The simplest way to get started with what's already in your dash.</p>
-      </div>
-      <div class="mode reveal-scale d1">
-        <div class="mode-anim"><img src="assets/images/wired_aa.webp" alt="An Android phone connected to the head unit by USB cable" width="1830" height="920" loading="lazy" decoding="async"></div>
-        <span class="n">Mode 02</span>
-        <h3>USB Mode</h3>
-        <p>Plug your Android phone into the unit with a cable. Rock-solid, low-latency, and it keeps your phone charged the whole drive.</p>
-      </div>
-      <div class="mode reveal-scale d2">
-        <div class="mode-anim"><img src="assets/images/wireless_aa.webp" alt="An Android phone connecting to Android Auto wirelessly" width="1830" height="920" loading="lazy" decoding="async"></div>
-        <span class="n">Mode 03</span>
-        <h3>Wireless Mode</h3>
-        <p>Leave the phone in your pocket. DashLink connects over Wi-Fi and starts automatically every time you get in the car.</p>
-      </div>
+<section class="fb" id="wireless">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">DashLink Wireless &middot; free phone app</span>
+      <h2 class="h-lg reveal d1">Your car, <span class="grad-text">in your pocket.</span></h2>
+      <p class="fb-body reveal d2">The free companion app helps your phone start wireless Android Auto, carries your Racing sessions home over a direct, offline link, and turns a laptop into the pit wall.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Sessions, laps and pace notes. <b>No cloud, no account</b></span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Export <b>GPX or CSV</b></span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span><b>Browser view</b>: debrief on a laptop or tablet</span></li></ul>
+      
+      <div class="reveal d3" style="margin-top:26px"><a class="btn btn-ghost" href="wireless-app/" data-cta="feature_wireless"><span>Explore DashLink Wireless</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
+    <div class="fb-media reveal-scale d1"><div class="cn-stage ph-stage ph-fan" data-tilt><span class="cn-glow" aria-hidden="true"></span><div class="cn-float ph-fan-0"><div class="cn-card3d ph3d mirror">
+    <span class="cn-depth" aria-hidden="true"></span>
+    <div class="ph-body"><span class="ph-island" aria-hidden="true"></span><div class="ph-screen"><img src="assets/images/v10/ps-start.webp" alt="DashLink Wireless: your Racing library, Browser view and Use as sensor" width="898" height="1830" loading="lazy" decoding="async"></div></div>
+    <span class="cn-sheen ph-sheen" aria-hidden="true"></span>
+    
+  </div></div><div class="cn-float ph-fan-1"><div class="cn-card3d ph3d">
+    <span class="cn-depth" aria-hidden="true"></span>
+    <div class="ph-body"><span class="ph-island" aria-hidden="true"></span><div class="ph-screen"><img src="assets/images/v10/wl-home.webp" alt="DashLink Wireless home: receive sessions from the car and send routes to it" width="898" height="1830" loading="lazy" decoding="async"></div></div>
+    <span class="cn-sheen ph-sheen" aria-hidden="true"></span>
+    
+  </div></div></div></div>
   </div>
 </section>
-
-<!-- ============ BEFORE / AFTER ============ -->
-<section class="compare">
+<section class="block cd-sec" id="connect">
   <div class="wrap">
-    <div style="text-align:center;max-width:820px;margin-inline:auto">
-      <span class="eyebrow reveal">See the difference</span>
-      <h2 class="h-xl reveal d1" style="margin-top:20px">Drag to transform your dashboard.</h2>
-      <p class="lead reveal d2" style="margin-top:18px;max-width:48ch;margin-inline:auto">Left is the plain Android launcher you have today. Right is the same screen, running DashLink.</p>
-    </div>
-    <div class="slider reveal-scale d1" id="slider" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
-            <div class="layer before">
-        <img src="assets/images/before.webp" alt="A cluttered generic Android head-unit launcher" width="1716" height="772" loading="lazy" decoding="async">
+    <div class="shead center">
+    <span class="eyebrow reveal">How your phone connects</span>
+    <h2 class="h-xl reveal d1">Three ways to get <span class="grad-text">Android Auto on screen.</span></h2>
+    <p class="lead reveal d2">Cable, wireless, or no phone at all. Try it below: pick a mode on the DashLink home screen and tap Start.</p>
+  </div>
+    <div class="cd reveal-scale" data-connect>
+      <div class="hu cd-unit"><div class="hu-screen cd-screen">
+        <img class="cd-base" src="assets/images/v2/home.webp" alt="The DashLink home screen on a head unit: connection modes, a Start button, this drive and your apps" width="2000" height="1250" loading="lazy" decoding="async">
+        <div class="cd-card" aria-live="polite">
+          <span class="cd-status"><i></i><span data-cd="status">Ready for Wireless</span></span>
+          <div class="cd-main">
+            <span class="cd-blob"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="cdg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fe0b8"/><stop offset="1" stop-color="#8fb4ff"/></linearGradient></defs><path d="M99.20 50.00L99.01 51.71L98.47 53.39L97.62 55.00L96.53 56.54L95.30 57.99L94.03 59.36L92.81 60.67L91.73 61.97L90.85 63.27L90.22 64.64L89.83 66.09L89.66 67.66L89.65 69.34L89.74 71.13L89.84 73.00L89.85 74.90L89.70 76.77L89.31 78.56L88.65 80.19L87.69 81.63L86.45 82.82L84.95 83.75L83.26 84.44L81.44 84.92L79.57 85.24L77.71 85.47L75.93 85.69L74.28 85.99L72.76 86.43L71.40 87.07L70.17 87.93L69.03 89.02L67.94 90.30L66.86 91.73L65.73 93.23L64.52 94.69L63.20 96.03L61.75 97.15L60.20 97.97L58.54 98.45L56.83 98.57L55.08 98.32L53.34 97.76L51.64 96.96L50.00 96.00L48.43 94.98L46.92 94.01L45.46 93.17L44.02 92.54L42.57 92.15L41.07 92.02L39.50 92.12L37.84 92.41L36.09 92.81L34.27 93.23L32.40 93.57L30.53 93.74L28.70 93.67L26.98 93.30L25.40 92.61L24.01 91.59L22.83 90.28L21.86 88.74L21.07 87.03L20.43 85.24L19.88 83.45L19.35 81.74L18.77 80.16L18.08 78.74L17.21 77.51L16.15 76.45L14.88 75.52L13.42 74.67L11.83 73.85L10.16 73.00L8.51 72.06L6.96 70.99L5.61 69.76L4.53 68.37L3.77 66.83L3.36 65.16L3.29 63.39L3.54 61.58L4.04 59.77L4.70 57.99L5.43 56.26L6.12 54.61L6.69 53.03L7.07 51.50L7.20 50.00L7.07 48.50L6.69 46.97L6.12 45.39L5.43 43.74L4.70 42.01L4.04 40.23L3.54 38.42L3.29 36.61L3.36 34.84L3.77 33.17L4.53 31.63L5.61 30.24L6.96 29.01L8.51 27.94L10.16 27.00L11.83 26.15L13.42 25.33L14.88 24.48L16.15 23.55L17.21 22.49L18.08 21.26L18.77 19.84L19.35 18.26L19.88 16.55L20.43 14.76L21.07 12.97L21.86 11.26L22.83 9.72L24.01 8.41L25.40 7.39L26.98 6.70L28.70 6.33L30.53 6.26L32.40 6.43L34.27 6.77L36.09 7.19L37.84 7.59L39.50 7.88L41.07 7.98L42.57 7.85L44.02 7.46L45.46 6.83L46.92 5.99L48.43 5.02L50.00 4.00L51.64 3.04L53.34 2.24L55.08 1.68L56.83 1.43L58.54 1.55L60.20 2.03L61.75 2.85L63.20 3.97L64.52 5.31L65.73 6.77L66.86 8.27L67.94 9.70L69.03 10.98L70.17 12.07L71.40 12.93L72.76 13.57L74.28 14.01L75.93 14.31L77.71 14.53L79.57 14.76L81.44 15.08L83.26 15.56L84.95 16.25L86.45 17.18L87.69 18.37L88.65 19.81L89.31 21.44L89.70 23.23L89.85 25.10L89.84 27.00L89.74 28.87L89.65 30.66L89.66 32.34L89.83 33.91L90.22 35.36L90.85 36.73L91.73 38.03L92.81 39.33L94.03 40.64L95.30 42.01L96.53 43.46L97.62 45.00L98.47 46.61L99.01 48.29L99.20 50.00Z" fill="url(#cdg)"/></svg><span class="cd-glyph" data-cd-glyph="usb"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v14M8 7l4-4 4 4M7 13v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2M12 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg></span><span class="cd-glyph on" data-cd-glyph="wireless"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01M2 9a14.5 14.5 0 0 1 20 0"/></svg></span><span class="cd-glyph" data-cd-glyph="self"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z"/></svg></span></span>
+            <div><b data-cd="title">Wireless Android Auto</b><p data-cd="text">Pair your phone over Bluetooth once &mdash; after that, Android Auto connects over Wi-Fi by itself.</p></div>
+          </div>
+          <div class="cd-seg" role="radiogroup" aria-label="Connection mode"><button type="button" role="radio" aria-checked="false" data-mode="usb"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v14M8 7l4-4 4 4M7 13v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2M12 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg><span>USB</span></button><button type="button" role="radio" aria-checked="true" data-mode="wireless"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01M2 9a14.5 14.5 0 0 1 20 0"/></svg><span>Wireless</span></button><button type="button" role="radio" aria-checked="false" data-mode="self"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z"/></svg><span>Self Mode</span></button></div>
+          <button type="button" class="cd-start" data-cd-start><span class="cd-sg" data-cd-glyph="usb"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v14M8 7l4-4 4 4M7 13v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2M12 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg></span><span class="cd-sg on" data-cd-glyph="wireless"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01M2 9a14.5 14.5 0 0 1 20 0"/></svg></span><span class="cd-sg" data-cd-glyph="self"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span data-cd="start">Start wireless</span></button>
+        </div>
+        <button type="button" class="xp-spot cd-spot" style="left:53.6%;top:3.6%" aria-label="Buy Drive or Pro, or restore a plan"><i></i><span>Buy Drive or Pro, or restore a plan</span></button><button type="button" class="xp-spot cd-spot sp-r" style="left:79.6%;top:3.6%" aria-label="Dock mode: a full-screen dashboard"><i></i><span>Dock mode: a full-screen dashboard</span></button><button type="button" class="xp-spot cd-spot" style="left:64.5%;top:19.6%" aria-label="Speed and heading from GPS"><i></i><span>Speed and heading from GPS</span></button><button type="button" class="xp-spot cd-spot sp-r" style="left:95.5%;top:41.5%" aria-label="This trip: distance, time, average"><i></i><span>This trip: distance, time, average</span></button><button type="button" class="xp-spot cd-spot sp-r" style="left:91%;top:52%" aria-label="Your next service, counted down"><i></i><span>Your next service, counted down</span></button><button type="button" class="xp-spot cd-spot sp-r" style="left:85%;top:67%" aria-label="Pin your favourite apps"><i></i><span>Pin your favourite apps</span></button>
+        <div class="cd-aa">
+          <img src="assets/images/aa_home.webp" alt="" loading="lazy" decoding="async">
+          <span class="cd-connecting"><i></i><span data-cd="connecting">Connecting&hellip;</span></span>
+          <button type="button" class="cd-back" data-cd-back><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Back to DashLink</span></button>
+        </div>
+      </div></div>
+      <div class="cd-modes" role="radiogroup" aria-label="How your phone connects">
+        <button type="button" role="radio" aria-checked="false" class="cd-mode" data-mode="usb">
+          <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v14M8 7l4-4 4 4M7 13v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2M12 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg></span><span class="mode-n">Mode 01</span>
+          <b>Plug in a cable</b><span class="cd-need"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg>A USB cable. Head unit with USB host</span><span class="cd-text">The most stable link on any unit, and your phone charges while you drive.</span>
+        </button>
+        <button type="button" role="radio" aria-checked="true" class="cd-mode" data-mode="wireless">
+          <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01M2 9a14.5 14.5 0 0 1 20 0"/></svg></span><span class="mode-n">Mode 02</span>
+          <b>Phone stays in your pocket</b><span class="cd-need"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg>Head unit with Wi-Fi and Bluetooth</span><span class="cd-text">Pair once over Bluetooth. After that it connects over Wi-Fi by itself. No dongle to buy.</span>
+        </button>
+        <button type="button" role="radio" aria-checked="false" class="cd-mode" data-mode="self">
+          <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><span class="mode-n">Mode 03</span>
+          <b>No phone at all</b><span class="cd-need"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg>Android Auto installed on the head unit</span><span class="cd-text">Runs Android Auto from the head unit itself. Nothing to plug in or pair.</span>
+        </button>
       </div>
-      <div class="layer after" id="afterLayer">
-        <img src="assets/images/after.webp" alt="The clean Android Auto interface running through DashLink" width="2400" height="1080" loading="lazy" decoding="async">
-      </div>
-      <div class="handle" id="handle"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg></span></div>
-      <span class="lbl b">Before</span>
-      <span class="lbl a">After &middot; DashLink</span>
+      <script type="application/json" data-cd-modes>{"usb":{"status":"Ready for USB","title":"USB Android Auto","text":"Plug your phone in with a cable. DashLink switches it into Android Auto mode and connects.","start":"Start USB"},"wireless":{"status":"Ready for Wireless","title":"Wireless Android Auto","text":"Pair your phone over Bluetooth once &mdash; after that, Android Auto connects over Wi-Fi by itself.","start":"Start wireless"},"self":{"status":"Ready for Self Mode","title":"Self Mode","text":"Android Auto installed on this head unit? Run it right here, with no phone at all.","start":"Start Self Mode"}}</script>
     </div>
-    <p class="disclaimer">Screens shown are for illustration only. Actual interface, features and compatibility may vary by device, apps and region.</p>
+    <div class="hero-cta center" style="margin-top:34px"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dhome%26utm_term%3Dhome" data-play="headunit" data-cta="home_connect" data-fallback="download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="android-auto/" data-cta="home_aa"><span>More about Android Auto</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
-
-<!-- ============ COMPATIBILITY ============ -->
-<section class="compat">
+<section class="block pl-sec" id="plans">
   <div class="wrap">
-    <span class="eyebrow reveal">Will it work for me?</span>
-    <h2 class="h-xl reveal d1" style="margin-top:20px;max-width:20ch">If your dashboard screen runs Android, DashLink runs on it.</h2>
-    <p class="lead reveal d2" style="margin-top:20px;max-width:52ch">There's no brand list and no approved-device list. DashLink is built for the ordinary Android screens people actually buy &mdash; whatever the shop called it when you had it fitted.</p>
-    <div class="req-grid">
-      <div class="req reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h5"/></svg></div>
-        <h4>Your head unit</h4>
-        <p>Most Android-powered car screens running Android 6.0 and above. No root required on the majority of units.</p>
-      </div>
-      <div class="req reveal d1">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
-        <h4>Your phone (optional)</h4>
-        <p>Any Android phone on Android 8.0+ for USB and Wireless modes. Not needed at all in Self Mode.</p>
-      </div>
-      <div class="req reveal d2">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19h.01"/></svg></div>
-        <h4>The basics</h4>
-        <p>A USB cable for USB mode, or Wi-Fi for wireless. A quick one-time setup and you're driving.</p>
-      </div>
-    </div>
-
-    <div class="names reveal d1">
-      <h4>Android Panel, head unit, car screen &mdash; same thing.</h4>
-      <p>People call it something different in every market and every workshop. If you're in Pakistan you almost certainly know it as an <b style="color:var(--ink)">Android Panel</b>. It's all the same device, and DashLink is made for it.</p>
-      <div class="name-chips">
-        <span class="lead-chip">Android Panel</span>
-        <span>Android head unit</span>
-        <span>Car Android screen</span>
-        <span>Android tape</span>
-        <span>Android stereo</span>
-        <span>Android monitor</span>
-        <span>Multimedia player</span>
-        <span>Android LCD</span>
-        <span>Aftermarket Android dashboard</span>
-      </div>
-      <p class="rule">The only thing that actually matters: your screen boots into <b>Android 6.0 or newer</b> and you can install an app on it. Brand, chipset, size and price are irrelevant &mdash; Chinese no-name units, Dasaita, Teyes, Atoto, Joying, Xtrons and locally fitted panels all run the same DashLink.</p>
-    </div>
+    <div class="shead center">
+    <span class="eyebrow reveal">Plans</span>
+    <h2 class="h-xl reveal d1">Try everything free. <span class="grad-text">Then keep what you love.</span></h2>
+    <p class="lead reveal d2">Every feature is yours to try. When the trial ends, DashLink stays free, and Drive or Pro unlock more.</p>
+  </div>
+    <div class="table-wrap reveal d1"><table class="compare plans-table">
+      <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col" class="pl-free"><a href="plans/#free">Free</a></th><th scope="col" class="pl-drive"><a href="plans/#drive">Drive</a></th><th scope="col" class="pl-pro"><a href="plans/#pro">Pro</a></th></tr></thead>
+      <tbody><tr><th scope="row">Dashboard (Dock), trips, fuel, logbook, car care</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Speedometers: Digital, Chrono, Minimal</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Performance tests: 0&ndash;100, braking, 80&ndash;120, dyno, stats</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Bluetooth music on the dashboard</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Android Auto (USB, wireless, self mode) and auto-start</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">DashLink Racing: track day, rally, recce + pace notes, regularity (TSD), saved-track sessions, coach, session analysis</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Premium speedometers: Corsa, Sport, Hyper</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Theme presets (all except Signature) and accent colours</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Home-screen widgets, steering-wheel key mapping, phone sensors</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr></tbody>
+    </table></div>
+    <p class="fine center">Every feature is unlocked during your free trial.</p>
+    <div class="hero-cta center reveal" style="margin-top:26px"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dhome%26utm_term%3Dhome" data-play="headunit" data-cta="plans_try" data-fallback="download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="plans/" data-cta="plans_see"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
-
-<!-- ============ PERFORMANCE ============ -->
-<section class="perf">
-  <div class="wrap">
-    <span class="eyebrow reveal">Performance</span>
-    <h2 class="h-xl reveal d1" style="margin-top:20px;max-width:16ch">Tuned to feel instant, every single drive.</h2>
-    <div class="stat-grid">
-      <div class="stat reveal"><div class="num">&lt;3s</div><div class="lbl">Cold start to driving screen</div></div>
-      <div class="stat reveal d1"><div class="num">60fps</div><div class="lbl">Smooth maps &amp; scrolling</div></div>
-      <div class="stat reveal d2"><div class="num">Low</div><div class="lbl">Latency on USB &amp; wireless</div></div>
-      <div class="stat reveal d3"><div class="num">Rock</div><div class="lbl">Stable, reconnecting links</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ INSTALL ============ -->
-<section class="install" id="install">
-  <div class="wrap">
-    <span class="eyebrow reveal">Get going</span>
-    <h2 class="h-xl reveal d1" style="margin-top:20px;max-width:16ch">Four steps. A few minutes. Done.</h2>
-    <p class="lead reveal d2" style="margin-top:18px;max-width:52ch">DashLink installs on the Android panel in your car &mdash; not on your phone. Most people copy it across on a USB stick.</p>
-    <div class="steps">
-      <div class="step reveal-scale">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg></div>
-        <h4>Download</h4>
-        <p>Get the app file, or install from Google Play if your panel has it.</p>
-      </div>
-      <div class="step reveal-scale d1">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 12l5 5L20 6"/></svg></div>
-        <h4>Install</h4>
-        <p>Copy it to a USB stick, plug it into the panel, and tap to install.</p>
-      </div>
-      <div class="step reveal-scale d2">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M8 7V5a4 4 0 0 1 8 0v2M6 7h12l-1 14H7z"/></svg></div>
-        <h4>Connect</h4>
-        <p>Choose Self, USB or Wireless mode. DashLink handles the rest.</p>
-      </div>
-      <div class="step reveal-scale d3">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 13l2-5a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 8l2 5v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><circle cx="7" cy="15" r="1"/><circle cx="17" cy="15" r="1"/></svg></div>
-        <h4>Drive</h4>
-        <p>Get in, and Android Auto is ready and waiting. That's it.</p>
-      </div>
-    </div>
-        <div class="reveal" style="margin-top:38px;text-align:center">
-      <a href="download/" class="btn btn-primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-        Download &amp; full install guide
-      </a>
-    </div>
-      </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div style="text-align:center;max-width:820px;margin-inline:auto">
-      <span class="eyebrow reveal">Questions</span>
-      <h2 class="h-xl reveal d1" style="margin-top:20px">Good question. Here's the answer.</h2>
-    </div>
-    <div class="faq-list reveal d1">
-      <div class="qa">
-        <button aria-expanded="false"><span>Will it work on my Android Panel / head unit?</span><span class="plus"></span></button>
-        <div class="ans"><p>Almost certainly. <b style="color:var(--ink)">Android Panel, head unit, car screen, Android tape, multimedia player</b> &mdash; these are all names for the same thing, and DashLink is built for all of them. There's no approved-brand list: if the screen in your dashboard boots into Android 6.0 or newer and lets you install an app, DashLink will run. That covers unbranded Chinese panels fitted at a local shop as well as Dasaita, Teyes, Atoto, Joying and Xtrons units. Not sure what you have? Send us your panel details and we'll confirm before you pay a rupee.</p></div>
-      </div>
-      <div class="qa">
-        <button aria-expanded="false"><span>Does the size or price of my panel matter?</span><span class="plus"></span></button>
-        <div class="ans"><p>No. 7", 9", 10", 12.3", vertical Tesla-style screens &mdash; DashLink adapts to your display, and you can fine-tune resolution, DPI, orientation and screen fit from inside the app if the picture isn't sitting exactly right. A cheap 1GB panel and a high-end unit both get the same Android Auto.</p></div>
-      </div>
-      <div class="qa">
-        <button aria-expanded="false"><span>Do I need to root my device?</span><span class="plus"></span></button>
-        <div class="ans"><p>No. On the majority of head units DashLink runs without root. A small number of unusual units may need extra permissions, but for most people it's a straightforward install.</p></div>
-      </div>
-      <div class="qa">
-        <button aria-expanded="false"><span>Does wireless really work?</span><span class="plus"></span></button>
-        <div class="ans"><p>Yes. Wireless Mode connects your phone to the head unit over Wi-Fi and starts automatically when you get in the car &mdash; no cable, no fuss. For the most rock-solid connection, USB Mode is always there as a fallback.</p></div>
-      </div>
-      <div class="qa">
-        <button aria-expanded="false"><span>Is installation difficult?</span><span class="plus"></span></button>
-        <div class="ans"><p>Not at all. Download, install, pick a connection mode, and drive. The whole thing takes just a few minutes and there's a guided setup walking you through every step.</p></div>
-      </div>
-      <div class="qa">
-        <button aria-expanded="false"><span>What are the requirements to run Android Auto?</span><span class="plus"></span></button>
-        <div class="ans"><p>A few basics: your phone should be on <b style="color:var(--ink)">Android 9.0 (Pie) or higher</b> for most wired (USB) connections, or <b style="color:var(--ink)">Android 11.0 or higher</b> for wireless. You'll also want a head unit that can run Android Auto and a good-quality USB cable for USB Mode. For a wireless setup, a compatible phone and a head unit with Wi-Fi. Unlike factory Android Auto, DashLink doesn't need an expensive branded stereo &mdash; your existing Android head unit does the job, and Self Mode needs no phone at all.</p></div>
-      </div>
-      <div class="qa">
-        <button aria-expanded="false"><span>How do I download DashLink?</span><span class="plus"></span></button>
-        <div class="ans"><p>Tap any <a href="#final" style="color:var(--blue-hi)">Download</a> button on this page to get DashLink onto your Android head unit or phone, then follow the guided setup. As a reminder, phones on Android 10 and above already include the Android Auto system built in, so you won't need a separate Android Auto app.</p></div>
-      </div>
-      <div class="qa">
-        <button aria-expanded="false"><span>How do I get Android Auto to run on my car display?</span><span class="plus"></span></button>
-        <div class="ans"><p>It depends on the mode you choose. In <b style="color:var(--ink)">Self Mode</b>, DashLink runs Android Auto directly on the head unit &mdash; nothing to plug in. In <b style="color:var(--ink)">USB Mode</b>, plug your phone into the unit with a cable. In <b style="color:var(--ink)">Wireless Mode</b>, pair your phone with the unit once over Bluetooth/Wi-Fi; after that it connects automatically every time you get in, and the Android Auto screen appears on your display.</p></div>
-      </div>
-      <div class="qa">
-        <button aria-expanded="false"><span>Do I have to buy a new screen?</span><span class="plus"></span></button>
-        <div class="ans"><p>That's the whole point &mdash; no. You already own the hardware. DashLink simply unlocks what your existing screen can do, saving you the cost and hassle of a brand-new head unit.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FINAL CTA ============ -->
-<section class="final" id="final">
-  <div class="wrap">
-    <span class="eyebrow reveal" style="justify-content:center;display:inline-flex">Ready when you are</span>
-    <h2 class="display reveal d1" style="margin-top:26px">You already own<br><span class="grad-text">the screen.</span></h2>
-    <p class="lead reveal d2">Everything you've seen runs on the hardware that's already in your car. The only thing standing between you and a premium drive is one app.</p>
-    <div class="final-cta reveal d2">
-      <a href="download/" class="btn btn-primary">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Try free for 7 days
-      </a>
-      <a href="#top" class="btn btn-ghost">Back to top</a>
-    </div>
-    <p class="whisper reveal d3">You only need this app.</p>
-  </div>
-</section>
-
 </main>
 
-<footer class="site-foot">
-  <div class="foot-in">
-    <a class="brand" href="#top">DashLink<span class="dot">.</span></a>
-    <div class="foot-links">
-      <a href="features/">Features</a>
-      <a href="#what">What it is</a>
-      <a href="#modes">Modes</a>
-      <a href="#install">Install</a>
-      <a href="#faq">FAQ</a>
-      <a href="#final">Download</a>
-            <a href="privacy/">Privacy</a>
-            <a href="#" data-cookie-settings>Cookie settings</a>
-          </div>
-    <div class="copy">&copy; 2026 DashLink. All rights reserved.</div>
-  </div>
-  <div class="foot-legal">
-    <p>Screenshots, video and product images shown on this site are for illustrative purposes only. The actual interface, available features, performance, connectivity and app compatibility may vary depending on your head unit, phone, software version, apps and region. Compatibility is not guaranteed on every device.</p>
-    <p>DashLink is an independent application and is not affiliated with, endorsed by, sponsored by, or otherwise associated with Google LLC. Android, Android Auto, Google Maps, Google Assistant and Gemini are trademarks of Google LLC. Spotify is a trademark of Spotify AB. YouTube Music is a trademark of Google LLC. All other product names, logos and brands are the property of their respective owners and are used for identification purposes only.</p>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="./" class="brand"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+        <p>Adds Android Auto, a car dashboard and a motorsport timing suite to the Android head unit already in your car. Try it free.</p>
+        <a href="racing/" class="foot-racing"><span class="lockup sm"><span class="wm">DashLink<span class="wm-dot">.</span></span><span class="lk-div" aria-hidden="true"></span><svg class="rmark " viewBox="0 0 44 28" aria-hidden="true" focusable="false"><defs><linearGradient id="rmg6" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#5b1820"/><stop offset=".55" stop-color="#e63946"/><stop offset="1" stop-color="#ffb4a8"/></linearGradient></defs><path fill="url(#rmg6)" d="M3 27 9 17h6L9 27zM14 27 22 10h6l-8 17zM25 27 36 1h6L31 27z"/></svg><span class="lk-racing">Racing</span></span></a>
+      </div>
+      <div class="fcol"><h4>Product</h4><a href="android-auto/">Android Auto</a><a href="dashboard/">Dashboard</a><a href="trips-fuel-maintenance/">Trips, fuel &amp; car care</a><a href="plans/">Plans</a></div>
+      <div class="fcol"><h4>Racing</h4><a href="racing/">Overview</a><a href="racing/track-day/">Track day</a><a href="racing/rally/">Rally</a><a href="racing/performance/">Performance</a></div>
+      <div class="fcol"><h4>Help</h4><a href="wireless-app/">DashLink Wireless</a><a href="support/">Support</a><a href="download/">Download &amp; install</a><a href="premium/">Activate your plan</a><a href="mailto:dashlink.support@gmail.com">Email us</a></div>
+    </div>
+    <div class="foot-legal">
+      <p>Android Auto and Android are trademarks of Google LLC. Google Play is a trademark of Google LLC. DashLink is an independent app and is not affiliated with or endorsed by Google.</p>
+      <p>Screens are illustrative. Features and compatibility depend on your head unit, phone and software version. Fuel, range, trip cost and dyno power figures are estimates. DashLink Racing is for closed courses only.</p>
+      <p class="foot-row"><span>&copy; 2026 DashLink</span><a href="privacy/">Privacy</a><a href="terms/">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></p>
+    </div>
   </div>
 </footer>
 
-<script>
-(function(){
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* nav background on scroll */
-  var nav = document.getElementById('nav');
-  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 40); }
-  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
-
-  /* reveal on view */
-  var revealEls = document.querySelectorAll('.reveal, .reveal-scale, [data-strike]');
-  if(reduceMotion){
-    revealEls.forEach(function(el){ el.classList.add('in'); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, {threshold:0.15, rootMargin:'0px 0px -8% 0px'});
-    revealEls.forEach(function(el){
-      // already on screen? reveal now rather than waiting on the observer
-      if(el.getBoundingClientRect().top < window.innerHeight){ el.classList.add('in'); }
-      else { io.observe(el); }
-    });
-  }
-
-  /* hero parallax tilt */
-  var stage = document.getElementById('heroStage');
-  if(stage && !reduceMotion){
-    var heroPhoto = stage.querySelector('.hero-photo');
-    window.addEventListener('scroll', function(){
-      var y = Math.min(window.scrollY, 700);
-      if(heroPhoto) heroPhoto.style.transform = 'translateY(' + (y*0.05) + 'px) scale(' + (1 - y*0.00004) + ')';
-    }, {passive:true});
-  }
-
-  /* transform toggle (before/after) */
-  var tfScreen = document.getElementById('tfScreen');
-  document.querySelectorAll('.chip[data-stage]').forEach(function(chip){
-    chip.addEventListener('click', function(){
-      document.querySelectorAll('.chip[data-stage]').forEach(function(c){c.classList.remove('active');});
-      chip.classList.add('active');
-      tfScreen.classList.toggle('stage-after', chip.dataset.stage === 'after');
-    });
-  });
-
-  /* before/after slider */
-  var slider = document.getElementById('slider');
-  if(slider){
-    var handle = document.getElementById('handle');
-    var after = document.getElementById('afterLayer');
-    var dragging = false;
-    function setPos(clientX){
-      var r = slider.getBoundingClientRect();
-      var pct = Math.max(0, Math.min(100, (clientX - r.left)/r.width*100));
-      handle.style.left = pct + '%';
-      after.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
-      slider.setAttribute('aria-valuenow', Math.round(pct));
-    }
-    function down(e){ dragging = true; setPos((e.touches?e.touches[0]:e).clientX); e.preventDefault(); }
-    function move(e){ if(dragging) setPos((e.touches?e.touches[0]:e).clientX); }
-    function up(){ dragging = false; }
-    slider.addEventListener('mousedown', down);
-    slider.addEventListener('touchstart', down, {passive:false});
-    window.addEventListener('mousemove', move, {passive:true});
-    window.addEventListener('touchmove', move, {passive:true});
-    window.addEventListener('mouseup', up);
-    window.addEventListener('touchend', up);
-    slider.addEventListener('keydown', function(e){
-      var cur = parseFloat(slider.getAttribute('aria-valuenow'))||50;
-      if(e.key==='ArrowLeft'){ cur=Math.max(0,cur-4); }
-      else if(e.key==='ArrowRight'){ cur=Math.min(100,cur+4); }
-      else return;
-      var r = slider.getBoundingClientRect();
-      setPos(r.left + r.width*cur/100);
-      e.preventDefault();
-    });
-  }
-
-  /* FAQ accordion */
-  document.querySelectorAll('.qa button').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var qa = btn.parentElement;
-      var ans = qa.querySelector('.ans');
-      var open = qa.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open);
-      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : 0;
-    });
-  });
-
-  /* ---- sticky scroll-synced showcase ---- */
-  var showcase = document.getElementById('showcase');
-  if(showcase){
-    var track    = showcase.querySelector('.sc-track');
-    var scenes   = parseInt(showcase.getAttribute('data-scenes'), 10) || 4;
-    var caps     = showcase.querySelectorAll('.sc-copy .cap');
-    var sceneEls = showcase.querySelectorAll('.sc-scene');
-    var railBtns = showcase.querySelectorAll('.sc-rail button');
-    var videos   = showcase.querySelectorAll('.sc-scene video');
-
-    /* give the track enough scroll room: one viewport per scene */
-    track.style.height = (scenes * 100) + 'svh';
-
-    var current = -1;
-    function activate(i){
-      if(i === current) return;
-      current = i;
-      caps.forEach(function(el,n){ el.classList.toggle('on', n===i); });
-      sceneEls.forEach(function(el,n){ el.classList.toggle('on', n===i); });
-      railBtns.forEach(function(el,n){ el.classList.toggle('on', n===i); });
-      /* only play the video when its scene is active; pause & rewind otherwise */
-      sceneEls.forEach(function(el,n){
-        var v = el.querySelector('video');
-        if(!v) return;
-        if(n === i && !reduceMotion){
-          if(v.readyState === 0){ v.load(); }
-          var pr = v.play(); if(pr && pr.catch){ pr.catch(function(){}); }
-        } else {
-          v.pause();
-        }
-      });
-    }
-
-    var ticking = false;
-    function update(){
-      ticking = false;
-      var rect = track.getBoundingClientRect();
-      var travel = track.offsetHeight - window.innerHeight;
-      var p = travel > 0 ? (-rect.top) / travel : 0;
-      p = Math.max(0, Math.min(1, p));
-      activate(Math.round(p * (scenes - 1)));
-    }
-    function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
-    window.addEventListener('scroll', onScroll, {passive:true});
-    window.addEventListener('resize', onScroll, {passive:true});
-    update();
-
-    /* jump to a scene when a rail dot is clicked */
-    function goTo(i){
-      var travel = track.offsetHeight - window.innerHeight;
-      var target = track.offsetTop + (travel * i / (scenes - 1));
-      window.scrollTo({top: target, behavior: reduceMotion ? 'auto' : 'smooth'});
-    }
-    railBtns.forEach(function(btn){ btn.addEventListener('click', function(){ goTo(parseInt(btn.dataset.go,10)); }); });
-  }
-
-  /* pause the "What is Android Auto" looping video for reduced-motion users */
-  if(reduceMotion){
-    var wv = document.getElementById('whatVideo');
-    if(wv){ wv.removeAttribute('autoplay'); wv.pause(); }
-  }
-})();
-</script>
-<style>
-.dl-fab{position:fixed;right:clamp(16px,3vw,26px);bottom:clamp(16px,3vw,26px);z-index:80;display:inline-flex;align-items:center;gap:0;height:56px;padding:0 16px;border-radius:100px;background:linear-gradient(180deg,#43d67f,#12a355);color:#04140b;box-shadow:0 14px 40px -10px rgba(18,163,85,.6),0 2px 8px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,opacity .35s;opacity:0;transform:translateY(14px) scale(.9);pointer-events:none}
-.dl-fab.on{opacity:1;transform:none;pointer-events:auto}
-.dl-fab:hover{transform:translateY(-3px);box-shadow:0 20px 52px -10px rgba(18,163,85,.75)}
-.dl-fab:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(67,214,127,.4),0 14px 40px -10px rgba(18,163,85,.6)}
-.dl-fab svg{width:28px;height:28px;fill:#04140b;flex:none}
-.dl-fab .lbl{max-width:0;overflow:hidden;white-space:nowrap;font-weight:650;font-size:.95rem;transition:max-width .45s cubic-bezier(.16,1,.3,1),margin-left .45s cubic-bezier(.16,1,.3,1);margin-left:0}
-.dl-fab:hover .lbl,.dl-fab:focus-visible .lbl{max-width:170px;margin-left:10px}
-@media(max-width:600px){.dl-fab{height:52px;padding:0 13px}.dl-fab svg{width:26px;height:26px}.dl-fab:hover .lbl{max-width:0;margin-left:0}}
-@media(prefers-reduced-motion:reduce){.dl-fab{transition:none}.dl-fab .lbl{transition:none}}
-</style>
-<a class="dl-fab" id="dlFab" href="https://wa.me/923229914024?text=Hi%20DashLink%21%20I%20have%20a%20question%20about%20getting%20Android%20Auto%20on%20my%20Android%20panel." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#04140b"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>  <span class="lbl">Chat with us</span>
-</a>
-<script>
-(function(){
-  var f = document.getElementById('dlFab');
-  if(!f) return;
-  // hold it back until the hero is behind them, so it doesn't fight the first impression
-  function sync(){ f.classList.toggle('on', window.scrollY > 380); }
-  sync();
-  window.addEventListener('scroll', sync, {passive:true});
-
-})();
-</script>
-	</body>
+<div class="cta-bar" id="ctaBar" aria-hidden="true">
+  <span class="cta-bar-txt"><b>DashLink</b><small>Try every feature free</small></span>
+  <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dhome%26utm_term%3Dhome" data-play="headunit" data-cta="cta_bar" data-fallback="download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+</div>
+<a class="wa-fab" href="https://wa.me/923229914024?text=Hi%20DashLink!%20I%20have%20a%20question." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.69-6.16A11.87 11.87 0 0 1 .16 11.9C.16 5.34 5.5 0 12.05 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45zm6.6-3.81c1.67 1 3.27 1.6 5.39 1.6 5.45 0 9.88-4.44 9.89-9.89 0-5.46-4.42-9.89-9.88-9.89-5.45 0-9.89 4.43-9.89 9.88 0 2.23.65 3.9 1.75 5.64l-1 3.65zm11.38-5.46c-.07-.13-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.41z"/></svg></a>
+</body>
 </html>

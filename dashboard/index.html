@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" data-page="dashboard" data-pillar="dashboard" class="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dock mode — a full car dashboard for your head unit | DashLink</title>
+<meta name="description" content="A full-screen car dashboard for your Android head unit: 7 layouts, 6 custom speedometers, speed warning, Bluetooth music, pinned apps and automatic night mode.">
+<link rel="canonical" href="https://dashlink-automotive.github.io/dashboard/">
+<meta name="theme-color" content="#050506">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DashLink">
+<meta property="og:title" content="Dock mode — a full car dashboard for your head unit | DashLink">
+<meta property="og:description" content="A full-screen car dashboard for your Android head unit: 7 layouts, 6 custom speedometers, speed warning, Bluetooth music, pinned apps and automatic night mode.">
+<meta property="og:url" content="https://dashlink-automotive.github.io/dashboard/">
+<meta property="og:image" content="https://dashlink-automotive.github.io/assets/images/og/dashboard.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.dashlinkReady)document.documentElement.classList.add('no-reveal')},3000)</script>
+<link rel="stylesheet" href="../assets/site.css?v=202610231103">
+<script src="../assets/analytics.js?v=202610231103" defer></script>
+<script src="../assets/site.js?v=202610231103" defer></script>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="../" aria-label="DashLink home"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+  <nav class="nav-links" aria-label="Main"><a href="../android-auto/">Android Auto</a><a href="../dashboard/" aria-current="page">Dashboard</a><a href="../trips-fuel-maintenance/">Trips & fuel</a><a href="../racing/" class="nl-racing">Racing</a><a href="../wireless-app/">Wireless app</a><a href="../plans/">Plans</a><a href="../support/">Support</a></nav>
+  <div class="nav-end">
+    <a class="btn btn-primary btn-sm nav-cta" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddashboard%26utm_term%3Ddashboard" data-play="headunit" data-cta="nav" data-fallback="../download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu"><svg class="ic i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="ic i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+</header>
+<div class="sheet" id="sheet" hidden><nav aria-label="Main"><a href="../android-auto/"><b>Android Auto</b><small>USB, wireless and self mode on your head unit</small></a><a href="../dashboard/"><b>Dashboard</b><small>Dock mode, 7 layouts, 6 speedometers</small></a><a href="../trips-fuel-maintenance/"><b>Trips & fuel</b><small>Trip computer, fuel estimates, service reminders</small></a><a href="../racing/" class="nl-racing"><b>Racing</b><small>Lap timing, rally stages, performance tests</small></a><a href="../wireless-app/"><b>Wireless app</b><small>The companion app for your phone</small></a><a href="../plans/"><b>Plans</b><small>Free, Drive or Pro. Try everything free</small></a><a href="../support/"><b>Support</b><small>Compatibility, troubleshooting, contact</small></a></nav></div>
+<main id="top">
+
+<section class="hero hero-center" id="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      
+      <span class="eyebrow reveal" data-h="eyebrow">Dock mode</span>
+      <h1 class="display reveal d1" data-h="title">Your car&rsquo;s dashboard, <span class="grad-text">redrawn.</span></h1>
+      <p class="lead reveal d2" data-h="sub">When Android Auto isn&rsquo;t running, Dock mode turns the screen into a full car dashboard: speed, time, music, trip and apps, laid out for a glance.</p>
+      <div class="hero-cta reveal d3"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddashboard%26utm_term%3Ddashboard" data-play="headunit" data-cta="hero_primary" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="hero_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      
+      <p class="page-tier reveal d3"><span class="badge badge-free" title="Free in DashLink">Free</span><span>Mostly free. The Corsa, Sport and Hyper dials and accent colours are in <a href="../plans/#pro">Pro</a>.</span></p>
+    </div>
+    <div class="hero-media reveal-scale d2" data-h="media"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v4/dock-cockpit.webp" alt="The Cockpit layout: a red Corsa dial between speed and car panels" width="2000" height="1250" fetchpriority="high" decoding="async"></div></div></div>
+  </div>
+  <template data-hv="speedometer"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v4/dock-style-speedos.webp" alt="Choosing a speedometer: Corsa selected, with Digital, Chrono and Sport" width="2000" height="1250" fetchpriority="high" decoding="async"></div></div></template><template data-hv="layouts"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v4/dock-style-layouts.webp" alt="The Dock style picker with live layout previews" width="2000" height="1250" fetchpriority="high" decoding="async"></div></div></template>
+</section><script>(function(V){var q=new URLSearchParams(location.search),n=function(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'')},c=n(q.get('c')),u=n(q.get('utm_campaign')),k=null,x,i;if(c){for(x in V){if(V[x].m.indexOf(c)>-1){k=x;break}}}if(!k&&u){for(x in V){for(i=0;i<V[x].m.length;i++){if(u.indexOf(V[x].m[i])>-1){k=x;break}}if(k)break}}document.documentElement.setAttribute('data-variant',k||'default');if(!k)return;var v=V[k],H=document.getElementById('hero');['eyebrow','title','sub'].forEach(function(f){var e=H.querySelector('[data-h='+f+']');if(e&&v[f]!=null)e.innerHTML=v[f]});if(v.media){var t=H.querySelector('template[data-hv="'+k+'"]'),s=H.querySelector('[data-h=media]');if(t&&s)s.innerHTML=t.innerHTML}})({"speedometer":{"m":["speedometer","speedo","gauge","dial","corsa"],"eyebrow":"Custom speedometers","title":"Six speedometers. <span class=\"grad-text\">Pick yours.</span>","sub":"Digital, Corsa, Chrono, Sport, Hyper and Minimal, with five dial faces and a red zone from your own speed warning.","media":1},"layouts":{"m":["layouts","layout","dock"],"eyebrow":"7 layouts","title":"Seven layouts. <span class=\"grad-text\">Live previews.</span>","sub":"Classic, Cockpit, Cluster, Twin dials, Focus, Journey and Night. See each one live before you pick.","media":1},"night":{"m":["night","oled","dark"],"eyebrow":"Automatic night mode","title":"Dims itself <span class=\"grad-text\">at sunset.</span>","sub":"Night mode follows sunset and sunrise, offline. Or go pure black on OLED screens."}});</script><nav class="anchors" aria-label="On this page"><div class="anchors-in"><a href="#layouts">Layouts</a><a href="#corsa">Corsa</a><a href="#speedometers">Speedometers</a><a href="#dock-style">Live preview</a><a href="#speed-warning">Speed warning</a><a href="#trip">Trip &amp; fuel</a><a href="#dock">Dock</a><a href="#music">Music</a><a href="#apps">Apps</a><a href="#night">Night</a><a href="#screensaver">Screensaver</a><a href="#dock-keys">Wheel keys</a><a href="#large-controls">Large controls</a></div></nav>
+<section class="block xp-sec" id="layouts">
+  <div class="wrap">
+    <div class="shead">
+    <span class="eyebrow reveal">7 layouts</span>
+    <h2 class="h-xl reveal d1">One screen. Seven ways to drive.</h2>
+    <p class="lead reveal d2">Pick the layout that suits the drive. Tap one to see it.</p>
+  </div>
+    <div class="xp reveal-scale d1" data-explorer>
+      <div class="xp-stage">
+        <div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250">
+          <img class="xp-shot on" src="../assets/images/v5/dock-cockpit.webp" alt="Cockpit layout with a yellow Corsa dial" width="2000" height="1250"  decoding="async" data-xp="cockpit"><img class="xp-shot" src="../assets/images/v5/dock-classic.webp" alt="Classic layout with the Sport dial" width="2000" height="1250" loading="lazy" decoding="async" data-xp="classic"><img class="xp-shot" src="../assets/images/v5/dock-cluster.webp" alt="Cluster layout with the Hyper dial" width="2000" height="1250" loading="lazy" decoding="async" data-xp="cluster"><img class="xp-shot" src="../assets/images/v5/dock-twin-dials.webp" alt="Twin dials layout: Corsa and compass" width="2000" height="1250" loading="lazy" decoding="async" data-xp="twin"><img class="xp-shot" src="../assets/images/v4/dock-focus.webp" alt="Focus layout" width="2000" height="1250" loading="lazy" decoding="async" data-xp="focus"><img class="xp-shot" src="../assets/images/v4/dock-journey.webp" alt="Journey layout" width="2000" height="1250" loading="lazy" decoding="async" data-xp="journey">
+          <div class="xp-spots on" data-xp="cockpit"><button type="button" class="xp-spot sp-l" style="left:15%;top:48%" aria-label="Speed, max and average"><i></i><span>Speed, max and average</span></button><button type="button" class="xp-spot sp-l" style="left:24.4%;top:25%" aria-label="Your speed warning"><i></i><span>Your speed warning</span></button><button type="button" class="xp-spot" style="left:50%;top:49%" aria-label="Corsa dial, yellow face"><i></i><span>Corsa dial, yellow face</span></button><button type="button" class="xp-spot sp-r" style="left:79%;top:46%" aria-label="Your car and heading"><i></i><span>Your car and heading</span></button><button type="button" class="xp-spot sp-r" style="left:82.5%;top:68%" aria-label="Range estimate"><i></i><span>Range estimate</span></button><button type="button" class="xp-spot" style="left:50%;top:92%" aria-label="Pinned apps"><i></i><span>Pinned apps</span></button></div><div class="xp-spots" data-xp="classic"><button type="button" class="xp-spot sp-l" style="left:22.5%;top:52%" aria-label="Sport dial with a live arc"><i></i><span>Sport dial with a live arc</span></button><button type="button" class="xp-spot" style="left:39%;top:11%" aria-label="Heading"><i></i><span>Heading</span></button><button type="button" class="xp-spot sp-r" style="left:71.8%;top:31%" aria-label="Time, date and sunrise"><i></i><span>Time, date and sunrise</span></button><button type="button" class="xp-spot" style="left:70%;top:46%" aria-label="Range estimate"><i></i><span>Range estimate</span></button><button type="button" class="xp-spot sp-r" style="left:71.5%;top:79%" aria-label="This trip"><i></i><span>This trip</span></button></div><div class="xp-spots" data-xp="cluster"><button type="button" class="xp-spot sp-l" style="left:17%;top:47%" aria-label="This trip: distance, time, average, top speed"><i></i><span>This trip: distance, time, average, top speed</span></button><button type="button" class="xp-spot" style="left:50%;top:48%" aria-label="Hyper dial with odometer"><i></i><span>Hyper dial with odometer</span></button><button type="button" class="xp-spot sp-r" style="left:76%;top:52%" aria-label="Fuel estimate"><i></i><span>Fuel estimate</span></button><button type="button" class="xp-spot sp-r" style="left:89.5%;top:52%" aria-label="Heading"><i></i><span>Heading</span></button><button type="button" class="xp-spot sp-l" style="left:11.5%;top:81%" aria-label="Odometer"><i></i><span>Odometer</span></button></div><div class="xp-spots" data-xp="twin"><button type="button" class="xp-spot sp-l" style="left:17.8%;top:48%" aria-label="Corsa speedometer"><i></i><span>Corsa speedometer</span></button><button type="button" class="xp-spot" style="left:50%;top:16%" aria-label="Your speed warning"><i></i><span>Your speed warning</span></button><button type="button" class="xp-spot" style="left:50%;top:40%" aria-label="Time, date and sunrise"><i></i><span>Time, date and sunrise</span></button><button type="button" class="xp-spot sp-r" style="left:82%;top:48%" aria-label="Compass dial"><i></i><span>Compass dial</span></button><button type="button" class="xp-spot" style="left:50%;top:79%" aria-label="This trip"><i></i><span>This trip</span></button></div><div class="xp-spots" data-xp="focus"><button type="button" class="xp-spot" style="left:50%;top:48%" aria-label="Just your speed"><i></i><span>Just your speed</span></button><button type="button" class="xp-spot sp-l" style="left:8%;top:50%" aria-label="Your speed warning"><i></i><span>Your speed warning</span></button><button type="button" class="xp-spot sp-r" style="left:92.5%;top:48%" aria-label="Heading"><i></i><span>Heading</span></button><button type="button" class="xp-spot" style="left:50%;top:15%" aria-label="Time and range"><i></i><span>Time and range</span></button></div><div class="xp-spots" data-xp="journey"><button type="button" class="xp-spot sp-l" style="left:22.7%;top:63%" aria-label="Your car, in its paint"><i></i><span>Your car, in its paint</span></button><button type="button" class="xp-spot sp-r" style="left:71.5%;top:50%" aria-label="Range estimate"><i></i><span>Range estimate</span></button><button type="button" class="xp-spot" style="left:58%;top:66%" aria-label="Estimated trip cost"><i></i><span>Estimated trip cost</span></button><button type="button" class="xp-spot sp-r" style="left:84.5%;top:66%" aria-label="Distance"><i></i><span>Distance</span></button></div>
+        </div></div>
+        <button type="button" class="xp-toggle" aria-pressed="true">Details</button>
+      </div>
+      <div class="xp-tabs" role="tablist" aria-label="One screen. Seven ways to drive.">
+        <button type="button" role="tab" class="xp-tab on" aria-selected="true" data-xp="cockpit"><span class="xp-bar" aria-hidden="true"></span><b>Cockpit</b><small>The Corsa dial between two screens: speed, max and average on one side, your car, heading and range on the other.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="classic"><span class="xp-bar" aria-hidden="true"></span><b>Classic</b><small>A big dial beside the time, the date, your range and this trip.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="cluster"><span class="xp-bar" aria-hidden="true"></span><b>Cluster</b><small>One centre dial with trip stats, fuel and heading around it, like an instrument cluster.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="twin"><span class="xp-bar" aria-hidden="true"></span><b>Twin dials</b><small>Speedometer and compass either side of the clock and range.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="focus"><span class="xp-bar" aria-hidden="true"></span><b>Focus</b><small>Just the speed, big and calm.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="journey"><span class="xp-bar" aria-hidden="true"></span><b>Journey</b><small>For long drives: estimated range, trip cost, distance and average.</small></button>
+        <p class="xp-more">Plus <b>Night</b>: black and dim, for dark roads. Every layout is free; the Corsa, Sport and Hyper dials need Pro after the trial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="block corsa-sec" id="corsa">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">The Corsa dial <span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+    <h2 class="h-xl reveal d1">Finished like a fine watch.</h2>
+    <p class="lead reveal d2">A sunray face, a railway chapter ring and a lit window, in five faces. Hover to look closer, or step through the details.</p>
+  </div>
+    <div class="corsa reveal-scale d1" data-corsa data-zoom="3.2">
+      <div class="cs-stage">
+        <div class="cs-dial">
+          <img class="cs-face on" src="../assets/images/v5/corsa-red.webp" data-face="red" alt="The Corsa speedometer with a red face" width="760" height="760"  decoding="async"><img class="cs-face" src="../assets/images/v5/corsa-yellow.webp" data-face="yellow" alt="" width="760" height="760" loading="lazy" decoding="async"><img class="cs-face" src="../assets/images/v5/corsa-white.webp" data-face="white" alt="" width="760" height="760" loading="lazy" decoding="async"><img class="cs-face" src="../assets/images/v5/corsa-black.webp" data-face="black" alt="" width="760" height="760" loading="lazy" decoding="async"><img class="cs-face" src="../assets/images/v5/corsa-accent.webp" data-face="accent" alt="" width="760" height="760" loading="lazy" decoding="async">
+          <button type="button" class="cs-spot on" style="left:62%;top:36%" data-i="0" data-x="62" data-y="36" aria-label="Sunray face"><span>1</span></button><button type="button" class="cs-spot" style="left:37%;top:32%" data-i="1" data-x="37" data-y="32" aria-label="Railway chapter ring"><span>2</span></button><button type="button" class="cs-spot" style="left:50%;top:24%" data-i="2" data-x="50" data-y="24" aria-label="Figures &amp;times;10"><span>3</span></button><button type="button" class="cs-spot" style="left:54.5%;top:54.5%" data-i="3" data-x="54.5" data-y="54.5" aria-label="Needle and domed hub"><span>4</span></button><button type="button" class="cs-spot" style="left:76%;top:62%" data-i="4" data-x="76" data-y="62" aria-label="Lit window"><span>5</span></button><button type="button" class="cs-spot" style="left:92%;top:38%" data-i="5" data-x="92" data-y="38" aria-label="Red zone"><span>6</span></button><button type="button" class="cs-spot" style="left:7%;top:64%" data-i="6" data-x="7" data-y="64" aria-label="Steel bezel"><span>7</span></button>
+          <span class="cs-loupe" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="cs-side">
+        <div class="cs-macro" aria-hidden="true"><span class="cs-macro-img" style="background-image:url('../assets/images/v5/corsa-red.webp');background-position:67.45% 29.64%"></span><span class="cs-macro-ring"></span></div>
+        <div class="cs-copy" aria-live="polite">
+          <span class="kicker"><b data-cs-n>01</b> / 07 &middot; Detail</span>
+          <h3 data-cs-title>Sunray face</h3>
+          <p data-cs-text>Fine radial brushing that catches the light, in your choice of five faces.</p>
+        </div>
+        <div class="cs-nav"><button type="button" data-cs-prev aria-label="Previous detail">&larr;</button><button type="button" data-cs-next aria-label="Next detail">&rarr;</button></div>
+        <div class="cs-faces">
+          <small>Dial face &middot; <b data-cs-face>Red</b></small>
+          <div role="radiogroup" aria-label="Dial face"><button type="button" role="radio" aria-checked="true" data-face="red" data-src="../assets/images/v5/corsa-red.webp" data-name="Red" style="--sw:#c8102e" title="Red"><i></i><span class="sr">Red</span></button><button type="button" role="radio" aria-checked="false" data-face="yellow" data-src="../assets/images/v5/corsa-yellow.webp" data-name="Yellow" style="--sw:#f2b705" title="Yellow"><i></i><span class="sr">Yellow</span></button><button type="button" role="radio" aria-checked="false" data-face="white" data-src="../assets/images/v5/corsa-white.webp" data-name="White" style="--sw:#ecebe6" title="White"><i></i><span class="sr">White</span></button><button type="button" role="radio" aria-checked="false" data-face="black" data-src="../assets/images/v5/corsa-black.webp" data-name="Black" style="--sw:#1b1c20" title="Black"><i></i><span class="sr">Black</span></button><button type="button" role="radio" aria-checked="false" data-face="accent" data-src="../assets/images/v5/corsa-accent.webp" data-name="Accent" style="--sw:#a87373" title="Accent"><i></i><span class="sr">Accent</span></button></div>
+        </div>
+      </div>
+      <script type="application/json" data-cs-details>[{"x":62,"y":36,"title":"Sunray face","text":"Fine radial brushing that catches the light, in your choice of five faces."},{"x":37,"y":32,"title":"Railway chapter ring","text":"An engraved inner track, set inside the figures like a watch&rsquo;s minute ring."},{"x":50,"y":24,"title":"Figures &times;10","text":"Wide sport numerals, read in tens: 14 means 140 km/h."},{"x":54.5,"y":54.5,"title":"Needle and domed hub","text":"A slim two-tone needle on a polished, domed centre cap."},{"x":76,"y":62,"title":"Lit window","text":"Your exact speed in a chamfered window, lit like an aperture."},{"x":92,"y":38,"title":"Red zone","text":"The red arc starts at your own speed warning, not a fixed number."},{"x":7,"y":64,"title":"Steel bezel","text":"A brushed metal bezel with a polished edge, catching the cabin light."}]</script>
+    </div>
+  </div>
+</section>
+<section class="block" id="speedometers">
+  <div class="wrap">
+    <div class="shead">
+    <span class="eyebrow reveal">Five more dials</span>
+    <h2 class="h-xl reveal d1">Or pick another mood.</h2>
+    <p class="lead reveal d2">Digital, Chrono and Minimal are free. Sport, Hyper and Corsa come with Pro, and you can try them all free. Every dial&rsquo;s red zone starts at your speed warning.</p>
+  </div>
+    <div class="dial-row">
+      <figure class="bt reveal d0">
+        <div class="bt-img"><img src="../assets/images/v4/speedo-digital.webp" alt="The Digital speedometer" loading="lazy" decoding="async"></div>
+        <figcaption><h3>Digital<span class="badge badge-free" title="Free in DashLink">Free</span></h3><p>Big numerals over your car on the road.</p></figcaption>
+      </figure>
+      <figure class="bt reveal d1">
+        <div class="bt-img"><img src="../assets/images/v5/speedo-chrono.webp" alt="The Chrono speedometer" loading="lazy" decoding="async"></div>
+        <figcaption><h3>Chrono<span class="badge badge-free" title="Free in DashLink">Free</span></h3><p>A chronograph dial with a speed window.</p></figcaption>
+      </figure>
+      <figure class="bt reveal d2">
+        <div class="bt-img"><img src="../assets/images/v4/speedo-minimal.webp" alt="The Minimal speedometer" loading="lazy" decoding="async"></div>
+        <figcaption><h3>Minimal<span class="badge badge-free" title="Free in DashLink">Free</span></h3><p>A thin arc and one big number.</p></figcaption>
+      </figure>
+      <figure class="bt reveal d0">
+        <div class="bt-img"><img src="../assets/images/v5/speedo-sport.webp" alt="The Sport speedometer" loading="lazy" decoding="async"></div>
+        <figcaption><h3>Sport<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></h3><p>A live arc with the speed big in the middle.</p></figcaption>
+      </figure>
+      <figure class="bt reveal d1">
+        <div class="bt-img"><img src="../assets/images/v5/speedo-hyper.webp" alt="The Hyper speedometer" loading="lazy" decoding="async"></div>
+        <figcaption><h3>Hyper<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></h3><p>Italic figures, a sweeping inner arc and the odometer.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<section class="fb flip" id="dock-style">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Live preview</span>
+      <h2 class="h-lg reveal d1">Try it before you pick it.</h2>
+      <p class="fb-body reveal d2">Dock style shows each layout and speedometer live, with your real speed and trip, before you choose. Then pick a dial face: Accent, Red, Yellow, White or Black.</p>
+      
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v4/dock-style-layouts.webp" alt="The Dock style screen with live layout previews" width="2000" height="1250" loading="lazy" decoding="async"></div></div></div>
+  </div>
+</section>
+<section class="block sw-sec" id="speed-warning">
+  <div class="wrap">
+    <div class="shead">
+    <span class="eyebrow reveal">Safety</span>
+    <h2 class="h-xl reveal d1">A warning at the speed you choose.</h2>
+    <p class="lead reveal d2">Set the speed you don&rsquo;t want to go over. DashLink keeps an eye on it so you can keep yours on the road.</p>
+  </div>
+    <div class="sw">
+      <div class="sw-left">
+        <ul class="sw-points"><li class="reveal d0"><span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>A red badge when you go over</b><span>The dial panel turns red and shows how far over you are. It&rsquo;s also shown on top of Android Auto.</span></div></li><li class="reveal d1"><span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg></span><div><b>A gentle chime</b><span>A short double beep, at most every 30 seconds, so it reminds without nagging.</span></div></li><li class="reveal d2"><span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 14l4-4"/><path d="M3.3 19a9 9 0 1 1 17.4 0"/></svg></span><div><b>Your speed, your rules</b><span>Pick a preset from 30 to 140 km/h or fine-tune with + and &minus;. Every dial&rsquo;s red zone starts there.</span></div></li></ul>
+        <div class="sw-demo reveal d2" data-sw-demo data-limit="50">
+          <div class="swd-top">
+            <span class="sw-sign" aria-hidden="true"><b data-swd-limit>50</b></span>
+            <div class="swd-read"><small>Your speed</small><b><span data-swd-speed>84</span><em>km/h</em></b></div>
+            <span class="swd-badge" data-swd-badge>+34 km/h</span>
+          </div>
+          <label class="swd-slider"><span class="sr">Your speed</span><input type="range" min="0" max="160" step="1" value="84" data-swd-range></label>
+          <div class="swd-chips" role="radiogroup" aria-label="Warning speed"><button type="button" role="radio" aria-checked="false" data-v="30">30</button><button type="button" role="radio" aria-checked="false" data-v="40">40</button><button type="button" role="radio" aria-checked="true" data-v="50">50</button><button type="button" role="radio" aria-checked="false" data-v="60">60</button><button type="button" role="radio" aria-checked="false" data-v="80">80</button><button type="button" role="radio" aria-checked="false" data-v="100">100</button><button type="button" role="radio" aria-checked="false" data-v="120">120</button><button type="button" role="radio" aria-checked="false" data-v="140">140</button></div>
+          <p class="swd-status" data-swd-status aria-live="polite">Over your warning speed. The badge turns red and the chime plays.</p>
+        </div>
+      </div>
+      <div class="sw-right reveal-scale d1">
+        <div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250"><img src="../assets/images/v5/dock-overspeed.webp" alt="Over the warning speed: the panel turns red with a +34 km/h badge" width="2000" height="1250" loading="lazy" decoding="async"></div></div>
+        <figure class="sw-sheet"><img src="../assets/images/v5/speed-warning-settings.webp" alt="Speed warning settings: warning speed, presets and warning chime" width="802" height="950" loading="lazy" decoding="async"></figure>
+      </div>
+    </div>
+    <p class="sw-note reveal"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span>DashLink warns at the speed you set. It doesn&rsquo;t read road signs, so always follow the posted limit.</span></p>
+  </div>
+</section>
+<section class="block tc-sec" id="trip">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Trip, fuel &amp; car care</span>
+    <h2 class="h-xl reveal d1">Every number that matters, <span class="grad-text">at a glance.</span></h2>
+    <p class="lead reveal d2">Range, fuel left, what this trip cost and when the next service is due. Right on the dashboard, worked out from the distance you drive.</p>
+  </div>
+    <div class="tc-stage reveal-scale"><span class="cn-glow" aria-hidden="true"></span>
+      <div class="tc-plane"><div class="tc-col tc-a"><figure class="tc-card" style="--z:50px;--d:0"><img src="../assets/images/v12/fuel-left.webp" alt="Fuel estimate: about 20 litres left, 240 km range, with an I filled up button" width="830" height="574" loading="lazy" decoding="async"><figcaption>Fuel left, estimated</figcaption></figure><figure class="tc-card" style="--z:85px;--d:1"><img src="../assets/images/v12/care-next.webp" alt="Next up: oil change in 4,912 km, by April 15, 2027" width="738" height="212" loading="lazy" decoding="async"><figcaption>Next service, counted down</figcaption></figure></div><div class="tc-col tc-b"><figure class="tc-card" style="--z:80px;--d:2"><img src="../assets/images/v12/trip-range.webp" alt="Fuel gauge with about 83 km of range" width="1046" height="162" loading="lazy" decoding="async"><figcaption>Range</figcaption></figure><figure class="tc-card half" style="--z:70px;--d:3"><img src="../assets/images/v12/trip-cost.webp" alt="Trip cost: about $1.17" width="512" height="140" loading="lazy" decoding="async"><figcaption>This trip, and what it cost</figcaption></figure><figure class="tc-card half" style="--z:30px;--d:4"><img src="../assets/images/v12/trip-distance.webp" alt="Distance: 5.8 km" width="514" height="140" loading="lazy" decoding="async"></figure><figure class="tc-card half" style="--z:30px;--d:5"><img src="../assets/images/v12/trip-time.webp" alt="Driving time: 6 minutes" width="512" height="138" loading="lazy" decoding="async"></figure><figure class="tc-card half" style="--z:45px;--d:6"><img src="../assets/images/v12/trip-average.webp" alt="Average: 58 km/h" width="514" height="138" loading="lazy" decoding="async"></figure></div><div class="tc-col tc-c"><figure class="tc-card" style="--z:40px;--d:7"><img src="../assets/images/v12/care-odometer.webp" alt="Odometer: 227,506 km" width="738" height="488" loading="lazy" decoding="async"><figcaption>Odometer</figcaption></figure><figure class="tc-card" style="--z:75px;--d:8"><img src="../assets/images/v12/care-reminders.webp" alt="Reminders: oil change and tyre rotation, both on track" width="1108" height="452" loading="lazy" decoding="async"><figcaption>Reminders by km or months</figcaption></figure></div></div>
+    </div>
+    <p class="sw-note reveal"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v14M3 20h12M14 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V8l-3-3"/></svg><span>Fuel, range and cost are estimates from the distance you drive and the consumption you set. DashLink doesn&rsquo;t read your car&rsquo;s fuel sensor.</span></p>
+    <div class="hero-cta center reveal" style="margin-top:22px"><a class="btn btn-ghost" href="../trips-fuel-maintenance/" data-cta="feature_trip"><span>Trips, fuel &amp; car care</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+<section class="block">
+  <div class="wrap">
+    <div class="shead">
+    <span class="eyebrow reveal">Made for the cabin</span>
+    <h2 class="h-xl reveal d1">The small things that make it yours.</h2>
+    
+  </div>
+    <div class="cards cols-4">
+      
+      <article class="card reveal d0" id="dock">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 14l4-4"/><path d="M3.3 19a9 9 0 1 1 17.4 0"/></svg></span>
+        <h3>Dock mode</h3>
+        <p>A full-screen dashboard whenever Android Auto isn&rsquo;t running: speed, time, music, trip and apps, laid out for a glance.</p>
+        
+      </article>
+      <article class="card reveal d1" id="heading">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+        <h3>Heading &amp; compass</h3>
+        <p>Your direction and bearing on every layout, from the head unit&rsquo;s GPS.</p>
+        
+      </article>
+      <article class="card reveal d2" id="music">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span>
+        <h3>Bluetooth music</h3>
+        <p>Title, artist, play, pause and skip from your phone over Bluetooth. Depends on your head unit&rsquo;s Bluetooth system.</p>
+        
+      </article>
+      <article class="card reveal d0" id="apps">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <h3>Pinned apps</h3>
+        <p>Your favourite head-unit apps one tap away. DashLink isn&rsquo;t a launcher and doesn&rsquo;t replace your home screen.</p>
+        
+      </article>
+      <article class="card reveal d1" id="night">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></span>
+        <h3>Automatic night mode</h3>
+        <p>Follows sunset and sunrise, even offline. Plus a pure-black option for OLED screens.</p>
+        
+      </article>
+      <article class="card reveal d2" id="screensaver">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+        <h3>Screensaver</h3>
+        <p>Turns an idle screen into the dashboard. Never while Android Auto is running.</p>
+        
+      </article>
+      <article class="card reveal d0" id="dock-keys">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 14.5V21M9.6 11.2 3.4 9.6M14.4 11.2l6.2-1.6"/></svg></span>
+        <h3>Steering-wheel keys<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></h3>
+        <p>Control the dashboard from your steering-wheel buttons.</p>
+        
+      </article>
+      <article class="card reveal d1" id="large-controls">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+        <h3>Large controls</h3>
+        <p>Bigger targets, easy to reach while parked.</p>
+        
+      </article>
+    </div>
+  </div>
+</section>
+<section class="block pl-sec pl-strip" id="plans">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Plans</span>
+    <h2 class="h-xl reveal d1">Your dashboard <span class="grad-text">stays free.</span></h2>
+    <p class="lead reveal d2">Dock mode, trips, fuel and music are free for good. Pro adds the premium dials and themes.</p>
+  </div>
+    <div class="table-wrap reveal d1"><table class="compare plans-table">
+      <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col" class="pl-free"><a href="../plans/#free">Free</a></th><th scope="col" class="pl-drive"><a href="../plans/#drive">Drive</a></th><th scope="col" class="pl-pro"><a href="../plans/#pro">Pro</a></th></tr></thead>
+      <tbody><tr class="pl-hl"><th scope="row">Dashboard (Dock), trips, fuel, logbook, car care</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">Speedometers: Digital, Chrono, Minimal</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Performance tests: 0&ndash;100, braking, 80&ndash;120, dyno, stats</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">Bluetooth music on the dashboard</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Android Auto (USB, wireless, self mode) and auto-start</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">DashLink Racing: track day, rally, recce + pace notes, regularity (TSD), saved-track sessions, coach, session analysis</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">Premium speedometers: Corsa, Sport, Hyper</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">Theme presets (all except Signature) and accent colours</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Home-screen widgets, steering-wheel key mapping, phone sensors</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr></tbody>
+    </table></div>
+    <p class="fine center">Every feature is unlocked during your free trial.</p>
+    <div class="hero-cta center reveal" style="margin-top:26px"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddashboard%26utm_term%3Ddashboard" data-play="headunit" data-cta="plans_try" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="plans_see"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Questions</span>
+    <h2 class="h-xl reveal d1">Good to know.</h2>
+    
+  </div>
+    <div class="faq-list reveal d1">
+      
+      <div class="qa"><button type="button" aria-expanded="false"><span>Is Dock mode free?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Yes. Dock mode, the layouts and the Digital, Chrono and Minimal speedometers stay free after the trial. The Corsa, Sport and Hyper dials, theme presets and accent colours are in Pro.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Does Dock mode replace my home screen?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>No. DashLink is not a launcher. Dock mode is a screen inside DashLink, and your home screen stays as it is.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Why don&rsquo;t I see song titles?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Music info comes from your phone over Bluetooth, through the head unit&rsquo;s own Bluetooth system. Some units don&rsquo;t pass it on.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Can I choose the colours?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Yes. Pick one of five <a href="#corsa">dial faces</a> and show your car in its own paint. Accent colours and theme presets (all but Signature) come with <a href="../plans/#pro">Pro</a>; try them free during the trial.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Does night mode need internet?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>No. Sunset and sunrise are worked out on the unit.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="final" id="get">
+  <div class="wrap">
+    
+    <h2 class="display reveal d1">Make the screen <span class="grad-text">yours.</span></h2>
+    <p class="lead reveal d2">Dock mode is free. Try every dial and theme free now.</p>
+    <div class="hero-cta center reveal d2"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddashboard%26utm_term%3Ddashboard" data-play="headunit" data-cta="final_primary" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="final_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="../" class="brand"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+        <p>Adds Android Auto, a car dashboard and a motorsport timing suite to the Android head unit already in your car. Try it free.</p>
+        <a href="../racing/" class="foot-racing"><span class="lockup sm"><span class="wm">DashLink<span class="wm-dot">.</span></span><span class="lk-div" aria-hidden="true"></span><svg class="rmark " viewBox="0 0 44 28" aria-hidden="true" focusable="false"><defs><linearGradient id="rmg8" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#5b1820"/><stop offset=".55" stop-color="#e63946"/><stop offset="1" stop-color="#ffb4a8"/></linearGradient></defs><path fill="url(#rmg8)" d="M3 27 9 17h6L9 27zM14 27 22 10h6l-8 17zM25 27 36 1h6L31 27z"/></svg><span class="lk-racing">Racing</span></span></a>
+      </div>
+      <div class="fcol"><h4>Product</h4><a href="../android-auto/">Android Auto</a><a href="../dashboard/">Dashboard</a><a href="../trips-fuel-maintenance/">Trips, fuel &amp; car care</a><a href="../plans/">Plans</a></div>
+      <div class="fcol"><h4>Racing</h4><a href="../racing/">Overview</a><a href="../racing/track-day/">Track day</a><a href="../racing/rally/">Rally</a><a href="../racing/performance/">Performance</a></div>
+      <div class="fcol"><h4>Help</h4><a href="../wireless-app/">DashLink Wireless</a><a href="../support/">Support</a><a href="../download/">Download &amp; install</a><a href="../premium/">Activate your plan</a><a href="mailto:dashlink.support@gmail.com">Email us</a></div>
+    </div>
+    <div class="foot-legal">
+      <p>Android Auto and Android are trademarks of Google LLC. Google Play is a trademark of Google LLC. DashLink is an independent app and is not affiliated with or endorsed by Google.</p>
+      <p>Screens are illustrative. Features and compatibility depend on your head unit, phone and software version. Fuel, range, trip cost and dyno power figures are estimates. DashLink Racing is for closed courses only.</p>
+      <p class="foot-row"><span>&copy; 2026 DashLink</span><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="cta-bar" id="ctaBar" aria-hidden="true">
+  <span class="cta-bar-txt"><b>DashLink</b><small>Try every feature free</small></span>
+  <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddashboard%26utm_term%3Ddashboard" data-play="headunit" data-cta="cta_bar" data-fallback="../download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+</div>
+<a class="wa-fab" href="https://wa.me/923229914024?text=Hi%20DashLink!%20I%20have%20a%20question." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.69-6.16A11.87 11.87 0 0 1 .16 11.9C.16 5.34 5.5 0 12.05 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45zm6.6-3.81c1.67 1 3.27 1.6 5.39 1.6 5.45 0 9.88-4.44 9.89-9.89 0-5.46-4.42-9.89-9.88-9.89-5.45 0-9.89 4.43-9.89 9.88 0 2.23.65 3.9 1.75 5.64l-1 3.65zm11.38-5.46c-.07-.13-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.41z"/></svg></a>
+</body>
+</html>
