@@ -1,4 +1,4 @@
-import { hero, anchorBar, feature, faq, ctaFinal, safety, cards, sensorStory , plansTable, freeBadge } from '../components.mjs';
+import { hero, anchorBar, feature, faq, ctaFinal, safety, cards, sensorStory , plansTable, freeBadge, proBadge } from '../components.mjs';
 import { F, RACING_FAQ, RACING_BAR, subnav } from '../racing.mjs';
 
 const up = '../../';
@@ -18,7 +18,7 @@ const page = {
     title: 'How quick is it, <span class="grad-text">really?</span>',
     sub: '0&ndash;100 with splits, 60 ft, &#8539; and &frac14; mile with trap speed, braking and rolling tests, and a road dyno. The launch is detected precisely.',
     primary: { play: 'headunit', label: 'Try the tests free', plan: 'free' },
-    tier: `${freeBadge()}<span>The performance tests and road dyno are free. Live modes and phone sensors are part of <a href="../../plans/#pro">Pro</a>.</span>`,
+    tier: `${freeBadge()}${proBadge()}`,
     note: 'Closed courses and test venues only',
     media: { img: 'v7/perf-screen.webp', w: 2000, h: 1250, alt: 'Performance screen: 0 to 100 launch result beside the road dyno' },
     variants: {

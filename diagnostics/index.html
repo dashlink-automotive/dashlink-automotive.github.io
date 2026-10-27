@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en" data-page="diagnostics" data-pillar="diagnostics" class="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Car diagnostics on your head unit — fault codes and live engine gauges | DashLink</title>
+<meta name="description" content="Plug an ELM327 OBD-II adapter in under the dash and your Android head unit reads fault codes in plain words, shows live engine gauges and charts every sensor.">
+<link rel="canonical" href="https://dashlink-automotive.github.io/diagnostics/">
+<meta name="theme-color" content="#050506">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DashLink">
+<meta property="og:title" content="Car diagnostics on your head unit — fault codes and live engine gauges | DashLink">
+<meta property="og:description" content="Plug an ELM327 OBD-II adapter in under the dash and your Android head unit reads fault codes in plain words, shows live engine gauges and charts every sensor.">
+<meta property="og:url" content="https://dashlink-automotive.github.io/diagnostics/">
+<meta property="og:image" content="https://dashlink-automotive.github.io/assets/images/og/diagnostics.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.dashlinkReady)document.documentElement.classList.add('no-reveal')},3000)</script>
+<link rel="stylesheet" href="../assets/site.css?v=202610271346">
+<script src="../assets/analytics.js?v=202610271346" defer></script>
+<script src="../assets/site.js?v=202610271346" defer></script>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="../" aria-label="DashLink home"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+  <nav class="nav-links" aria-label="Main"><a href="../android-auto/">Android Auto</a><a href="../dashboard/">Dashboard</a><a href="../trips-fuel-maintenance/">Trips & fuel</a><a href="../diagnostics/" aria-current="page">Diagnostics</a><a href="../racing/" class="nl-racing">Racing</a><a href="../wireless-app/">Wireless app</a><a href="../plans/">Plans</a><a href="../support/">Support</a></nav>
+  <div class="nav-end">
+    <a class="btn btn-primary btn-sm nav-cta" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddiagnostics%26utm_term%3Ddiagnostics" data-play="headunit" data-cta="nav" data-fallback="../download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu"><svg class="ic i-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="ic i-close" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+</header>
+<div class="sheet" id="sheet" hidden><nav aria-label="Main"><a href="../android-auto/"><b>Android Auto</b><small>USB, wireless and self mode on your head unit</small></a><a href="../dashboard/"><b>Dashboard</b><small>Dock mode, 7 layouts, 6 speedometers</small></a><a href="../trips-fuel-maintenance/"><b>Trips & fuel</b><small>Trip computer, fuel estimates, service reminders</small></a><a href="../diagnostics/"><b>Diagnostics</b><small>Fault codes, engine gauges and live data</small></a><a href="../racing/" class="nl-racing"><b>Racing</b><small>Lap timing, rally stages, performance tests</small></a><a href="../wireless-app/"><b>Wireless app</b><small>The companion app for your phone</small></a><a href="../plans/"><b>Plans</b><small>Free, Drive or Pro. Try everything free</small></a><a href="../support/"><b>Support</b><small>Compatibility, troubleshooting, contact</small></a></nav></div>
+<main id="top">
+
+<section class="hero hero-split" id="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      
+      <span class="eyebrow reveal" data-h="eyebrow">DashLink Diagnostics</span>
+      <h1 class="display reveal d1" data-h="title">Check-engine light on? <span class="grad-text">Read it on your dash.</span></h1>
+      <p class="lead reveal d2" data-h="sub">Plug a small OBD-II adapter in under the dashboard and the screen in your car becomes a scan tool: fault codes in plain words, live engine gauges and every sensor your car reports.</p>
+      <div class="hero-cta reveal d3"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddiagnostics%26utm_term%3Ddiagnostics" data-play="headunit" data-cta="hero_primary" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="hero_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <p class="hero-install reveal d3"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="2.4"/><path d="M11 18h2"/></svg><span><b>On your phone?</b> Pick your head unit next to Install.</span></p>
+      <p class="hero-note reveal d3">Works with ELM327 adapters: Bluetooth, Bluetooth LE or Wi-Fi</p>
+      <p class="page-tier reveal d3"><span class="badge badge-free" title="Free in DashLink">Free</span><span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></p>
+    </div>
+    <div class="hero-media reveal-scale d2" data-h="media"><div class="lx-stage xl"><div class="lx-planes"><div class="lx-plane on"><img class="lx-base" src="../assets/images/v14/diag-gauges.webp" alt="DashLink Diagnostics gauges: an LED tachometer at 2,830 rpm and 110 km/h, coolant, battery, boost, intake, air-fuel ratio and oil gauges" width="1600" height="938" fetchpriority="high" decoding="async"><figure class="lx-card" style="left:15.6%;top:42.1%;width:16.9%;--d:0"><img src="../assets/images/v14/cut-diag-readout.webp" alt="" decoding="async"><figcaption>Revs and speed</figcaption></figure><figure class="lx-card" style="left:47.5%;top:13.3%;width:16.25%;--d:1"><img src="../assets/images/v14/cut-diag-coolant.webp" alt="" decoding="async"><figcaption>Coolant, live</figcaption></figure><figure class="lx-card below" style="left:46%;top:84%;width:47.5%;--d:2"><img src="../assets/images/v14/cut-diag-code.webp" alt="" decoding="async"><figcaption>Fault codes in plain words</figcaption></figure></div></div></div></div>
+  </div>
+  <template data-hv="codes"><div class="hu"><div class="hu-screen" style="aspect-ratio:1600/938"><img src="../assets/images/v14/diag-codes.webp" alt="Fault codes: P0301 cylinder 1 misfire and P0420 catalyst efficiency, check-engine light on" width="1600" height="938" fetchpriority="high" decoding="async"></div></div></template>
+</section><script>(function(V){var q=new URLSearchParams(location.search),n=function(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'')},c=n(q.get('c')),u=n(q.get('utm_campaign')),k=null,x,i;if(c){for(x in V){if(V[x].m.indexOf(c)>-1){k=x;break}}}if(!k&&u){for(x in V){for(i=0;i<V[x].m.length;i++){if(u.indexOf(V[x].m[i])>-1){k=x;break}}if(k)break}}document.documentElement.setAttribute('data-variant',k||'default');if(!k)return;var v=V[k],H=document.getElementById('hero');['eyebrow','title','sub'].forEach(function(f){var e=H.querySelector('[data-h='+f+']');if(e&&v[f]!=null)e.innerHTML=v[f]});if(v.media){var t=H.querySelector('template[data-hv="'+k+'"]'),s=H.querySelector('[data-h=media]');if(t&&s)s.innerHTML=t.innerHTML}})({"codes":{"m":["codes","code","checkengine","enginelight","dtc","scan","scanner","obd"],"eyebrow":"Fault codes","title":"What does that <span class=\"grad-text\">engine light mean?</span>","sub":"Read the codes behind the check-engine light, explained in plain words with how serious each one is. Free.","media":1},"gauges":{"m":["gauges","gauge","boost","afr","tacho","rpm"],"eyebrow":"Engine gauges","title":"Your engine, <span class=\"grad-text\">live on the dash.</span>","sub":"A tachometer with shift lights, coolant, battery, boost, intake, air-fuel ratio and oil, read straight from the car."}});</script><nav class="anchors" aria-label="On this page"><div class="anchors-in"><a href="#connect">Connect</a><a href="#codes">Fault codes</a><a href="#gauges">Gauges</a><a href="#live-data">Live data</a><a href="#clusters">Engine clusters</a><a href="#need">What you need</a></div></nav>
+<section class="fb" id="connect">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Set up once<span class="badge badge-new" title="New in DashLink">New</span></span>
+      <h2 class="h-lg reveal d1">One adapter. <span class="grad-text">Four steps.</span></h2>
+      <p class="fb-body reveal d2">Every car sold since the late nineties has an OBD-II port under the dashboard. Push a small ELM327 adapter into it, switch the ignition on and tap Connect. DashLink guides you through each step with an animation, and lists the likely adapter first.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span><b>Bluetooth, Bluetooth LE or Wi-Fi</b> adapters</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Reconnects to your adapter by itself next time</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>The engine can stay off to read fault codes</span></li></ul>
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="cn-stage" data-tilt><span class="cn-glow" aria-hidden="true"></span><div class="cn-float"><div class="cn-card3d" style="width:min(640px,100%)"><span class="cn-depth" aria-hidden="true"></span><span class="cn-edge" aria-hidden="true"></span><img src="../assets/images/v14/cut-diag-steps.webp" alt="Connect in four steps: find the port, plug in the adapter, ignition on, connect here" width="1536" height="411" loading="lazy" decoding="async"><span class="cn-sheen" aria-hidden="true"></span></div></div></div></div>
+  </div>
+</section>
+<section class="fb flip" id="codes">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Fault codes<span class="badge badge-free" title="Free in DashLink">Free</span></span>
+      <h2 class="h-lg reveal d1">Know why the light is on, <span class="grad-text">before the garage tells you.</span></h2>
+      <p class="fb-body reveal d2">DashLink reads the codes behind the check-engine light and says what each one means in plain words, coloured by how serious it is. Walk into the workshop knowing whether it&rsquo;s a loose fuel cap or a misfire.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Stored codes and the check-engine light: <b>free</b></span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Pending and permanent codes, freeze frame and clearing codes: <b>Pro</b></span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Clearing only works with the engine off, and warns you first</span></li></ul>
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="spotted" data-spotted><div class="spotted-in"><img src="../assets/images/v14/diag-codes.webp" alt="Fault codes: two stored, one pending and one permanent, with the check-engine light on" width="1600" height="938" loading="lazy" decoding="async"><button type="button" class="xp-spot sp-r" style="left:86%;top:23%" aria-label="Check-engine light: on or off"><i></i><span>Check-engine light: on or off</span></button><button type="button" class="xp-spot sp-l" style="left:14%;top:48.8%" aria-label="What it means, in plain words"><i></i><span>What it means, in plain words</span></button><button type="button" class="xp-spot sp-l" style="left:21%;top:43.5%" aria-label="Engine, body, chassis or network"><i></i><span>Engine, body, chassis or network</span></button><button type="button" class="xp-spot sp-l" style="left:14%;top:61%" aria-label="Pending: seen once, not confirmed yet"><i></i><span>Pending: seen once, not confirmed yet</span></button><button type="button" class="xp-spot" style="left:30%;top:87%" aria-label="Permanent codes, explained"><i></i><span>Permanent codes, explained</span></button><button type="button" class="xp-spot sp-r" style="left:88%;top:7%" aria-label="Scan again any time"><i></i><span>Scan again any time</span></button></div></div></div>
+  </div>
+</section>
+<section class="fb" id="gauges">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Engine gauges<span class="badge badge-free" title="Free in DashLink">Free</span></span>
+      <h2 class="h-lg reveal d1">Your engine, <span class="grad-text">live on the screen.</span></h2>
+      <p class="fb-body reveal d2">A 54-segment LED tachometer with shift lights from your own redline, live revs and speed, and arc gauges for coolant and battery. Pro adds boost, intake temperature, air-fuel ratio and oil, plus bars for throttle, load and fuel.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Shift lights that start where <b>your</b> engine needs them</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Peak revs held on screen</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>A reading your car doesn&rsquo;t report shows a dash, never a fake zero</span></li></ul>
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="spotted" data-spotted><div class="spotted-in"><img src="../assets/images/v14/diag-gauges.webp" alt="Engine gauges: LED tachometer, coolant, battery, boost, intake, air-fuel ratio and oil" width="1600" height="938" loading="lazy" decoding="async"><button type="button" class="xp-spot sp-l" style="left:24%;top:40.7%" aria-label="Shift lights from your redline"><i></i><span>Shift lights from your redline</span></button><button type="button" class="xp-spot sp-l" style="left:24%;top:55%" aria-label="Revs and speed, live"><i></i><span>Revs and speed, live</span></button><button type="button" class="xp-spot sp-l" style="left:24%;top:70.4%" aria-label="Peak revs"><i></i><span>Peak revs</span></button><button type="button" class="xp-spot" style="left:55.5%;top:26.6%" aria-label="Coolant and battery"><i></i><span>Coolant and battery</span></button><button type="button" class="xp-spot sp-r" style="left:89.9%;top:26.6%" aria-label="Boost, intake, AFR, oil: Pro"><i></i><span>Boost, intake, AFR, oil: Pro</span></button><button type="button" class="xp-spot sp-r" style="left:72.5%;top:82.6%" aria-label="Throttle, load and fuel"><i></i><span>Throttle, load and fuel</span></button><button type="button" class="xp-spot sp-r" style="left:88.7%;top:6.5%" aria-label="Set your redline"><i></i><span>Set your redline</span></button></div></div></div>
+  </div>
+</section>
+<section class="fb flip" id="live-data">
+  <div class="wrap fb-in">
+    <div class="fb-copy">
+      <span class="kicker reveal">Live data<span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+      <h2 class="h-lg reveal d1">Every sensor, <span class="grad-text">charted.</span></h2>
+      <p class="fb-body reveal d2">Every reading your car reports in one list, each with its own sparkline. Tap one to chart the last 60 seconds with its minimum, average and maximum, or lay a second reading over it to see how they move together.</p>
+      <ul class="ticks reveal d2"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Engine, air and fuel, temperatures, electrics</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Minimum, average and maximum for each reading</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span>Pause the chart to look closer</span></li></ul>
+      
+      
+    </div>
+    <div class="fb-media reveal-scale d1"><div class="spotted" data-spotted><div class="spotted-in"><img src="../assets/images/v14/diag-live.webp" alt="Live data: engine speed charted over the last 60 seconds, with a list of every sensor and its sparkline" width="1600" height="938" loading="lazy" decoding="async"><button type="button" class="xp-spot sp-l" style="left:9.4%;top:42.6%" aria-label="Every sensor your car reports"><i></i><span>Every sensor your car reports</span></button><button type="button" class="xp-spot sp-l" style="left:26.9%;top:24.2%" aria-label="A sparkline for each reading"><i></i><span>A sparkline for each reading</span></button><button type="button" class="xp-spot" style="left:41.6%;top:33%" aria-label="Add a second reading to the chart"><i></i><span>Add a second reading to the chart</span></button><button type="button" class="xp-spot sp-r" style="left:85%;top:26%" aria-label="Minimum, average and maximum"><i></i><span>Minimum, average and maximum</span></button><button type="button" class="xp-spot sp-r" style="left:71.9%;top:64%" aria-label="The last 60 seconds"><i></i><span>The last 60 seconds</span></button></div></div></div>
+  </div>
+</section>
+<section class="block xp-sec" id="clusters">
+  <div class="wrap">
+    <div class="shead">
+    <span class="eyebrow reveal">Engine clusters <span class="badge badge-pro" title="Included in DashLink Pro">Pro</span></span>
+    <h2 class="h-xl reveal d1">Turn your dashboard into <span class="grad-text">a real instrument cluster.</span></h2>
+    <p class="lead reveal d2">With an adapter plugged in, Dock mode can show five full clusters driven by your engine: revs, temperatures, boost, fuel and fault codes, the way a sports car shows them.</p>
+  </div>
+    <div class="xp reveal-scale d1" data-explorer>
+      <div class="xp-stage">
+        <div class="hu"><div class="hu-screen" style="aspect-ratio:1552/668">
+          <img class="xp-shot on" src="../assets/images/v14/eng-gt.webp" alt="The Grand Tourer cluster: tachometer, speedometer and a centre display with fault codes, coolant, fuel, throttle, oil, battery and boost" width="1552" height="668"  decoding="async" data-xp="gt"><img class="xp-shot" src="../assets/images/v14/eng-flat-six.webp" alt="The Flat-Six cluster: five overlapping round instruments with a large central tachometer" width="1552" height="668" loading="lazy" decoding="async" data-xp="flat-six"><img class="xp-shot" src="../assets/images/v14/eng-v12.webp" alt="The V12 cluster: a sunray tachometer between engine and fuel screens" width="1552" height="668" loading="lazy" decoding="async" data-xp="v12"><img class="xp-shot" src="../assets/images/v14/eng-toro.webp" alt="The Toro cluster: a segmented rev ring around a hexagonal speed readout, with coolant, oil, battery, fuel, boost and throttle bars" width="1552" height="668" loading="lazy" decoding="async" data-xp="toro"><img class="xp-shot" src="../assets/images/v14/eng-trio.webp" alt="The Trio cluster: voltmeter, water temperature and oil pressure gauges with chrome rings" width="1552" height="668" loading="lazy" decoding="async" data-xp="trio">
+          <div class="xp-spots on" data-xp="gt"><button type="button" class="xp-spot sp-l" style="left:19.5%;top:50%" aria-label="Tachometer, from your engine"><i></i><span>Tachometer, from your engine</span></button><button type="button" class="xp-spot" style="left:41.4%;top:9%" aria-label="Warning lights"><i></i><span>Warning lights</span></button><button type="button" class="xp-spot" style="left:50%;top:30.7%" aria-label="Fault codes flagged on the dash"><i></i><span>Fault codes flagged on the dash</span></button><button type="button" class="xp-spot" style="left:50%;top:52%" aria-label="Coolant, fuel, throttle, oil and boost"><i></i><span>Coolant, fuel, throttle, oil and boost</span></button><button type="button" class="xp-spot sp-r" style="left:80.5%;top:50%" aria-label="Speedometer"><i></i><span>Speedometer</span></button></div><div class="xp-spots" data-xp="flat-six"></div><div class="xp-spots" data-xp="v12"></div><div class="xp-spots" data-xp="toro"></div><div class="xp-spots" data-xp="trio"></div>
+        </div></div>
+        <button type="button" class="xp-toggle" aria-pressed="true">Details</button>
+      </div>
+      <div class="xp-tabs" role="tablist" aria-label="Turn your dashboard into a real instrument cluster.">
+        <button type="button" role="tab" class="xp-tab on" aria-selected="true" data-xp="gt"><span class="xp-bar" aria-hidden="true"></span><b>Grand Tourer</b><small>Tachometer and speedometer either side of a centre display, with a shift-up arrow near the redline.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="flat-six"><span class="xp-bar" aria-hidden="true"></span><b>Flat-Six</b><small>Five round instruments around a big central tachometer, after the classic German sports car.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="v12"><span class="xp-bar" aria-hidden="true"></span><b>V12</b><small>A sunray tachometer between two screens, with F1-style shift lights that flash at the redline.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="toro"><span class="xp-bar" aria-hidden="true"></span><b>Toro</b><small>All digital and angular: a segmented rev ring around a hexagon.</small></button><button type="button" role="tab" class="xp-tab" aria-selected="false" data-xp="trio"><span class="xp-bar" aria-hidden="true"></span><b>Trio</b><small>Three chrome-ringed gauges on black: volts, water temperature and oil pressure.</small></button>
+        <p class="xp-more">Choose a cluster in Dock style. Without the adapter, the dashboard goes back to your usual layout by itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="block" id="need">
+  <div class="wrap">
+    <div class="shead">
+    <span class="eyebrow reveal">What you need</span>
+    <h2 class="h-xl reveal d1">A small adapter. <span class="grad-text">That&rsquo;s all.</span></h2>
+    
+  </div>
+    <div class="cards cols-3">
+      
+      <article class="card reveal d0" id="need-adapter">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+        <h3>An ELM327 adapter</h3>
+        <p>Any OBD-II adapter that speaks ELM327, over Bluetooth, Bluetooth LE or Wi-Fi. They&rsquo;re small, cheap and sold everywhere.</p>
+        
+      </article>
+      <article class="card reveal d1" id="need-car">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 14l4-4"/><path d="M3.3 19a9 9 0 1 1 17.4 0"/></svg></span>
+        <h3>A car with an OBD-II port</h3>
+        <p>Under the dashboard, near the steering column. Most cars from 1996 (US) or 2001 (Europe) onwards have one.</p>
+        
+      </article>
+      <article class="card reveal d2" id="need-unit">
+        <span class="card-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+        <h3>DashLink on your head unit</h3>
+        <p>Open Diagnostics from the DashLink home screen and tap Connect adapter. No account, nothing to sign up for.</p>
+        
+      </article>
+    </div>
+  </div>
+</section>
+<section class="block pl-sec pl-strip" id="plans">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Plans</span>
+    <h2 class="h-xl reveal d1">Read your codes <span class="grad-text">for free.</span></h2>
+    <p class="lead reveal d2">Fault codes and the main gauges stay free. Pro adds live data, clearing codes and the engine clusters. Try all of it free during your trial.</p>
+  </div>
+    <div class="table-wrap reveal d1"><table class="compare plans-table">
+      <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col" class="pl-free"><a href="../plans/#free">Free</a></th><th scope="col" class="pl-drive"><a href="../plans/#drive">Drive</a></th><th scope="col" class="pl-pro"><a href="../plans/#pro">Pro</a></th></tr></thead>
+      <tbody><tr><th scope="row">Dashboard (Dock), trips, fuel, logbook, car care</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Speedometers: Digital, Chrono, Minimal</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Performance tests: 0&ndash;100, braking, 80&ndash;120, dyno, stats</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Bluetooth music on the dashboard</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">Diagnostics: fault codes in plain words and engine gauges (with an OBD-II adapter)</th><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Android Auto (USB, wireless, self mode) and auto-start</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">DashLink Racing: track day, rally, recce + pace notes, regularity (TSD), saved-track sessions, coach, session analysis</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Premium speedometers: Corsa, Sport, Hyper</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr class="pl-hl"><th scope="row">Diagnostics Pro: live data for every sensor, boost, AFR and oil gauges, pending codes, freeze frame, clearing codes, engine clusters</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Theme presets (all except Signature) and accent colours</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr><tr><th scope="row">Home-screen widgets, steering-wheel key mapping, phone sensors</th><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="no"><span aria-hidden="true">&ndash;</span><span class="sr">Not included</span></td><td class="yes"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 5 5L20 7"/></svg><span class="sr">Included</span></td></tr></tbody>
+    </table></div>
+    <p class="fine center">Every feature is unlocked during your free trial.</p>
+    <div class="hero-cta center reveal" style="margin-top:26px"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddiagnostics%26utm_term%3Ddiagnostics" data-play="headunit" data-cta="plans_try" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="plans_see"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="shead center">
+    <span class="eyebrow reveal">Questions</span>
+    <h2 class="h-xl reveal d1">Good to know.</h2>
+    
+  </div>
+    <div class="faq-list reveal d1">
+      
+      <div class="qa"><button type="button" aria-expanded="false"><span>What do I need to use DashLink Diagnostics?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>An ELM327 OBD-II adapter (Bluetooth, Bluetooth LE or Wi-Fi) plugged into your car&rsquo;s diagnostic port, and DashLink on your head unit. For a Bluetooth adapter, pair it once in the head unit&rsquo;s Bluetooth settings (the PIN is usually 1234 or 0000).</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Is it free?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Reading stored fault codes, the check-engine light and the main gauges is free. Live data, pending and permanent codes, freeze frame, clearing codes, the boost, intake, air-fuel and oil gauges and the engine clusters are in <a href="../plans/#pro">Pro</a>. Try everything free during your trial.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Can I clear the check-engine light?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>With Pro, yes. DashLink only clears codes with the engine off and warns you first: clearing also resets the car&rsquo;s readiness monitors, so an emissions test straight afterwards may fail. If the fault is still there, the light comes back.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Does my car report every reading?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Cars report different sets of sensors. A reading your car doesn&rsquo;t report shows a dash, never a made-up zero.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Does it replace a mechanic?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>No. A fault code tells you where to look and how urgent it is, so you can decide what to do and talk to your garage knowing what&rsquo;s wrong.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false"><span>Can I leave the adapter plugged in?</span><span class="plus" aria-hidden="true"></span></button><div class="ans"><p>Many people do. Some adapters draw a little power with the car off, so unplug it if the car will be parked for a long time.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="final" id="get">
+  <div class="wrap">
+    
+    <h2 class="display reveal d1">Your car has been talking. <span class="grad-text">Now you can listen.</span></h2>
+    <p class="lead reveal d2">Read your fault codes free. Try live data and the engine clusters free now.</p>
+    <div class="hero-cta center reveal d2"><a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddiagnostics%26utm_term%3Ddiagnostics" data-play="headunit" data-cta="final_primary" data-fallback="../download/" data-fallback-label="Try DashLink free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try DashLink free</span></a><a class="btn btn-ghost" href="../plans/" data-cta="final_secondary"><span>See plans</span><svg class="ic ic-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="../" class="brand"><span class="wm">DashLink<span class="wm-dot">.</span></span></a>
+        <p>Adds Android Auto, a car dashboard and a motorsport timing suite to the Android head unit already in your car. Try it free.</p>
+        <a href="../racing/" class="foot-racing"><span class="lockup sm"><span class="wm">DashLink<span class="wm-dot">.</span></span><span class="lk-div" aria-hidden="true"></span><svg class="rmark " viewBox="0 0 44 28" aria-hidden="true" focusable="false"><defs><linearGradient id="rmg10" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#5b1820"/><stop offset=".55" stop-color="#e63946"/><stop offset="1" stop-color="#ffb4a8"/></linearGradient></defs><path fill="url(#rmg10)" d="M3 27 9 17h6L9 27zM14 27 22 10h6l-8 17zM25 27 36 1h6L31 27z"/></svg><span class="lk-racing">Racing</span></span></a>
+      </div>
+      <div class="fcol"><h4>Product</h4><a href="../android-auto/">Android Auto</a><a href="../dashboard/">Dashboard</a><a href="../trips-fuel-maintenance/">Trips, fuel &amp; car care</a><a href="../plans/">Plans</a></div>
+      <div class="fcol"><h4>Racing</h4><a href="../racing/">Overview</a><a href="../racing/track-day/">Track day</a><a href="../racing/rally/">Rally</a><a href="../racing/performance/">Performance</a></div>
+      <div class="fcol"><h4>Help</h4><a href="../wireless-app/">DashLink Wireless</a><a href="../support/">Support</a><a href="../download/">Download &amp; install</a><a href="../premium/">Activate your plan</a><a href="mailto:dashlink.support@gmail.com">Email us</a></div>
+    </div>
+    <div class="foot-legal">
+      <p>Android Auto and Android are trademarks of Google LLC. Google Play is a trademark of Google LLC. DashLink is an independent app and is not affiliated with or endorsed by Google.</p>
+      <p>Screens are illustrative. Features and compatibility depend on your head unit, phone and software version. Fuel, range, trip cost and dyno power figures are estimates. DashLink Racing is for closed courses only.</p>
+      <p class="foot-row"><span>&copy; 2026 DashLink</span><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="cta-bar" id="ctaBar" aria-hidden="true">
+  <span class="cta-bar-txt"><b>DashLink</b><small>Try every feature free</small></span>
+  <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddiagnostics%26utm_term%3Ddiagnostics" data-play="headunit" data-cta="cta_bar" data-fallback="../download/" data-fallback-label="Try free" target="_blank" rel="noopener"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-label>Try free</span></a>
+</div>
+<a class="wa-fab" href="https://wa.me/923229914024?text=Hi%20DashLink!%20I%20have%20a%20question." target="_blank" rel="noopener" aria-label="Chat with DashLink on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.69-6.16A11.87 11.87 0 0 1 .16 11.9C.16 5.34 5.5 0 12.05 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45zm6.6-3.81c1.67 1 3.27 1.6 5.39 1.6 5.45 0 9.88-4.44 9.89-9.89 0-5.46-4.42-9.89-9.88-9.89-5.45 0-9.89 4.43-9.89 9.88 0 2.23.65 3.9 1.75 5.64l-1 3.65zm11.38-5.46c-.07-.13-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.41z"/></svg></a>
+</body>
+</html>

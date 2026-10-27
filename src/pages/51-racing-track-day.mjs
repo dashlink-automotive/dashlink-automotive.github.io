@@ -1,5 +1,5 @@
-import { hero, anchorBar, feature, faq, ctaFinal, safety, sensorStory, pitWall , plansTable, proBadge } from '../components.mjs';
-import { F, RACING_FAQ, RACING_BAR, RACING_TRY, RACING_TIER, subnav, PIT_WALL } from '../racing.mjs';
+import { hero, anchorBar, feature, explorer, faq, ctaFinal, safety, sensorStory, pitWall , plansTable, proBadge } from '../components.mjs';
+import { F, FIND_TIME, RACING_FAQ, RACING_BAR, RACING_TRY, RACING_TIER, subnav, PIT_WALL } from '../racing.mjs';
 
 const up = '../../';
 const f = F(up);
@@ -18,7 +18,7 @@ const page = {
     title: 'Find the time <span class="grad-text">you&rsquo;re leaving out there.</span>',
     sub: 'Lap timing to the line, automatic sectors, live delta and a ghost car of your best lap. Then a debrief that tells you which corners cost you.',
     primary: RACING_TRY,
-    tier: RACING_TIER(proBadge(), up),
+    tier: RACING_TIER(proBadge()),
     note: 'Closed courses only',
     media: { img: 'v8/mode-track.webp', w: 2000, h: 1250, alt: 'Track mode: lap time, live delta, sectors and chase map' },
     variants: {
@@ -29,11 +29,13 @@ const page = {
   body() {
     return [
       hero(this.hero),
-      anchorBar([['track-day', 'Lap timer'], ['ghost', 'Ghost car'], ['live', 'Live'], ['analysis', 'Analysis'], ['debrief', 'Debrief'], ['coach', 'Coach'], ['tracks', 'Tracks'], ['import', 'Import'], ['phone-sensors', 'Phone sensors'], ['wheel', 'Wheel'], ['safety', 'Safety']]),
+      anchorBar([['track-day', 'Lap timer'], ['ghost', 'Ghost car'], ['live', 'Live'], ['find-time', 'Time gaps'], ['analysis', 'Analysis'], ['replay', 'Replay'], ['debrief', 'Debrief'], ['coach', 'Coach'], ['tracks', 'Tracks'], ['import', 'Import'], ['phone-sensors', 'Phone sensors'], ['wheel', 'Wheel'], ['safety', 'Safety']]),
       feature(f.trackDay),
       feature({ ...f.ghost, flip: true }),
       feature(f.live),
+      explorer(FIND_TIME),
       feature({ ...f.analysis, flip: true }),
+      feature(f.replay),
       pitWall(PIT_WALL()),
       feature(f.coach),
       feature({ ...f.tracks, flip: true }),

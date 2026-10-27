@@ -90,7 +90,7 @@ h1,h2,h3,h4,h5{font-family:var(--font-head);letter-spacing:-.022em;line-height:1
 .lockup.sm .wm{font-size:1.05rem}.lockup.sm .rmark{width:22px;height:14px}.lockup.sm .lk-racing{font-size:.8rem}
 
 /* ---------- nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--pad);border-bottom:1px solid transparent;transition:background .4s var(--ease),padding .4s,border-color .4s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:16px var(--pad);border-bottom:1px solid transparent;transition:background .4s var(--ease),padding .4s,border-color .4s}
 .nav.scrolled,.nav.open{background:rgba(6,7,9,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line-2);padding-block:11px}
 .t-racing .nav.scrolled,.t-racing .nav.open{background:rgba(10,4,5,.8)}
 .brand{display:inline-flex;align-items:center;flex:none}
@@ -99,9 +99,10 @@ h1,h2,h3,h4,h5{font-family:var(--font-head);letter-spacing:-.022em;line-height:1
 .nav-links a{font-size:.92rem;color:var(--ink-dim);transition:color .25s;white-space:nowrap;position:relative;padding:6px 0}
 .nav-links a:hover,.nav-links a[aria-current]{color:var(--ink)}
 .nav-links a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--ac)}
-.nav-links .nl-racing{color:#ff6b72;font-style:italic;font-weight:700;letter-spacing:.02em}
-.nav-links .nl-racing:hover{color:#ff8f94}
-.nav-end{display:flex;align-items:center;gap:10px}
+.nav-links .nl-racing{font-family:var(--font-race);font-weight:700;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;background:linear-gradient(90deg,#ff8a8a,#ffc2b6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links .nl-racing:hover{filter:brightness(1.15)}
+.nav-end{display:flex;align-items:center;gap:10px;justify-self:end;min-height:44px}
+.nav .brand{justify-self:start}
 .menu-btn{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);cursor:pointer;place-items:center}
 .menu-btn .i-close{display:none}
 .menu-btn[aria-expanded=true] .i-open{display:none}.menu-btn[aria-expanded=true] .i-close{display:block}
@@ -110,8 +111,8 @@ h1,h2,h3,h4,h5{font-family:var(--font-head);letter-spacing:-.022em;line-height:1
 .sheet a{display:flex;flex-direction:column;padding:15px 4px;border-bottom:1px solid var(--line-2)}
 .sheet a b{font-family:var(--font-head);font-size:1.3rem;font-weight:600}
 .sheet a small{color:var(--ink-faint);font-size:.9rem;margin-top:2px}
-.sheet .nl-racing b{color:#ff6b72;font-style:italic;font-family:var(--font-race);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
-@media(max-width:1180px){.nav-links{display:none}.menu-btn{display:grid}}
+.sheet .nl-racing b{font-family:var(--font-race);font-weight:700;text-transform:uppercase;letter-spacing:.28em;background:linear-gradient(90deg,#ff8a8a,#ffc2b6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@media(max-width:1180px){.nav{grid-template-columns:1fr auto}.nav-links{display:none}.menu-btn{display:grid}}
 @media(max-width:420px){.nav-cta{display:none}}
 body.menu-open{overflow:hidden}
 
@@ -1082,11 +1083,12 @@ main{overflow-x:clip}
 .psd-note{margin-top:14px;font-size:.82rem;color:var(--ink-faint)}
 
 .ps-setup{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,70px);align-items:center;margin-top:clamp(56px,9vw,110px)}
-@media(max-width:900px){.ps-setup{grid-template-columns:1fr}.ps-setup>div:first-child{order:2}}
+@media(max-width:1100px){.ps-setup{grid-template-columns:1fr}.ps-setup>div:first-child{order:2}}
 .ps-steps{margin-top:22px}
 .ps-setup .fb-note{margin-top:22px}
 .ps-setup-stage{padding-right:14%}
 @media(max-width:600px){.ps-setup-stage{padding-right:0}}
+@media(min-width:1101px){.ps-setup .ps-setup-stage{overflow-x:visible;padding-right:22%}.ps-setup .ph3d{width:min(330px,26vw)}}
 /* phones: keep hovering cards on screen */
 @media(max-width:640px){.ph-lift{left:clamp(-7%,var(--x),calc(107% - min(var(--w),100%)));width:min(var(--w),100%)}}
 .ps-top .ph3d,.ps-setup .ph3d{width:min(330px,62vw)}
@@ -1301,7 +1303,22 @@ main{overflow-x:clip}
 @media(max-width:620px){.pcards.pc4{grid-template-columns:1fr}}
 .pcard .card-link{margin-top:auto}
 .pc-copy h3 .badge{font-size:.6rem}
-.page-tier{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:8px 14px 8px 10px;border-radius:100px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:.86rem;color:var(--ink-dim)}
+.page-tier{display:flex;align-items:center;gap:8px;margin-top:16px}
 .page-tier .badge{margin-left:0}
 .page-tier a{color:var(--ac-hi)}
 .cs3-scr>img{object-fit:cover}
+
+/* five pillar cards: 3 on top, 2 below (2026-10-27) */
+.pcards.pc5{grid-template-columns:repeat(6,1fr)}
+.pcards.pc5>.pcard{grid-column:span 2}
+.pcards.pc5>.pcard:nth-child(n+4){grid-column:span 3}
+@media(max-width:960px){.pcards.pc5{grid-template-columns:repeat(2,1fr)}.pcards.pc5>.pcard,.pcards.pc5>.pcard:nth-child(n+4){grid-column:auto}.pcards.pc5>.pcard:last-child{grid-column:1/-1}}
+@media(max-width:620px){.pcards.pc5{grid-template-columns:1fr}.pcards.pc5>.pcard:last-child{grid-column:auto}}
+.xp-tab b .badge{margin-left:8px;vertical-align:2px}
+
+/* "On your phone?" install hint under head-unit hero CTAs (ad traffic is mostly phones, the app goes on the car) */
+.hero-install{display:flex;gap:8px;align-items:center;margin-top:16px;max-width:520px;font-size:.84rem;line-height:1.45;color:var(--ink-dim)}
+.hero-install .ic{flex:none;width:16px;height:16px;color:var(--ac-hi)}
+.hero-install b{color:var(--ink)}
+@media(max-width:420px){.hero-install{font-size:.78rem}}
+.hero-center .hero-install{margin-left:auto;margin-right:auto;text-align:left}

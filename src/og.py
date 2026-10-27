@@ -23,6 +23,7 @@ PAGES = {
     'android-auto': (['Android Auto on the', 'screen in your car.'], 'USB · Wireless · Self mode', 'v2/home.webp', False),
     'dashboard': (['Your car’s dashboard,', 'redrawn.'], '7 layouts · 6 speedometers', 'v4/dock-cockpit.webp', False),
     'trips-fuel-maintenance': (['Know every trip.', 'Miss no service.'], 'Trips · Fuel estimates · Reminders', 'v2/fuel-costs.webp', False),
+    'diagnostics': (['Check-engine light?', 'Read it on your dash.'], 'Fault codes · Engine gauges · Live data', 'v14/diag-gauges.webp', False),
     'racing': (['LAP TIMING ON THE', 'SCREEN IN YOUR CAR.'], 'Track day · Rally · Performance', None, True),
     'racing-track-day': (['FIND THE TIME', 'YOU’RE LEAVING OUT.'], 'Lap timer · Delta · Ghost car', None, True),
     'racing-rally': (['DRIVE THE RECCE.', 'HEAR THE NOTES.'], 'Stage timer · Pace notes · TSD', None, True),

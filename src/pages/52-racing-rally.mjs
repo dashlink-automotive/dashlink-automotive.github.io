@@ -19,7 +19,7 @@ const page = {
     title: 'Drive the recce. <span class="grad-text">Hear the notes.</span>',
     sub: 'Stage timing from start line to stop control, pace notes written from your recce and called by a co-driver voice, and regularity by section.',
     primary: RACING_TRY,
-    tier: RACING_TIER(proBadge(), up),
+    tier: RACING_TIER(proBadge()),
     note: 'For rallies on closed roads. Check your event&rsquo;s rules on electronic devices.',
     media: { img: 'v9/recce-screen.webp', w: 2000, h: 1250, alt: 'Recce screen: the route, voice notes and one-tap calls' },
     variants: {
@@ -30,7 +30,7 @@ const page = {
   body() {
     return [
       hero(this.hero),
-      anchorBar([['rally', 'Stage timer'], ['recce', 'Pace notes'], ['recce-calls', 'Calls'], ['regularity', 'Regularity'], ['tracks', 'Stages'], ['import', 'Import'], ['wheel', 'Wheel'], ['safety', 'Safety']]),
+      anchorBar([['rally', 'Stage timer'], ['recce', 'Pace notes'], ['recce-calls', 'Calls'], ['regularity', 'Regularity'], ['replay', 'Replay'], ['tracks', 'Stages'], ['import', 'Import'], ['wheel', 'Wheel'], ['safety', 'Safety']]),
       feature(f.rally),
       recceStory({ id: 'recce', eyebrow: 'Recce &rarr; pace notes', title: 'Drive it once. <span class="grad-text">Get a co-driver.</span>',
         sub: 'Pace notes usually mean a co-driver with a notebook, or specialist rally kit. DashLink writes them from one slow recce drive, on the screen already in your car.',
@@ -56,9 +56,10 @@ const page = {
         ] },
         note: 'Recce at legal speeds and under your event&rsquo;s rules; time stages on closed roads only. Pace notes are generated and can be wrong, so check them before you rely on them. Check your event&rsquo;s rules on electronic devices.' }),
       feature(f.regularity),
-      feature({ ...f.tracks, flip: true, title: 'Every stage, on its own page.' }),
-      feature({ ...f.import, body: 'Import a GPX or KML of the route from your phone or a file. A route that isn&rsquo;t a closed loop becomes a stage, with pace notes generated for you.' }),
-      feature({ ...f.wheel, flip: true }),
+      feature({ ...f.replay, flip: true, title: 'Every run on the stage, <span class="grad-text">side by side.</span>', body: 'Load your runs and your team-mates&rsquo; runs of the same stage and play them together. Everyone starts at once, and the table shows who leads, by how many metres and by how many seconds, with every speed trace laid over the others.' }),
+      feature({ ...f.tracks, title: 'Every stage, on its own page.' }),
+      feature({ ...f.import, flip: true, body: 'Import a GPX or KML of the route from your phone or a file. A route that isn&rsquo;t a closed loop becomes a stage, with pace notes generated for you.' }),
+      feature(f.wheel),
       safety(RULES),
       plansTable({ strip: true, eyebrow: 'Plans', title: 'DashLink Racing is <span class="grad-text">part of Pro.</span>', sub: 'Try every Racing feature free during your trial. The performance tests stay free for good.', hl: ['racing', 'performance', 'extras'] }),
       faq({ items: RACING_FAQ(up).filter(([q]) => !/dyno/.test(q)) }),

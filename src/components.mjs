@@ -154,6 +154,7 @@ export function hero(h) {
       <h1 class="display reveal d1" data-h="title">${h.title}</h1>
       <p class="lead reveal d2" data-h="sub">${h.sub || ''}</p>
       <div class="hero-cta reveal d3">${button(h.primary || TRY_FREE, { name: 'hero_primary' })}${button(h.secondary === undefined ? SEE_PLANS : h.secondary, { ghost: true, name: 'hero_secondary' })}</div>
+      ${(h.primary || TRY_FREE).play === 'headunit' ? `<p class="hero-install reveal d3">${icon('phone')}<span><b>On your phone?</b> Pick your head unit next to Install.</span></p>` : ''}
       ${h.note ? `<p class="hero-note reveal d3">${h.note}</p>` : ''}
       ${h.tier ? `<p class="page-tier reveal d3">${h.tier}</p>` : ''}
     </div>
@@ -373,7 +374,8 @@ export function gallery(g) {
 /* ---------------- layout explorer ----------------
    One big head-unit screen, a tab per layout. Auto-advances while in view,
    stops for good once the visitor picks one.
-   { id, eyebrow, title, sub, items: [{ key, name, desc, img, alt }], more } */
+   { id, eyebrow, title, sub, items: [{ key, name, desc, img, alt, spots?, pro?, free? }], more, w?, h? }
+   w/h = the screenshots' size (default 2000x1250); every item in one explorer shares it. */
 export function explorer(x) {
   return `
 <section class="block xp-sec" id="${x.id}">
@@ -381,14 +383,14 @@ export function explorer(x) {
     ${head(x)}
     <div class="xp reveal-scale d1" data-explorer>
       <div class="xp-stage">
-        <div class="hu"><div class="hu-screen" style="aspect-ratio:2000/1250">
-          ${x.items.map((it, i) => `<img class="xp-shot${i ? '' : ' on'}" src="${r('assets/images/' + it.img)}" alt="${esc(it.alt)}" width="2000" height="1250" ${i ? 'loading="lazy"' : ''} decoding="async" data-xp="${it.key}">`).join('')}
+        <div class="hu"><div class="hu-screen" style="aspect-ratio:${x.w || 2000}/${x.h || 1250}">
+          ${x.items.map((it, i) => `<img class="xp-shot${i ? '' : ' on'}" src="${r('assets/images/' + it.img)}" alt="${esc(it.alt)}" width="${x.w || 2000}" height="${x.h || 1250}" ${i ? 'loading="lazy"' : ''} decoding="async" data-xp="${it.key}">`).join('')}
           ${x.items.map((it, i) => `<div class="xp-spots${i ? '' : ' on'}" data-xp="${it.key}">${(it.spots || []).map((sp) => `<button type="button" class="xp-spot${sp.x > 70 ? ' sp-r' : sp.x < 30 ? ' sp-l' : ''}" style="left:${sp.x}%;top:${sp.y}%" aria-label="${esc(sp.label)}"><i></i><span>${sp.label}</span></button>`).join('')}</div>`).join('')}
         </div></div>
         ${x.items.some((it) => it.spots) ? '<button type="button" class="xp-toggle" aria-pressed="true">Details</button>' : ''}
       </div>
       <div class="xp-tabs" role="tablist" aria-label="${esc(strip(x.title))}">
-        ${x.items.map((it, i) => `<button type="button" role="tab" class="xp-tab${i ? '' : ' on'}" aria-selected="${i ? 'false' : 'true'}" data-xp="${it.key}"><span class="xp-bar" aria-hidden="true"></span><b>${it.name}</b><small>${it.desc}</small></button>`).join('')}
+        ${x.items.map((it, i) => `<button type="button" role="tab" class="xp-tab${i ? '' : ' on'}" aria-selected="${i ? 'false' : 'true'}" data-xp="${it.key}"><span class="xp-bar" aria-hidden="true"></span><b>${it.name}${badges(it)}</b><small>${it.desc}</small></button>`).join('')}
         ${x.more ? `<p class="xp-more">${x.more}</p>` : ''}
       </div>
     </div>
@@ -898,7 +900,7 @@ export function pillarCards(p) {
 <section class="block" id="${p.id}">
   <div class="wrap">
     ${head({ ...p, center: true })}
-    <div class="pcards${p.items.length === 4 ? ' pc4' : ''}">${p.items.map((it, i) => `
+    <div class="pcards${p.items.length === 4 ? ' pc4' : p.items.length === 5 ? ' pc5' : ''}">${p.items.map((it, i) => `
       <a class="pcard reveal d${i % 3}" href="${r(it.href)}" data-cta="pillar_${esc(it.href.replace(/\W+/g, '_').replace(/_$/, ''))}"${it.tier ? ` data-plan="${it.tier}"` : ''}>
         <div class="pc-media">${media({ ...it.media, frame: it.media.frame || 'hu' })}</div>
         <div class="pc-copy"><h3>${it.title}${tierBadge(it.tier)}</h3><p>${it.body}</p><span class="card-link">${it.link || 'Learn more'}${icon('arrow')}</span></div>

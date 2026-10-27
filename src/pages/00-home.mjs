@@ -27,10 +27,11 @@ const page = {
   body() {
     return [
       hero(this.hero),
-      pillarCards({ id: 'explore', eyebrow: 'What&rsquo;s inside', title: 'One app. <span class="grad-text">Four upgrades for your car.</span>', sub: 'Try all of them free. Features with a Drive or Pro badge stay with those plans after the trial; the rest stay free.', items: [
+      pillarCards({ id: 'explore', eyebrow: 'What&rsquo;s inside', title: 'One app. <span class="grad-text">Five upgrades for your car.</span>', sub: 'Try all of them free. Features with a Drive or Pro badge stay with those plans after the trial; the rest stay free.', items: [
         { href: 'android-auto/', tier: 'drive', title: 'Android Auto', body: 'Maps, music and calls on the screen you already have. USB, wireless or no phone at all.', media: { img: 'aa_home.webp', w: 2400, h: 1080, alt: 'Android Auto on a head unit' } },
         { href: 'dashboard/', tier: 'free', title: 'Dashboard', body: 'Dock mode turns the screen into a car dashboard: speed, time, music, trip and apps.', media: { img: 'v5/dock-cockpit.webp', w: 2000, h: 1250, alt: 'Dock mode, Cockpit layout' } },
         { href: 'trips-fuel-maintenance/', tier: 'free', title: 'Trips &amp; fuel', body: 'A trip computer, fuel and cost estimates, and service reminders before they&rsquo;re overdue.', media: { img: 'v2/fuel-costs.webp', w: 2000, h: 1250, alt: 'Fuel and costs on the head unit' } },
+        { href: 'diagnostics/', tier: 'free', title: 'Diagnostics', body: 'Add a small OBD-II adapter: fault codes in plain words and live engine gauges on your dash.', media: { img: 'v14/diag-gauges.webp', w: 1600, h: 938, alt: 'DashLink Diagnostics: engine gauges' } },
         { href: 'racing/', tier: 'pro', title: 'DashLink Racing', body: 'Lap timing, rally pace notes and performance tests. The performance tests are free.', media: { img: 'v8/mode-race.webp', w: 2000, h: 1250, alt: 'DashLink Racing in Race mode' } },
       ] }),
       showcase({ eyebrow: 'Android Auto for your head unit ' + driveBadge(), scenes: [

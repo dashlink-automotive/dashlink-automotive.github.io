@@ -12,7 +12,7 @@ const page = {
     sub: 'Plug in or go wireless. DashLink picks the right video settings for your head unit, so it runs smoothly on cheap units and big screens alike.',
     primary: { play: 'headunit', label: 'Try Android Auto free', plan: 'drive' },
     note: 'Android 6.0+ head units &middot; No account',
-    tier: `${driveBadge()}${proBadge()}<span>Included in Drive and Pro. <a href="../plans/#drive">Try free</a>.</span>`,
+    tier: `${driveBadge()}${proBadge()}`,
     media: { img: 'v3/cabin-day.webp', w: 1100, h: 691, alt: 'A driver tapping Android Auto on an aftermarket head unit', frame: 'photo' },
     variants: {
       wireless: { match: ['wireless', 'wifi', 'cordless'], eyebrow: 'Wireless Android Auto', title: 'Wireless Android Auto, <span class="grad-text">no dongle.</span>', sub: 'Your phone connects over the head unit&rsquo;s own Wi-Fi and Bluetooth, the way factory wireless systems do.' },

@@ -43,7 +43,7 @@ Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashli
 
 Try: `https://dashlink-automotive.github.io/dashboard/?c=speedometer`
 
-Anchors: `#layouts` `#corsa` `#speedometers` `#dock-style` `#speed-warning` `#trip` `#dock` `#heading` `#music` `#apps` `#night` `#screensaver` `#dock-keys` `#large-controls` `#plans` `#faq` `#get`
+Anchors: `#layouts` `#corsa` `#speedometers` `#engine` `#dock-style` `#speed-warning` `#trip` `#dock` `#heading` `#music` `#apps` `#night` `#screensaver` `#dock-keys` `#large-controls` `#plans` `#faq` `#get`
 
 Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddashboard%26utm_term%3Ddashboard`
 
@@ -62,6 +62,20 @@ Anchors: `#trip` `#logbook` `#fuel` `#car-care` `#odometer` `#offline` `#plans` 
 
 Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dtrips-fuel-maintenance%26utm_term%3Dtrips-fuel-maintenance`
 
+## /diagnostics/
+
+| Variant | Matches | Headline |
+|---|---|---|
+| *(default)* | — | Check-engine light on? Read it on your dash. |
+| `codes` | `codes`, `code`, `checkengine`, `engineLight`, `dtc`, `scan`, `scanner`, `obd` | What does that engine light mean? |
+| `gauges` | `gauges`, `gauge`, `boost`, `afr`, `tacho`, `rpm` | Your engine, live on the dash. |
+
+Try: `https://dashlink-automotive.github.io/diagnostics/?c=codes`
+
+Anchors: `#connect` `#codes` `#gauges` `#live-data` `#clusters` `#need` `#need-adapter` `#need-car` `#need-unit` `#plans` `#faq` `#get`
+
+Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Ddiagnostics%26utm_term%3Ddiagnostics`
+
 ## /racing/
 
 | Variant | Matches | Headline |
@@ -74,7 +88,7 @@ Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashli
 
 Try: `https://dashlink-automotive.github.io/racing/?c=trackday`
 
-Anchors: `#disciplines` `#track-day` `#ghost` `#rally` `#recce` `#regularity` `#performance` `#dyno` `#live` `#analysis` `#debrief` `#coach` `#tracks` `#import` `#phone-sensors` `#wheel` `#send` `#safety` `#plans` `#faq` `#get`
+Anchors: `#disciplines` `#track-day` `#ghost` `#rally` `#recce` `#regularity` `#performance` `#dyno` `#live` `#analysis` `#find-time` `#replay` `#debrief` `#coach` `#tracks` `#import` `#phone-sensors` `#wheel` `#send` `#safety` `#plans` `#faq` `#get`
 
 Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dracing%26utm_term%3Dracing`
 
@@ -88,7 +102,7 @@ Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashli
 
 Try: `https://dashlink-automotive.github.io/racing/track-day/?c=ghost`
 
-Anchors: `#track-day` `#ghost` `#live` `#analysis` `#debrief` `#coach` `#tracks` `#import` `#phone-sensors` `#wheel` `#safety` `#plans` `#faq` `#get`
+Anchors: `#track-day` `#ghost` `#live` `#find-time` `#analysis` `#replay` `#debrief` `#coach` `#tracks` `#import` `#phone-sensors` `#wheel` `#safety` `#plans` `#faq` `#get`
 
 Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dracing-track-day%26utm_term%3Dracing-track-day`
 
@@ -102,7 +116,7 @@ Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashli
 
 Try: `https://dashlink-automotive.github.io/racing/rally/?c=stage`
 
-Anchors: `#rally` `#recce` `#recce-calls` `#recce-why` `#regularity` `#tracks` `#import` `#wheel` `#safety` `#plans` `#faq` `#get`
+Anchors: `#rally` `#recce` `#recce-calls` `#recce-why` `#regularity` `#replay` `#tracks` `#import` `#wheel` `#safety` `#plans` `#faq` `#get`
 
 Organic Play URL: `https://play.google.com/store/apps/details?id=com.auto.dashlink.headunit&referrer=utm_source%3Dwebsite%26utm_medium%3Dorganic%26utm_campaign%3Dracing-rally%26utm_term%3Dracing-rally`
 

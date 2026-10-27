@@ -11,12 +11,12 @@ const page = {
     title: 'Know every trip. <span class="grad-text">Miss no service.</span>',
     sub: 'A trip computer, a logbook of every drive, fuel and cost estimates, and reminders for oil, tyres and paperwork. All on your head unit, all offline.',
     primary: { play: 'headunit' },
-    tier: `${freeBadge()}<span>Free. Trips, fuel and car care stay free after the trial.</span>`,
+    tier: freeBadge(),
     media: { img: 'v2/fuel-costs.webp', w: 2000, h: 1250, alt: 'Fuel and costs: estimated fuel left, range and consumption' },
     variants: {
       fuel: { match: ['fuel', 'mileage', 'mpg', 'petrol', 'cost'], eyebrow: 'Fuel &amp; costs', title: 'What every trip <span class="grad-text">really costs.</span>', sub: 'Range, fuel left and each trip&rsquo;s cost, estimated from the distance you drive, in your units and currency.' },
       service: { match: ['service', 'maintenance', 'oil', 'carcare', 'reminder'], eyebrow: 'Service reminders', title: 'Your car, <span class="grad-text">looked after.</span>', sub: 'Oil change, service, tyre rotation, brakes, insurance and registration. Due by distance or months.', media: { img: 'v2/car-care.webp', w: 2000, h: 1250, alt: 'Car care reminders and maintenance log' } },
-      logbook: { match: ['logbook', 'expenses', 'csv', 'business'], eyebrow: 'Logbook', title: 'Every drive, <span class="grad-text">logged.</span>', sub: 'Every drive recorded and exported as CSV, ready for expenses or mileage claims.', media: { mock: 'logbook' } },
+      logbook: { match: ['logbook', 'expenses', 'csv', 'business'], eyebrow: 'Logbook', title: 'Every drive, <span class="grad-text">logged.</span>', sub: 'Every drive recorded and exported as CSV, ready for expenses or mileage claims.', media: { img: 'v14/logbook.webp', w: 1600, h: 938, alt: 'The logbook of finished trips' } },
     },
   },
   body() {
@@ -24,7 +24,7 @@ const page = {
       hero(this.hero),
       anchorBar([['trip', 'Trip computer'], ['logbook', 'Logbook'], ['fuel', 'Fuel &amp; costs'], ['car-care', 'Service reminders'], ['odometer', 'Odometer']]),
       feature({ id: 'trip', kicker: 'Trip computer', title: 'Trip A, Trip B and this drive.', body: 'Distance, moving time, average and top speed for the current journey, plus two trips you reset when you like. The Journey layout puts it all on the dashboard, with the estimated trip cost.', media: { img: 'v4/dock-journey.webp', w: 2000, h: 1250, alt: 'The Journey layout: range, trip cost, distance, driving time and average' } }),
-      feature({ id: 'logbook', flip: true, kicker: 'Logbook', title: 'Every drive, recorded.', body: 'Each drive goes in the logbook. Export it as CSV for expenses or mileage claims.', media: { mock: 'logbook' } }),
+      feature({ id: 'logbook', flip: true, kicker: 'Logbook', title: 'Every drive, recorded.', body: 'Every finished trip goes in the logbook with where it started and ended. Tag business trips for mileage claims, then share the CSV or save it to Downloads.', media: { img: 'v14/logbook.webp', w: 1600, h: 938, alt: 'The logbook: this month 1,229 km over 8 trips, each with date, times, distance, duration, average speed and a Personal or Business tag' } }),
       feature({ id: 'fuel', kicker: 'Fuel &amp; costs', title: 'Range and cost, estimated honestly.', body: 'Range, fuel left and each trip&rsquo;s cost, all <b>estimated</b> from the distance you drive. Tap &ldquo;I filled up&rdquo; to keep the estimate on track.', bullets: ['km/L, mpg (US) or mpg (UK)', 'Your own fuel price and currency', 'No sensor or adapter needed'], media: { img: 'v2/fuel-costs.webp', w: 2000, h: 1250, alt: 'Estimated fuel left, range and consumption' } }),
       feature({ id: 'car-care', flip: true, kicker: 'Service &amp; maintenance', title: 'Reminders before it&rsquo;s overdue.', body: 'Oil change, service, tyre rotation, brake check, insurance, registration, or your own. Due by distance or by months, with &ldquo;due soon&rdquo; and &ldquo;overdue&rdquo; status and a maintenance log with date and odometer.', media: { img: 'v2/car-care.webp', w: 2000, h: 1250, alt: 'Service reminders and a maintenance log' } }),
       cards({ cols: 2, items: [

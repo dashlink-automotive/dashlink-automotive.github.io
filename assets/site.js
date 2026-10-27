@@ -255,6 +255,7 @@
       tabs.forEach(function (t, n) { t.classList.toggle('on', n === k); t.setAttribute('aria-selected', n === k ? 'true' : 'false'); });
       shots.forEach(function (s, n) { s.classList.toggle('on', n === k); if (n === k) s.loading = 'eager'; });
       var key = tabs[k].getAttribute('data-xp');
+      xp.querySelectorAll('.xp-spots').forEach(function (l) { l.classList.toggle('on', l.getAttribute('data-xp') === key); });
       xp.querySelectorAll('[data-xp-lift]').forEach(function (l) { l.classList.toggle('on', l.getAttribute('data-xp-lift') === key); });
       cap.textContent = tabs[k].querySelector('small').textContent;
       var row = tabs[k].parentElement;

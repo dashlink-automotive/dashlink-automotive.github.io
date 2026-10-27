@@ -1,5 +1,5 @@
-import { hero, anchorBar, feature, cards, faq, ctaFinal, safety, head, section, media, pitWall, plansTable, proBadge, freeBadge } from '../components.mjs';
-import { F, RACING_FAQ, RACING_BAR, RACING_TRY, RACING_TIER, subnav, PIT_WALL } from '../racing.mjs';
+import { hero, anchorBar, feature, explorer, cards, faq, ctaFinal, safety, head, section, media, pitWall, plansTable, proBadge, freeBadge } from '../components.mjs';
+import { F, FIND_TIME, RACING_FAQ, RACING_BAR, RACING_TRY, RACING_TIER, subnav, PIT_WALL } from '../racing.mjs';
 
 const up = '../';
 const f = F(up);
@@ -19,7 +19,7 @@ const page = {
     sub: 'Lap timing, rally stages and performance tests. Live delta, ghost car, pace notes, 0&ndash;100 and a road dyno. Built for closed courses.',
     primary: RACING_TRY,
     note: 'Inside DashLink &middot; No extra hardware &middot; Closed courses only',
-    tier: RACING_TIER(proBadge(), up),
+    tier: RACING_TIER(proBadge()),
     media: { frame: 'cascade', screens: [
       { img: 'v7/perf-screen.webp', tag: 'Performance', alt: '0 to 100 km/h in 16.22 seconds, and a road dyno curve' },
       { img: 'v9/stage-drive.webp', tag: 'Rally', alt: 'Driving a rally stage with pace notes on the map' },
@@ -39,7 +39,7 @@ const page = {
   body() {
     return [
       hero(this.hero),
-      anchorBar([['disciplines', 'Menu'], ['track-day', 'Track day'], ['ghost', 'Ghost car'], ['rally', 'Rally'], ['recce', 'Pace notes'], ['regularity', 'Regularity'], ['performance', 'Performance'], ['dyno', 'Dyno'], ['live', 'Live'], ['coach', 'Coach'], ['analysis', 'Analysis'], ['debrief', 'Debrief'], ['tracks', 'Tracks'], ['import', 'Import'], ['phone-sensors', 'Phone sensors'], ['wheel', 'Wheel'], ['safety', 'Safety']]),
+      anchorBar([['disciplines', 'Menu'], ['track-day', 'Track day'], ['ghost', 'Ghost car'], ['rally', 'Rally'], ['recce', 'Pace notes'], ['regularity', 'Regularity'], ['performance', 'Performance'], ['dyno', 'Dyno'], ['live', 'Live'], ['coach', 'Coach'], ['analysis', 'Analysis'], ['find-time', 'Time gaps'], ['replay', 'Replay'], ['debrief', 'Debrief'], ['tracks', 'Tracks'], ['import', 'Import'], ['phone-sensors', 'Phone sensors'], ['wheel', 'Wheel'], ['safety', 'Safety']]),
       section(`${head({ eyebrow: 'The Racing menu', title: 'One menu. <span class="grad-text">Every discipline.</span>', sub: 'Track day, rally stage, recce and regularity, one tap each. Your circuits and stages sit beside them, ready to drive, with every recent session a tap away.', center: true })}
         <div class="menu-shot reveal-scale d1">${media({ img: 'v9/racing-menu.webp', w: 2000, h: 1250, alt: 'The DashLink Racing menu: Track day, Rally stage, Recce and Regularity, your circuits and stages, and recent sessions', spots: [
           { x: 15.5, y: 32, label: 'Track day: laps, sectors, live delta' }, { x: 42, y: 32, label: 'Rally stage: point to point, every run compared' }, { x: 15.5, y: 72, label: 'Recce: pace notes written for you' }, { x: 42, y: 72, label: 'Regularity: hold the set average' },
@@ -58,6 +58,8 @@ const page = {
       feature(f.dyno),
       feature({ ...f.live, flip: true }),
       feature(f.analysis),
+      explorer(FIND_TIME),
+      feature({ ...f.replay, flip: true }),
       pitWall(PIT_WALL()),
       cards({ cols: 3, eyebrow: 'And the rest', title: 'Everything a race weekend needs.', items: [
         { id: 'coach', icon: 'chat', pro: true, title: 'Coach', body: f.coach.body },

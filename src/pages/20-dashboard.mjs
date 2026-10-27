@@ -12,7 +12,7 @@ const page = {
     title: 'Your car&rsquo;s dashboard, <span class="grad-text">redrawn.</span>',
     sub: 'When Android Auto isn&rsquo;t running, Dock mode turns the screen into a full car dashboard: speed, time, music, trip and apps, laid out for a glance.',
     primary: { play: 'headunit' },
-    tier: `${freeBadge()}<span>Mostly free. The Corsa, Sport and Hyper dials and accent colours are in <a href="../plans/#pro">Pro</a>.</span>`,
+    tier: `${freeBadge()}${proBadge()}`,
     media: { img: 'v4/dock-cockpit.webp', w: 2000, h: 1250, alt: 'The Cockpit layout: a red Corsa dial between speed and car panels' },
     variants: {
       speedometer: { match: ['speedo', 'gauge', 'dial', 'corsa'], eyebrow: 'Custom speedometers', title: 'Six speedometers. <span class="grad-text">Pick yours.</span>', sub: 'Digital, Corsa, Chrono, Sport, Hyper and Minimal, with five dial faces and a red zone from your own speed warning.', media: { img: 'v4/dock-style-speedos.webp', w: 2000, h: 1250, alt: 'Choosing a speedometer: Corsa selected, with Digital, Chrono and Sport' } },
@@ -23,8 +23,8 @@ const page = {
   body() {
     return [
       hero(this.hero),
-      anchorBar([['layouts', 'Layouts'], ['corsa', 'Corsa'], ['speedometers', 'Speedometers'], ['dock-style', 'Live preview'], ['speed-warning', 'Speed warning'], ['trip', 'Trip &amp; fuel'], ['dock', 'Dock'], ['music', 'Music'], ['apps', 'Apps'], ['night', 'Night'], ['screensaver', 'Screensaver'], ['dock-keys', 'Wheel keys'], ['large-controls', 'Large controls']]),
-      explorer({ id: 'layouts', eyebrow: '7 layouts', title: 'One screen. Seven ways to drive.', sub: 'Pick the layout that suits the drive. Tap one to see it.', more: 'Plus <b>Night</b>: black and dim, for dark roads. Every layout is free; the Corsa, Sport and Hyper dials need Pro after the trial.', items: [
+      anchorBar([['layouts', 'Layouts'], ['corsa', 'Corsa'], ['speedometers', 'Speedometers'], ['engine', 'Engine clusters'], ['dock-style', 'Live preview'], ['speed-warning', 'Speed warning'], ['trip', 'Trip &amp; fuel'], ['dock', 'Dock'], ['music', 'Music'], ['apps', 'Apps'], ['night', 'Night'], ['screensaver', 'Screensaver'], ['dock-keys', 'Wheel keys'], ['large-controls', 'Large controls']]),
+      explorer({ id: 'layouts', eyebrow: '7 layouts', title: 'One screen. Seven ways to drive.', sub: 'Pick the layout that suits the drive. Tap one to see it.', more: 'Every layout is free; the Corsa, Sport and Hyper dials need Pro after the trial.', items: [
         { key: 'cockpit', name: 'Cockpit', desc: 'The Corsa dial between two screens: speed, max and average on one side, your car, heading and range on the other.', img: 'v5/dock-cockpit.webp', alt: 'Cockpit layout with a yellow Corsa dial', spots: [
           { x: 15, y: 48, label: 'Speed, max and average' }, { x: 24.4, y: 25, label: 'Your speed warning' }, { x: 50, y: 49, label: 'Corsa dial, yellow face' }, { x: 79, y: 46, label: 'Your car and heading' }, { x: 82.5, y: 68, label: 'Range estimate' }, { x: 50, y: 92, label: 'Pinned apps' } ] },
         { key: 'classic', name: 'Classic', desc: 'A big dial beside the time, the date, your range and this trip.', img: 'v5/dock-classic.webp', alt: 'Classic layout with the Sport dial', spots: [
@@ -37,6 +37,8 @@ const page = {
           { x: 50, y: 48, label: 'Just your speed' }, { x: 8, y: 50, label: 'Your speed warning' }, { x: 92.5, y: 48, label: 'Heading' }, { x: 50, y: 15, label: 'Time and range' } ] },
         { key: 'journey', name: 'Journey', desc: 'For long drives: estimated range, trip cost, distance and average.', img: 'v4/dock-journey.webp', alt: 'Journey layout', spots: [
           { x: 22.7, y: 63, label: 'Your car, in its paint' }, { x: 71.5, y: 50, label: 'Range estimate' }, { x: 58, y: 66, label: 'Estimated trip cost' }, { x: 84.5, y: 66, label: 'Distance' } ] },
+        { key: 'night', name: 'Night', desc: 'Black and dim, in a warm red: no glare on dark roads. Just speed, your warning and the time.', img: 'v14/dock-night.webp', alt: 'Night layout: 61 km/h in dim red on black, with a 50 speed warning and the time', spots: [
+          { x: 49.5, y: 57.6, label: 'Your speed, dim and warm' }, { x: 9, y: 56.4, label: 'Your speed warning' }, { x: 49.5, y: 20.4, label: 'The time' } ] },
       ] }),
       corsa({ id: 'corsa', eyebrow: 'The Corsa dial ' + proBadge(), title: 'Finished like a fine watch.', sub: 'A sunray face, a railway chapter ring and a lit window, in five faces. Hover to look closer, or step through the details.', faces: [
         { key: 'red', name: 'Red', swatch: '#c8102e', img: 'v5/corsa-red.webp' },
@@ -60,6 +62,10 @@ const page = {
         { name: 'Sport', pro: true, desc: 'A live arc with the speed big in the middle.', img: 'v5/speedo-sport.webp', alt: 'The Sport speedometer' },
         { name: 'Hyper', pro: true, desc: 'Italic figures, a sweeping inner arc and the odometer.', img: 'v5/speedo-hyper.webp', alt: 'The Hyper speedometer' },
       ] }),
+      feature({ id: 'engine', pro: true, isNew: true, kicker: 'Engine clusters', title: 'Plug in an adapter. <span class="grad-text">Get a real cluster.</span>',
+        body: 'Add a small OBD-II adapter and Dock mode reads your engine: a tachometer, coolant, oil, boost, battery and fault codes, in five clusters styled after real sports cars. Grand Tourer, Flat-Six, V12, Toro and Trio.',
+        media: { img: 'v14/eng-gt.webp', w: 1552, h: 668, alt: 'The Grand Tourer engine cluster: tachometer, speedometer and a centre display with fault codes, coolant, fuel, oil and boost' },
+        cta: { href: 'diagnostics/#clusters', label: 'See all five clusters' } }),
       feature({ id: 'dock-style', flip: true, kicker: 'Live preview', title: 'Try it before you pick it.', body: 'Dock style shows each layout and speedometer live, with your real speed and trip, before you choose. Then pick a dial face: Accent, Red, Yellow, White or Black.', media: { img: 'v4/dock-style-layouts.webp', w: 2000, h: 1250, alt: 'The Dock style screen with live layout previews' } }),
       speedWarning({ id: 'speed-warning', eyebrow: 'Safety', title: 'A warning at the speed you choose.', sub: 'Set the speed you don&rsquo;t want to go over. DashLink keeps an eye on it so you can keep yours on the road.', start: 50, presets: [30, 40, 50, 60, 80, 100, 120, 140],
         shot: { img: 'v5/dock-overspeed.webp', alt: 'Over the warning speed: the panel turns red with a +34 km/h badge' },
