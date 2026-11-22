@@ -112,6 +112,9 @@
     if(/play\.google\.com$/i.test(url.hostname)){
       return ['play_store_click', { app_id: url.searchParams.get('id') || undefined }];
     }
+    if(/(^|\.)(youtube\.com|youtu\.be)$/i.test(url.hostname)){
+      return ['youtube_click', { video_id: url.searchParams.get('v') || url.pathname.split('/').pop() || undefined }];
+    }
     if(url.origin === location.origin && /\/download\/?$/.test(url.pathname) && !/\/download\/?$/.test(location.pathname)){
       return ['download_cta_click', {}];
     }
